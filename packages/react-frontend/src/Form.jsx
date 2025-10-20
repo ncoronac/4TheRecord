@@ -3,14 +3,13 @@ import { useState } from 'react'
 function Form() {
   const [person, setPerson] = useState({
     firstname: "",
-    lastname: ""
+    lastname: "",
+    email: ""
   })
 
   function handleChange(event) {
     const { name, value } = event.target;
-    if (name == "lastname")
-      setPerson({ firstname: person["firstname"], lastname : value});
-    else setPerson({ firstname: value, lastname: person["lastname"]})
+    setPerson({...person, [name]: value})
   }
 
   // this is just for testing purposes
@@ -29,6 +28,9 @@ function Form() {
 
         <label htmlFor="lastname">Last Name*</label>
         <input type="text" name='lastname' id="lastname" value={person.lastname} onChange={handleChange} required/>
+
+        <label htmlFor="email">Email*</label>
+        <input type="email" name='email' id="email" value={person.email} onChange={handleChange} required/>
 
         <button type='submit'>Submit</button>
       </form>
