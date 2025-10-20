@@ -14,21 +14,23 @@ function Form() {
   }
 
   // this is just for testing purposes
-  function submitForm() {
-    console.log("Submitted: ", person)
+  function submitForm(event) {
+    event.preventDefault();
+    console.log("Submitted: ", person);
   }
 
   return (
     <div className="container">
-      <h1>Form in React</h1>
-      <form>
+      <h1>User Sign-Up</h1>
+      <form onSubmit={submitForm}>
         <label htmlFor="firstname">First Name*</label>
-        <input type="text" name='firstname' id="firstname" onChange={handleChange}/>
+        <input
+        type="text" name='firstname' id="firstname" value={person.firstname} onChange={handleChange} required/>
 
         <label htmlFor="lastname">Last Name*</label>
-        <input type="text" name='lastname' id="lastname" onChange={handleChange}/>
+        <input type="text" name='lastname' id="lastname" value={person.lastname} onChange={handleChange} required/>
 
-        <input type='button' value='Submit' onClick={submitForm}/>
+        <button type='submit'>Submit</button>
       </form>
     </div>
     
