@@ -1,7 +1,6 @@
-// src/main.jsx
 import React from "react";
 import ReactDOMClient from "react-dom/client";
-import Form from "./Form";
+import App from './App.jsx'
 import "./main.css";
 
 const container = document.getElementById("root");
@@ -9,5 +8,5 @@ const container = document.getElementById("root");
 // Create a root
 const root = ReactDOMClient.createRoot(container);
 
-// Initial render:
-root.render(<Form />);
+// Render the App component which should contain both Form and DiaryEntry
+root.render(<App />);
