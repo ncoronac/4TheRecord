@@ -1,5 +1,6 @@
 # 4TheRecord
 ## Contributing
+### Contributors: Ava, Noemi, Ivana, Kyrene
 We use [Prettier](https://prettier.io/) for code formatting.
 Before submitting a pull request, please make sure your code is formatted by:
 1. add .prettierrc.json file
