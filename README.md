@@ -8,7 +8,8 @@ Before submitting a pull request, please make sure your code is formatted by:
    npm run format
 
 
-Standards: 
+Standards:
+```
 .prettierrc.json
 {
     "semi": true,
@@ -18,6 +19,6 @@ Standards:
     "printWidth": 80,
     "bracketSpacing": true
 }
-
+```
 
 When working on a new task, create a new branch and commit changes to that branch as you progress. When a task is done, push your code and make a merge request to keep everyone else updated on the app progress. Additionally, communicate the progress to the rest of the group.
