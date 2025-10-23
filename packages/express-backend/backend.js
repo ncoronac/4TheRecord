@@ -1,5 +1,6 @@
 // backend.js
 import express from "express";
+import userServices from "./models/user-services.js";
 
 const app = express();
 const port = 8000;
@@ -11,7 +12,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/users", async (req, res) => {
-
+  try {
+    const result = await userServices.getUsers();
+    res.send({ users_list: result });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("An error ocurred in the server.");
+  }
 });
 
 app.listen(port, () => {

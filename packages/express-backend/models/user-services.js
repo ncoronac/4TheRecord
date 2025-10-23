@@ -4,7 +4,7 @@ import userModel from "./user.js";
 mongoose.set("debug", true);
 
 mongoose
-    .connect("mongodb://localhost:27017/users", {
+    .connect("mongodb://localhost:27017/4TheRecordUsers", {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
@@ -12,7 +12,7 @@ mongoose
 
 function getUsers(firstname, lastname) {
     let promise;
-    if (firstname === undefined && job === undefined ){
+    if (firstname === undefined && lastname === undefined ){
         promise = userModel.find();
     } else if (firstname && !lastname) {
         promise = findUserByFirst(firstname);
@@ -22,6 +22,9 @@ function getUsers(firstname, lastname) {
     else {
         promise = findUserByFullName(firstname, lastname)
     }
+    return promise;
 }
 
-function 
+export default {
+    getUsers
+};
