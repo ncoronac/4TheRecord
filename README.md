@@ -3,14 +3,16 @@
 We use [Prettier](https://prettier.io/) for code formatting.
 Before submitting a pull request, please make sure your code is formatted by:
 1. add .prettierrc.json file
-2. commands used: npx prettier --check .
+2. commands used:
+```
+   npx prettier --check .
    npx prettier --write .
    npm run format
-
+```
 
 Standards:
 ```
-.prettierrc.json
+// .prettierrc.json
 {
     "semi": true,
     "singleQuote": false,
