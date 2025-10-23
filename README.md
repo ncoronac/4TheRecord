@@ -1,3 +1,8 @@
 # 4TheRecord
 ## Contributing
-this is a test
+
+
+added .prettierrc.json file
+
+commands used: npx prettier --check . 
+npx prettier --write
