@@ -9,8 +9,8 @@ function DiaryEntry() {
     });
 
     function handleChange(event) {
-        const { name, value } = event.target;
-        setEntry({ ...entry, [name]: value });
+        const { name, value } = event.target; // const name = event.target.name; const value = event.target.value
+        setEntry({ ...entry, [name]: value }); // duplicates "entry" and adds [name]: value at the end
     }
 
     function handleMoodSelect(mood) {

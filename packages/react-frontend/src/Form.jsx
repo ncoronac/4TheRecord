@@ -8,8 +8,8 @@ function Form() {
     });
 
     function handleChange(event) {
-        const { name, value } = event.target;
-        setPerson({ ...person, [name]: value });
+        const { name, value } = event.target; // const name = event.target.name; const value = event.target.value
+        setPerson({ ...person, [name]: value }); // may need to change this to log back into an exising person (instead of create a new person) in the future
     }
 
     // this is just for testing purposes
@@ -28,7 +28,7 @@ function Form() {
                     name="firstname"
                     id="firstname"
                     value={person.firstname}
-                    onChange={handleChange}
+                    onChange={handleChange} // triggered when there is any change in the input field
                     required
                 />
 
@@ -38,7 +38,7 @@ function Form() {
                     name="lastname"
                     id="lastname"
                     value={person.lastname}
-                    onChange={handleChange}
+                    onChange={handleChange} // triggered when there is any change in the input field
                     required
                 />
 
@@ -48,7 +48,7 @@ function Form() {
                     name="email"
                     id="email"
                     value={person.email}
-                    onChange={handleChange}
+                    onChange={handleChange} // triggered when there is any change in the input field
                     required
                 />
 
