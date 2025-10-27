@@ -8,10 +8,17 @@ function DiaryEntry() {
         mood: "",
     });
 
+<<<<<<< HEAD
   function handleChange(event) {
     const { name, value } = event.target;
     setEntry({...entry, [name]: value})
   }
+=======
+    function handleChange(event) {
+        const { name, value } = event.target; // const name = event.target.name; const value = event.target.value
+        setEntry({ ...entry, [name]: value }); // duplicates "entry" and adds [name]: value at the end
+    }
+>>>>>>> 0282cb9 (added cors to backend, progress creating user entries in database)
 
     function handleMoodSelect(mood) {
         setEntry({ ...entry, mood: mood });
