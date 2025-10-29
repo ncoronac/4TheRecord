@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import userModel from "./user.js";
+import schema from "./user.js";
 
 mongoose.set("debug", true);
 
@@ -13,19 +13,23 @@ mongoose
 function getUsers(firstname, lastname) {
     let promise;
     if (firstname === undefined && lastname === undefined ){
-        promise = userModel.find();
+        promise = schema.User.find();
     } else if (firstname && !lastname) {
-        promise = findUserByFirst(firstname);
+        promise = findUserByFirst(firstname); // method DNE
     } else if (!firstname && lastname) {
-        promise = findUserByLast (lastname)
+        promise = findUserByLast (lastname) // method DNE 
     }
     else {
-        promise = findUserByFullName(firstname, lastname)
+        promise = findUserByFullName(firstname, lastname) // method DNE
     }
     return promise;
 }
 
-// add an addUser
+function addUser(user){
+    const userToAdd = new schema.User(user);
+    const promse = userToAdd.save();
+    return promise;
+}
 
 export default {
     getUsers,
