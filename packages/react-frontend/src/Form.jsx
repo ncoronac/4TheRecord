@@ -19,6 +19,7 @@ function Form() {
     } */ 
 
     function submitForm(){
+        console.log("in submitForm");
         props.handleSubmit(person); // this calls updateUsers(person) which sends a POST to the backend
         setPerson({firstname: "", lastname: "", email: ""});
     }

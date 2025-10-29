@@ -13,7 +13,7 @@ function App() {
     }
 
     function postUser(person){
-        const promise = fetch("http://localhost:8000/users", {
+        const promise = fetch("http://localhost:8000/users", { // is this the issue?
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -24,6 +24,7 @@ function App() {
     }
 
     function updateUsers(person){
+        console.log("in updateUsers");
         postUser(person).then((res) => {
             if (res.status == 201) {
                 res.json().then((res) => { 
@@ -70,9 +71,10 @@ function App() {
                 </button>
             </nav>
 
-            {currentView === "form" ? <Form handleSubmit={updateUsers} /> : <DiaryEntry />}
+            < Form handleSubmit={updateUsers} />
         </div>
     );
 }
 
+// {currentView === "form" ? <Form handleSubmit={updateUsers} /> : <DiaryEntry />}
 export default App;
