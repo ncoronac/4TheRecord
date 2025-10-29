@@ -25,6 +25,9 @@ function getUsers(firstname, lastname) {
     return promise;
 }
 
+// add an addUser
+
 export default {
-    getUsers
+    getUsers,
+    addUser
 };

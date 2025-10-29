@@ -13,6 +13,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+// api calls / methods: 
 app.get("/users", async (req, res) => {
   try {
     const result = await userServices.getUsers();
@@ -21,6 +22,13 @@ app.get("/users", async (req, res) => {
     console.log(error);
     res.status(500).send("An error ocurred in the server.");
   }
+});
+
+app.post("/users", (req, res) => {
+  const userToAdd = req.body;
+  const newUser = userServices.addUser(userToAdd)
+    .then((user) => res.status(201).send(user))
+    .catch((error) => console.log(error))
 });
 
 app.listen(port, () => {
