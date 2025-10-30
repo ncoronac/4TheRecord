@@ -17,17 +17,17 @@ function getUsers(firstname, lastname) {
     } else if (firstname && !lastname) {
         promise = findUserByFirst(firstname); // method DNE
     } else if (!firstname && lastname) {
-        promise = findUserByLast (lastname) // method DNE 
+        promise = findUserByLast (lastname); // method DNE 
     }
     else {
-        promise = findUserByFullName(firstname, lastname) // method DNE
+        promise = findUserByFullName(firstname, lastname); // method DNE
     }
     return promise;
 }
 
 function addUser(user){
     const userToAdd = new schema.User(user);
-    const promse = userToAdd.save();
+    const promise = userToAdd.save();
     return promise;
 }
 
