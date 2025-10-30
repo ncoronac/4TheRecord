@@ -27,7 +27,7 @@ function getUsers(firstname, lastname) {
 
 function addUser(user){
     const userToAdd = new schema.User(user);
-    const promse = userToAdd.save();
+    const promise = userToAdd.save();
     return promise;
 }
 
