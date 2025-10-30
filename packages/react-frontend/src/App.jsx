@@ -71,10 +71,9 @@ function App() {
                 </button>
             </nav>
 
-            < Form handleSubmit={updateUsers} />
+            {currentView === "form" ? <Form handleSubmit={updateUsers} /> : <DiaryEntry />}
         </div>
     );
 }
 
-// {currentView === "form" ? <Form handleSubmit={updateUsers} /> : <DiaryEntry />}
 export default App;
