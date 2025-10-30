@@ -17,10 +17,10 @@ function getUsers(firstname, lastname) {
     } else if (firstname && !lastname) {
         promise = findUserByFirst(firstname); // method DNE
     } else if (!firstname && lastname) {
-        promise = findUserByLast (lastname) // method DNE 
+        promise = findUserByLast (lastname); // method DNE 
     }
     else {
-        promise = findUserByFullName(firstname, lastname) // method DNE
+        promise = findUserByFullName(firstname, lastname); // method DNE
     }
     return promise;
 }
