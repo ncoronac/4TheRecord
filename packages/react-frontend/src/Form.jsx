@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Form() {
+function Form(props) {
     const [person, setPerson] = useState({
         firstname: "",
         lastname: "",
