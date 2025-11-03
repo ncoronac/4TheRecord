@@ -18,9 +18,10 @@ function Form(props) {
         console.log("Submitted: ", person);
     } */ 
 
-    function submitForm(){
-        console.log("in submitForm");
-        props.handleSubmit(person); // this calls updateUsers(person) which sends a POST to the backend
+    function submitForm(event){
+        event.preventDefault();
+        console.log("in submitForm"); // for testing, can remove later
+        props.handleSubmitPerson(person); // this calls updateUsers(person) which sends a POST to the backend
         setPerson({firstname: "", lastname: "", email: ""});
     }
 

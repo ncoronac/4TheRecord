@@ -24,10 +24,28 @@ app.get("/users", async (req, res) => {
   }
 });
 
+app.get("/entries", async (req, res) => {
+  try {
+    const result = await userServices.getEntries();
+    //
+    res.send({ entries_list: result }); // entries_list defined in user.js Entry schema as the mongo collection name for this resource
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("An error ocurred in the server.");
+  }
+});
+
 app.post("/users", (req, res) => {
   const userToAdd = req.body;
   const newUser = userServices.addUser(userToAdd)
     .then((user) => res.status(201).send(user))
+    .catch((error) => console.log(error))
+});
+
+app.post("/entries", (req, res) => {
+  const entryToAdd = req.body;
+  const newEntry = userServices.addEntry(entryToAdd)
+    .then((entry) => res.status(201).send(entry))
     .catch((error) => console.log(error))
 });
 

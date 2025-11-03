@@ -24,7 +24,7 @@ function App() {
     }
 
     function updateUsers(person){
-        console.log("in updateUsers");
+        console.log("in updateUsers"); // for testing, can remove later
         postUser(person).then((res) => {
             if (res.status == 201) {
                 res.json().then((res) => { 
@@ -34,6 +34,27 @@ function App() {
         }).catch((error) => {
             console.log(error);
         })
+    }
+
+    function updateEntries(entry){
+        postEntry(entry).then((res) => {
+            if (res.status == 201) {
+                res.json().then((res) => {
+                    setEntries([...entries, res])
+                });
+            } else { console.log("wrong status code: ", res.status) }
+        }).catch((error) => console.log(error) );
+    }
+
+    function postEntry(entry){
+        const promise = fetch("http://localhost:8000/entries", { // is this the issue?
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(entry)
+        });
+        return promise;
     }
 
     return (
@@ -71,7 +92,7 @@ function App() {
                 </button>
             </nav>
 
-            {currentView === "form" ? <Form handleSubmit={updateUsers} /> : <DiaryEntry />}
+            {currentView === "form" ? <Form handleSubmitPerson={updateUsers} /> : <DiaryEntry handleSubmit={updateEntries}/>}
         </div>
     );
 }

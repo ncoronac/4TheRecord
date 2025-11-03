@@ -19,7 +19,7 @@ function DiaryEntry() {
 
     function submitForm(event) {
         event.preventDefault();
-        console.log("Diary Entry Submitted: ", entry);
+        console.log("Diary Entry Submitted: ", entry); // for testing, can remove later
     }
 
     return (
