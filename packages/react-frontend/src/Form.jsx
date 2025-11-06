@@ -1,10 +1,6 @@
 import { useState } from "react";
 
-<<<<<<< HEAD
 function Form(props) {
-=======
-function Form() {
->>>>>>> 61a3cf7 (prettier added)
     const [person, setPerson] = useState({
         firstname: "",
         lastname: "",
@@ -12,8 +8,6 @@ function Form() {
     });
 
     function handleChange(event) {
-<<<<<<< HEAD
-<<<<<<< HEAD
         const { name, value } = event.target; // const name = event.target.name; const value = event.target.value
         setPerson({ ...person, [name]: value }); // may need to change this to log back into an exising person (instead of create a new person) in the future
     }
@@ -64,56 +58,6 @@ function Form() {
                     required
                 />
 
-=======
-        const { name, value } = event.target;
-        setPerson({ ...person, [name]: value });
-=======
-        const { name, value } = event.target; // const name = event.target.name; const value = event.target.value
-        setPerson({ ...person, [name]: value }); // may need to change this to log back into an exising person (instead of create a new person) in the future
->>>>>>> 0282cb9 (added cors to backend, progress creating user entries in database)
-    }
-
-    // this is just for testing purposes
-    function submitForm(event) {
-        event.preventDefault();
-        console.log("Submitted: ", person);
-    }
-
-    return (
-        <div className="container">
-            <h1>User Sign-Up</h1>
-            <form onSubmit={submitForm}>
-                <label htmlFor="firstname">First Name*</label>
-                <input
-                    type="text"
-                    name="firstname"
-                    id="firstname"
-                    value={person.firstname}
-                    onChange={handleChange} // triggered when there is any change in the input field
-                    required
-                />
-
-                <label htmlFor="lastname">Last Name*</label>
-                <input
-                    type="text"
-                    name="lastname"
-                    id="lastname"
-                    value={person.lastname}
-                    onChange={handleChange} // triggered when there is any change in the input field
-                    required
-                />
-
-                <label htmlFor="email">Email*</label>
-                <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={person.email}
-                    onChange={handleChange} // triggered when there is any change in the input field
-                    required
-                />
-
->>>>>>> 61a3cf7 (prettier added)
                 <button type="submit">Submit</button>
             </form>
         </div>
