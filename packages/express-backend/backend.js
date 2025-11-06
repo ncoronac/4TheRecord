@@ -1,4 +1,3 @@
-// backend.js
 import express from "express";
 import cors from "cors";
 import userServices from "./models/user-services.js";
@@ -27,7 +26,6 @@ app.get("/users", async (req, res) => {
 app.get("/entries", async (req, res) => {
   try {
     const result = await userServices.getEntries();
-    //
     res.send({ entries_list: result }); // entries_list defined in user.js Entry schema as the mongo collection name for this resource
   } catch (error) {
     console.log(error);

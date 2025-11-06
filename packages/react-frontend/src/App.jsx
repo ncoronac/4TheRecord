@@ -5,6 +5,7 @@ import DiaryEntry from "./DiaryEntry";
 function App() {
     const [currentView, setCurrentView] = useState("form");
     const [users, setUsers] = useState([ ]); // not sure ab this
+    const [entries, setEntries] = useState([ ]);
 
     // don't actually need this rn since we aren't doing a GET request on users
     function fetchUsers(){
@@ -24,7 +25,6 @@ function App() {
     }
 
     function updateUsers(person){
-        console.log("in updateUsers"); // for testing, can remove later
         postUser(person).then((res) => {
             if (res.status == 201) {
                 res.json().then((res) => { 
@@ -38,7 +38,7 @@ function App() {
 
     function updateEntries(entry){
         postEntry(entry).then((res) => {
-            if (res.status == 201) {
+            if (res.status == 201) { // if post is successful
                 res.json().then((res) => {
                     setEntries([...entries, res])
                 });
@@ -47,7 +47,7 @@ function App() {
     }
 
     function postEntry(entry){
-        const promise = fetch("http://localhost:8000/entries", { // is this the issue?
+        const promise = fetch("http://localhost:8000/entries", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -92,7 +92,7 @@ function App() {
                 </button>
             </nav>
 
-            {currentView === "form" ? <Form handleSubmitPerson={updateUsers} /> : <DiaryEntry handleSubmit={updateEntries}/>}
+            {currentView === "form" ? <Form handleSubmitPerson={updateUsers} /> : <DiaryEntry handleSubmitEntry={updateEntries}/>}
         </div>
     );
 }
