@@ -9,10 +9,10 @@ function App() {
     const [users, setUsers] = useState([ ]); // not sure ab this
 
     // don't actually need this rn since we aren't doing a GET request on users
-    function fetchUsers(){
-        const promise = fetch("http://localhost:8000/users");
-        return promise;
-    }
+    // function fetchUsers(){
+    //    const promise = fetch("http://localhost:8000/users");
+     //   return promise;
+    //}
 
     function postUser(person){
         const promise = fetch("http://localhost:8000/users", { // is this the issue?

@@ -17,8 +17,12 @@ const EntrySchema = new mongoose.Schema(
             trim: true
         },
     },
+<<<<<<< HEAD
     {collection: "entries_list"},
     // {_id: false} // optional: turns off automatic "_id" category
+=======
+    {collection: "entries_list"}
+>>>>>>> 0282cb9 (added cors to backend, progress creating user entries in database)
 );
 
 const UserSchema = new mongoose.Schema(
@@ -39,9 +43,15 @@ const UserSchema = new mongoose.Schema(
             trim: true,
         },
         entries:{
+<<<<<<< HEAD
             type: [EntrySchema], // each user has a list of entries
             required: false,
             default: []
+=======
+            type: Array,
+            required: false,
+            trim: true
+>>>>>>> 0282cb9 (added cors to backend, progress creating user entries in database)
         }
     },
     {collection: "users_list"}
