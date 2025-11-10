@@ -3,6 +3,7 @@ import Form from "./Form";
 import DiaryEntry from "./DiaryEntry";
 import DailyView from "./DailyView";
 import Navbar from "./Navbar";
+// import "./App.css";
 
 function App() {
     const [currentView, setCurrentView] = useState("form");

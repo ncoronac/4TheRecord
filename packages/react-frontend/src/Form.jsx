@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Form.css";
 
 function Form(props) {
     const [person, setPerson] = useState({
@@ -19,7 +20,8 @@ function Form(props) {
     }
 
     return (
-        <div className="container">
+        <div className="page-container">
+        <div className="signup-container">
             <h1>User Sign-Up</h1>
             <form onSubmit={submitForm}>
                 <label htmlFor="firstname">First Name*</label>
@@ -54,6 +56,7 @@ function Form(props) {
 
                 <button type="submit">Submit</button>
             </form>
+        </div>
         </div>
     );
 }
