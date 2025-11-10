@@ -21,8 +21,7 @@ const EntrySchema = new mongoose.Schema(
             trim: true
         },
     },
-    {collection: "entries_list"},
-    // {_id: false} // optional: turns off automatic "_id" category
+    {collection: "entries_list"}
 );
 
 const UserSchema = new mongoose.Schema(
@@ -43,9 +42,9 @@ const UserSchema = new mongoose.Schema(
             trim: true,
         },
         entries:{
-            type: [EntrySchema], // each user has a list of entries
+            type: Array,
             required: false,
-            default: []
+            trim: true
         }
     },
     {collection: "users_list"}

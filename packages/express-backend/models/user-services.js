@@ -1,14 +1,19 @@
 import mongoose from "mongoose";
 import schema from "./user.js";
+import dotenv from 'dotenv'
 
+dotenv.config()
 mongoose.set("debug", true);
 
+const uri = process.env.MONGODB_URI;
+
 mongoose
-    .connect("mongodb://localhost:27017/4TheRecordUsers", {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-    .catch((error) => console.log(error));
+  .connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((error) => console.error("MongoDB connection error:", error));
 
 function getUsers(firstname, lastname) {
     let promise;
