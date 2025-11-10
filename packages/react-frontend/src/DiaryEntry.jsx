@@ -21,8 +21,8 @@ function DiaryEntry(props) {
     function submitForm(event) {
         event.preventDefault();
         props.handleSubmitEntry(entry);
-        console.log("Diary Entry Submitted: ", entry); // for testing, can remove later
-        setEntry({ date: "", title: "", content: "", mood: "" });
+        // console.log("Diary Entry Submitted: ", entry); // for testing, can remove later
+        setEntry({ date: "", title: "", content: "", mood: ""});
     }
 
     return (

@@ -42,6 +42,7 @@ app.post("/users", (req, res) => {
 
 app.post("/entries", (req, res) => {
   const entryToAdd = req.body;
+  console.log("in backend: ", entryToAdd);
   const newEntry = userServices.addEntry(entryToAdd)
     .then((entry) => res.status(201).send(entry))
     .catch((error) => console.log(error))

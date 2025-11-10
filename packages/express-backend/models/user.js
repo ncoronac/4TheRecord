@@ -15,7 +15,7 @@ const EntrySchema = new mongoose.Schema(
             type: String,
             required: false
         },
-        body:{
+        content:{
             type: String,
             required: false,
             trim: true
