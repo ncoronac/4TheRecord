@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./DiaryEntry.css"; // Make sure to include this stylesheet
 
-function DiaryEntry() {
+function DiaryEntry(props) {
     const [entry, setEntry] = useState({
         date: "",
         title: "",
@@ -15,12 +15,15 @@ function DiaryEntry() {
   }
 
     function handleMoodSelect(mood) {
+        
         setEntry({ ...entry, mood: mood });
     }
 
     function submitForm(event) {
         event.preventDefault();
-        console.log("Diary Entry Submitted: ", entry);
+        props.handleSubmitEntry(entry);
+        // console.log("Diary Entry Submitted: ", entry); // for testing, can remove later
+        setEntry({ date: "", title: "", content: "", mood: ""});
     }
 
     return (

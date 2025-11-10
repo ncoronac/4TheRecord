@@ -11,7 +11,11 @@ const EntrySchema = new mongoose.Schema(
             type: Date,
             required: true
         },
-        body:{
+        mood: {
+            type: String,
+            required: false
+        },
+        content:{
             type: String,
             required: false,
             trim: true

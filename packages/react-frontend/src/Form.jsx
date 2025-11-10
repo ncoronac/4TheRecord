@@ -12,15 +12,9 @@ function Form(props) {
         setPerson({ ...person, [name]: value }); // may need to change this to log back into an exising person (instead of create a new person) in the future
     }
 
-    /* // this is just for testing purposes:
-    function submitForm(event) {
+    function submitForm(event){
         event.preventDefault();
-        console.log("Submitted: ", person);
-    } */ 
-
-    function submitForm(){
-        console.log("in submitForm");
-        props.handleSubmit(person); // this calls updateUsers(person) which sends a POST to the backend
+        props.handleSubmitPerson(person); // this calls updateUsers(person) which sends a POST to the backend
         setPerson({firstname: "", lastname: "", email: ""});
     }
 

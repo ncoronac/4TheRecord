@@ -7,6 +7,7 @@ import Navbar from "./Navbar";
 function App() {
     const [currentView, setCurrentView] = useState("form");
     const [users, setUsers] = useState([ ]); // not sure ab this
+    const [entries, setEntries] = useState([ ]);
 
     // don't actually need this rn since we aren't doing a GET request on users
     // function fetchUsers(){
@@ -26,7 +27,6 @@ function App() {
     }
 
     function updateUsers(person){
-        console.log("in updateUsers");
         postUser(person).then((res) => {
             if (res.status == 201) {
                 res.json().then((res) => { 
@@ -36,6 +36,27 @@ function App() {
         }).catch((error) => {
             console.log(error);
         })
+    }
+
+    function updateEntries(entry){
+        postEntry(entry).then((res) => {
+            if (res.status == 201) { // if post is successful
+                res.json().then((res) => {
+                    setEntries([...entries, res])
+                });
+            } else { console.log("wrong status code: ", res.status) }
+        }).catch((error) => console.log(error) );
+    }
+
+    function postEntry(entry){
+        const promise = fetch("http://localhost:8000/entries", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(entry)
+        });
+        return promise;
     }
 
     return (

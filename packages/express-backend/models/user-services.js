@@ -30,13 +30,26 @@ function getUsers(firstname, lastname) {
     return promise;
 }
 
+function getEntries(){ // eventually pass parameters that are related to how we want to filter entries -- like account, etc??
+    let promise = schema.Entry.find();
+    return promise;
+}
+
 function addUser(user){
     const userToAdd = new schema.User(user);
     const promise = userToAdd.save();
     return promise;
 }
 
+function addEntry(entry){
+    const entryToAdd = new schema.Entry(entry);
+    const promise = entryToAdd.save();
+    return promise;
+}
+
 export default {
     getUsers,
-    addUser
+    addUser,
+    getEntries,
+    addEntry
 };
