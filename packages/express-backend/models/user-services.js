@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import schema from "./user.js";
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 
-dotenv.config()
+dotenv.config();
 mongoose.set("debug", true);
 
 const uri = process.env.MONGODB_URI;

@@ -63,8 +63,8 @@ function App() {
         <div className="App">
             <Navbar currentView={currentView} setCurrentView={setCurrentView} />
             
-            {currentView === "form" && <Form handleSubmit={updateUsers} />}
-            {currentView === "diary" && <DiaryEntry />}
+            {currentView === "form" && <Form handleSubmitPerson={updateUsers} />}
+            {currentView === "diary" && <DiaryEntry handleSubmitEntry={updateEntries}/>}
             {currentView === "dailyview" && <DailyView />}
         </div>
     );
