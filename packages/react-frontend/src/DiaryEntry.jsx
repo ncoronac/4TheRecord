@@ -55,6 +55,16 @@ function DiaryEntry(props) {
                 { text: "👍", num: 2 },
                 { text: "🪫", num: 1 }
             ]
+        },
+        {
+            title: "Anxiety Tracker",
+            icons: [
+                { text: "😄", num: 5 },
+                { text: "😬", num: 4 },
+                { text: "🫠", num: 3 },
+                { text: "😓", num: 2 },
+                { text: "😣", num: 1 }
+            ]
         }
     ]
 
