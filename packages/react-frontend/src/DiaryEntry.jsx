@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./DiaryEntry.css"; // Make sure to include this stylesheet
+import TrackerContainer from "./TrackerContainer";
 
 function DiaryEntry(props) {
     const [entry, setEntry] = useState({
@@ -9,15 +10,15 @@ function DiaryEntry(props) {
         mood: "",
     });
 
-  function handleChange(event) {
-    const { name, value } = event.target;
-    setEntry({...entry, [name]: value})
-  }
-
-    function handleMoodSelect(mood) {
-        
-        setEntry({ ...entry, mood: mood });
+    function handleChange(event) {
+        const { name, value } = event.target;
+        setEntry({...entry, [name]: value})
     }
+
+    // function handleMoodSelect(mood) {
+        
+    //     setEntry({ ...entry, mood: mood });
+    // }
 
     function submitForm(event) {
         event.preventDefault();
@@ -25,6 +26,37 @@ function DiaryEntry(props) {
         // console.log("Diary Entry Submitted: ", entry); // for testing, can remove later
         setEntry({ date: "", title: "", content: "", mood: ""});
     }
+
+    const trackers = [
+        {
+            title: "Mood Tracker",
+            icons: [
+                { text: "😆", num: 5 },
+                { text: "😊", num: 4 },
+                { text: "😐", num: 3 },
+                { text: "☹️", num: 2 },
+                { text: "😡", num: 1 }
+            ]
+        },
+        {
+            title: "Stress Tracker",
+            icons: [
+                { text: "☀️", num: 5 },
+                { text: "⛅️", num: 4 },
+                { text: "🌧️", num: 3 },
+                { text: "🌩️", num: 2 },
+                { text: "🌪️", num: 1 }
+            ]
+        },
+        {
+            title: "Energy Tracker",
+            icons: [
+                { text: "🔋", num: 3 },
+                { text: "👍", num: 2 },
+                { text: "🪫", num: 1 }
+            ]
+        }
+    ]
 
     return (
         <div className="page-container">
@@ -79,26 +111,9 @@ function DiaryEntry(props) {
 
             {/* Right Side — Mood Tracker */}
             <div className="mood-tracker">
-                <h2>Mood Tracker</h2>
-                <p>How are you feeling today?</p>
-                <div className="mood-selector">
-                    {[
-                        "😊 Happy",
-                        "😔 Sad",
-                        "😄 Excited",
-                        "😴 Tired",
-                        "😐 Neutral",
-                    ].map((mood) => (
-                        <button
-                            key={mood}
-                            type="button"
-                            className={`mood-option ${
-                                entry.mood === mood ? "selected" : ""
-                            }`}
-                            onClick={() => handleMoodSelect(mood)}
-                        >
-                            {mood}
-                        </button>
+                <div>
+                    {trackers.map((tracker,index) => (
+                        <TrackerContainer key={index} title={tracker.title} icons={tracker.icons}/>
                     ))}
                 </div>
             </div>
