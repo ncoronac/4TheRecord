@@ -1,0 +1,44 @@
+.form-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #9985B6;
+}
+
+.form-container {
+    background-color: white;  /* light blue */
+    padding: 32px;
+    /* border-radius: 5px; */
+    width: 500px;
+    margin: 2rem auto;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.5);
+}
+
+.form-container label {
+    font-weight: bold;
+}
+
+.header-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.header-group h1{
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+    margin: 0;
+    line-height: 0;
+}
+
+.header-group h2 {
+    font-weight: bold;
+    font-size: 30px;
+    color: white;
+    margin: 0;
+    line-height: 0;
+}

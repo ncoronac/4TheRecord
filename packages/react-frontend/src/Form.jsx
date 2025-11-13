@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./Form.css";
 
 function Form(props) {
     const [person, setPerson] = useState({
@@ -19,41 +20,47 @@ function Form(props) {
     }
 
     return (
-        <div className="container">
-            <h1>User Sign-Up</h1>
-            <form onSubmit={submitForm}>
-                <label htmlFor="firstname">First Name*</label>
-                <input
-                    type="text"
-                    name="firstname"
-                    id="firstname"
-                    value={person.firstname}
-                    onChange={handleChange} // triggered when there is any change in the input field
-                    required
-                />
+        <div className="form-page">
+            <div className="header-group">
+                <h2>4TheRecord</h2>
+                <h1>Welcome!</h1>
+            </div>
+ 
+            <div className="form-container">
+                <form onSubmit={submitForm}>
+                    <label htmlFor="firstname">First Name*</label>
+                    <input
+                        type="text"
+                        name="firstname"
+                        id="firstname"
+                        value={person.firstname}
+                        onChange={handleChange} // triggered when there is any change in the input field
+                        required
+                    />
 
-                <label htmlFor="lastname">Last Name*</label>
-                <input
-                    type="text"
-                    name="lastname"
-                    id="lastname"
-                    value={person.lastname}
-                    onChange={handleChange} // triggered when there is any change in the input field
-                    required
-                />
+                    <label htmlFor="lastname">Last Name*</label>
+                    <input
+                        type="text"
+                        name="lastname"
+                        id="lastname"
+                        value={person.lastname}
+                        onChange={handleChange} // triggered when there is any change in the input field
+                        required
+                    />
 
-                <label htmlFor="email">Email*</label>
-                <input
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={person.email}
-                    onChange={handleChange} // triggered when there is any change in the input field
-                    required
-                />
+                    <label htmlFor="email">Email*</label>
+                    <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        value={person.email}
+                        onChange={handleChange} // triggered when there is any change in the input field
+                        required
+                    />
 
-                <button type="submit">Submit</button>
-            </form>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
         </div>
     );
 }
