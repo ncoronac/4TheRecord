@@ -7,7 +7,7 @@ function Navbar({ currentView, setCurrentView }) {
     const linkStyle = (view) => ({
         padding: "10px 20px",
         cursor: "pointer",
-        color: currentView === view ? "#4299e1" : "black",
+        color: currentView === view ? "#8b5cf6" : "black",
         fontWeight: currentView === view ? "bold" : "normal"
     });
 
@@ -60,7 +60,9 @@ function Navbar({ currentView, setCurrentView }) {
                 position: "sticky",
                 top: 0,
                 width: "100%",
-                zIndex: 1000
+                zIndex: 1000,
+                boxShadow: "0 2px 10px rgba(139, 92, 246, 0.08)",
+                borderBottom: "1px solid #f3e8ff"
             }}
         >
             {/* 4TheRecord */}
@@ -70,8 +72,8 @@ function Navbar({ currentView, setCurrentView }) {
                 top: "50%",
                 transform: "translateY(-50%)",
                 fontWeight: "bold",
-                fontSize: "18px",
-                color: "#4299e1"
+                fontSize: "24px",
+                color: "black"
             }}>
                 4TheRecord
             </div>
@@ -88,7 +90,7 @@ function Navbar({ currentView, setCurrentView }) {
                 Daily View
             </span>
 
-            {/* User Profile Menu - Right Corner */}
+            {/* User Profile Menu */}
             <div style={{ 
                 position: "absolute", 
                 right: "20px",
@@ -100,16 +102,27 @@ function Navbar({ currentView, setCurrentView }) {
                         width: "40px",
                         height: "40px",
                         borderRadius: "50%",
-                        backgroundColor: "#4299e1",
+                        backgroundColor: "#8b5cf6",
                         cursor: "pointer",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         color: "white",
                         fontWeight: "bold",
-                        fontSize: "14px"
+                        fontSize: "14px",
+                        transition: "all 0.2s ease-in-out",
+                        boxShadow: "0 2px 8px rgba(139, 92, 246, 0.3)",
+                        border: "2px solid white"
                     }}
                     onClick={handleProfileClick}
+                    onMouseEnter={(e) => {
+                        e.target.style.transform = "scale(1.1)";
+                        e.target.style.boxShadow = "0 4px 12px rgba(139, 92, 246, 0.4)";
+                    }}
+                    onMouseLeave={(e) => {
+                        e.target.style.transform = "scale(1)";
+                        e.target.style.boxShadow = "0 2px 8px rgba(139, 92, 246, 0.3)";
+                    }}
                 >
                     U
                 </div>
@@ -122,20 +135,60 @@ function Navbar({ currentView, setCurrentView }) {
                             top: "45px",
                             right: "0",
                             backgroundColor: "white",
-                            border: "1px solid #ddd",
-                            borderRadius: "4px",
-                            minWidth: "180px",
-                            zIndex: 1001
+                            border: "1px solid #f3e8ff",
+                            borderRadius: "8px",
+                            minWidth: "200px",
+                            zIndex: 1001,
+                            boxShadow: "0 10px 25px rgba(139, 92, 246, 0.15)",
+                            overflow: "hidden",
+                            animation: "slideDown 0.2s ease-out"
                         }}
                     >
+                        {/* User Info Header */}
+                        <div style={{
+                            padding: "12px 16px",
+                            borderBottom: "1px solid #f3e8ff",
+                            backgroundColor: "#faf5ff"
+                        }}>
+                            <div style={{
+                                fontWeight: "600",
+                                color: "#1a202c",
+                                fontSize: "14px"
+                            }}>
+                                Fake User
+                            </div>
+                            <div style={{
+                                color: "#718096",
+                                fontSize: "12px",
+                                marginTop: "2px"
+                            }}>
+                                Fakeuser@example.com
+                            </div>
+                        </div>
+
                         <div
                             style={{
                                 padding: "12px 16px",
                                 cursor: "pointer",
-                                borderBottom: "1px solid #eee"
+                                transition: "all 0.15s ease",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "10px",
+                                color: "#4a5568",
+                                fontSize: "14px",
+                                borderBottom: "1px solid #f3e8ff"
                             }}
                             onClick={handleChangeProfilePicture}
+                            onMouseEnter={(e) => {
+                                e.target.style.backgroundColor = "#faf5ff";
+                                e.target.style.color = "#8b5cf6";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.backgroundColor = "transparent";
+                                e.target.style.color = "#4a5568";
+                            }}
                         >
+                            <span>👤</span>
                             Change Profile Picture
                         </div>
 
@@ -143,10 +196,25 @@ function Navbar({ currentView, setCurrentView }) {
                             style={{
                                 padding: "12px 16px",
                                 cursor: "pointer",
-                                borderBottom: "1px solid #eee"
+                                transition: "all 0.15s ease",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "10px",
+                                color: "#4a5568",
+                                fontSize: "14px",
+                                borderBottom: "1px solid #f3e8ff"
                             }}
                             onClick={handleInsights}
+                            onMouseEnter={(e) => {
+                                e.target.style.backgroundColor = "#faf5ff";
+                                e.target.style.color = "#8b5cf6";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.backgroundColor = "transparent";
+                                e.target.style.color = "#4a5568";
+                            }}
                         >
+                            <span>📊</span>
                             Insights
                         </div>
 
@@ -154,10 +222,25 @@ function Navbar({ currentView, setCurrentView }) {
                             style={{
                                 padding: "12px 16px",
                                 cursor: "pointer",
-                                borderBottom: "1px solid #eee"
+                                transition: "all 0.15s ease",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "10px",
+                                color: "#4a5568",
+                                fontSize: "14px",
+                                borderBottom: "1px solid #f3e8ff"
                             }}
                             onClick={handleSettings}
+                            onMouseEnter={(e) => {
+                                e.target.style.backgroundColor = "#faf5ff";
+                                e.target.style.color = "#8b5cf6";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.backgroundColor = "transparent";
+                                e.target.style.color = "#4a5568";
+                            }}
                         >
+                            <span>⚙️</span>
                             Settings
                         </div>
 
@@ -165,15 +248,30 @@ function Navbar({ currentView, setCurrentView }) {
                             style={{
                                 padding: "12px 16px",
                                 cursor: "pointer",
-                                color: "#e53e3e"
+                                transition: "all 0.15s ease",
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "10px",
+                                color: "#e53e3e",
+                                fontSize: "14px"
                             }}
                             onClick={handleLogout}
+                            onMouseEnter={(e) => {
+                                e.target.style.backgroundColor = "#fed7d7";
+                                e.target.style.color = "#c53030";
+                            }}
+                            onMouseLeave={(e) => {
+                                e.target.style.backgroundColor = "transparent";
+                                e.target.style.color = "#e53e3e";
+                            }}
                         >
+                            <span>🚪</span>
                             Logout
                         </div>
                     </div>
                 )}
             </div>
+
         </nav>
     );
 }
