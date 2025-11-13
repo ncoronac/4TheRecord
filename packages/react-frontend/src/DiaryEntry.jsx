@@ -15,7 +15,6 @@ function DiaryEntry(props) {
   }
 
     function handleMoodSelect(mood) {
-        
         setEntry({ ...entry, mood: mood });
     }
 
@@ -79,7 +78,7 @@ function DiaryEntry(props) {
 
             {/* Right Side — Mood Tracker */}
             <div className="mood-tracker">
-                <h2>Mood Tracker</h2>
+                <h1>Mood Tracker</h1>
                 <p>How are you feeling today?</p>
                 <div className="mood-selector">
                     {[
@@ -92,9 +91,7 @@ function DiaryEntry(props) {
                         <button
                             key={mood}
                             type="button"
-                            className={`mood-option ${
-                                entry.mood === mood ? "selected" : ""
-                            }`}
+                            className={`mood-option ${entry.mood === mood ? "selected" : ""}`}
                             onClick={() => handleMoodSelect(mood)}
                         >
                             {mood}
