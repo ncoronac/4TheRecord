@@ -9,6 +9,14 @@ function DailyView() {
 
     const today = new Date();
 
+    // list of guided prompts
+    const guidedPrompts = [
+        {id: 1, text: "Write about all of the green things you saw today ── .✦"},
+        {id: 2, text: "What are three good things you noticed about your day? ➔"},
+        {id: 3, text: "Tell me about your favorite baking recipe. ── .✦"},
+        {id: 4, text: "Pick out your outfit for tomorrow. Come back and describe it in your diary. ➔"}
+    ];
+
     // State: current month & year
     const [currentMonth, setCurrentMonth] = useState(today.getMonth());
     const [currentYear, setCurrentYear] = useState(today.getFullYear());
@@ -103,7 +111,19 @@ function DailyView() {
       {/* RIGHT SIDE: Daily Prompts*/}
       <div className="daily-prompts">
         <h1>Daily Prompts</h1>
-        <p>coming soon..</p>
+            <p>
+                Not sure what to write about? Want to uplift your mood?
+                Scroll through our guided prompts for a pressure-free writing session.
+            </p>
+
+            <div className="prompt-list">
+                {guidedPrompts.map((prompt) => (
+                    <button type="button" key={prompt.id} onClick={() => handleClick(prompt.text)}>
+                        {prompt.text}
+                    </button>
+                ))}
+            </div>
+        <p>interactivity coming soon...</p>
       </div>
     </div>
   );
