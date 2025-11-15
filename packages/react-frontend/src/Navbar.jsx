@@ -1,15 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-function Navbar({ currentView, setCurrentView }) {
+function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
-
-    const linkStyle = (view) => ({
-        padding: "10px 20px",
-        cursor: "pointer",
-        color: currentView === view ? "#8b5cf6" : "black",
-        fontWeight: currentView === view ? "bold" : "normal"
-    });
 
     // Close menu when clicking outside
     useEffect(() => {
@@ -60,35 +54,26 @@ function Navbar({ currentView, setCurrentView }) {
                 position: "sticky",
                 top: 0,
                 width: "100%",
+                height: "77px",
                 zIndex: 1000,
                 boxShadow: "0 2px 10px rgba(139, 92, 246, 0.08)",
                 borderBottom: "1px solid #f3e8ff"
             }}
         >
             {/* 4TheRecord */}
-            <div style={{ 
-                position: "absolute", 
-                left: "20px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                fontWeight: "bold",
-                fontSize: "24px",
-                color: "black"
-            }}>
-                4TheRecord
-            </div>
-
-            <span style={linkStyle("form")} onClick={() => setCurrentView("form")}>
-                User Sign-Up
-            </span>
-
-            <span style={linkStyle("diary")} onClick={() => setCurrentView("diary")}>
-                Diary Entry
-            </span>
-
-            <span style={linkStyle("dailyview")} onClick={() => setCurrentView("dailyview")}>
-                Daily View
-            </span>
+            <Link to="/DailyView">
+                    <div style={{ 
+                        position: "absolute", 
+                        left: "20px",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        fontWeight: "bold",
+                        fontSize: "24px",
+                        color: "black"
+                    }}>
+                        4TheRecord
+                    </div>
+            </Link>
 
             {/* User Profile Menu */}
             <div style={{ 

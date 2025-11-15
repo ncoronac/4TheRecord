@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./Form.css";
 
-function Form(props) {
+function Form( {handleSubmitPerson} ) {
+    const navigate = useNavigate();
+
     const [person, setPerson] = useState({
         firstname: "",
         lastname: "",
@@ -15,8 +18,12 @@ function Form(props) {
 
     function submitForm(event){
         event.preventDefault();
-        props.handleSubmitPerson(person); // this calls updateUsers(person) which sends a POST to the backend
+        // calls Users(person) which sends POST to backend
+        handleSubmitPerson(person);
         setPerson({firstname: "", lastname: "", email: ""});
+
+        // goes to daily view page afterward
+        navigate("/DailyView");
     }
 
     return (

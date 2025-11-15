@@ -1,19 +1,27 @@
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Form from "./Form";
 import DiaryEntry from "./DiaryEntry";
 import DailyView from "./DailyView";
 import Navbar from "./Navbar";
 
+// wrapper that allows us to conditionally render the navbar
+function AppWrapper() {
+    return (
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    );
+}
+
 function App() {
-    const [currentView, setCurrentView] = useState("form");
+    // used to get the current page for conditional rendering
+    const location = useLocation();
+    const showNavbar = location.pathname !== "/";
+
+    // const [currentView, setCurrentView] = useState("form");
     const [users, setUsers] = useState([ ]); // not sure ab this
     const [entries, setEntries] = useState([ ]);
-
-    // don't actually need this rn since we aren't doing a GET request on users
-    // function fetchUsers(){
-    //    const promise = fetch("http://localhost:8000/users");
-     //   return promise;
-    //}
 
     function postUser(person){
         const promise = fetch("http://localhost:8000/users", { // is this the issue?
@@ -60,14 +68,15 @@ function App() {
     }
 
     return (
-        <div className="App">
-            <Navbar currentView={currentView} setCurrentView={setCurrentView} />
-            
-            {currentView === "form" && <Form handleSubmitPerson={updateUsers} />}
-            {currentView === "diary" && <DiaryEntry handleSubmitEntry={updateEntries}/>}
-            {currentView === "dailyview" && <DailyView />}
-        </div>
+        <>
+            {showNavbar && <Navbar />}
+            <Routes>
+                <Route path="/" element={<Form handleSubmitPerson={updateUsers} />}/>
+                <Route path="/DailyView" element={<DailyView />} />
+                <Route path="/DiaryEntry" element={<DiaryEntry handleSubmitEntry={updateEntries} />} />
+            </Routes>
+        </>
     );
 }
 
-export default App;
+export default AppWrapper;

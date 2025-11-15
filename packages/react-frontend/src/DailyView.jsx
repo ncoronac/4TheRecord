@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { Link } from "react-router-dom";
 import "./DailyView.css";
 
 function DailyView() {
@@ -106,6 +107,11 @@ function DailyView() {
           </thead>
           <tbody>{renderCalendar()}</tbody>
         </table>
+
+        {/* added this for now since calendar is not clickable (just to get rid of the navbar) */}
+        <Link to="/DiaryEntry">
+            <button>Diary Entry</button>
+        </Link>
       </div>
 
       {/* RIGHT SIDE: Daily Prompts*/}
