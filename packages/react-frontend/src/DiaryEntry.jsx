@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./DiaryEntry.css"; // Make sure to include this stylesheet
 import TrackerContainer from "./TrackerContainer";
+import { Link } from "react-router-dom";
 
 function DiaryEntry(props) {
     const [entry, setEntry] = useState({
@@ -72,6 +73,10 @@ function DiaryEntry(props) {
         <div className="page-container">
             {/* Left Side — Diary Entry */}
             <div className="diary-container">
+                <Link to="/DailyView">
+                    <p>&#8592; Back</p>
+                </Link>
+
                 <h1>My Diary</h1>
                 <form onSubmit={submitForm}>
                     <label htmlFor="date">Date</label>
