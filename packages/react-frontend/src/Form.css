@@ -4,11 +4,11 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #9985B6;
+    background-color: #9985b6;
 }
 
 .form-container {
-    background-color: white;  /* light blue */
+    background-color: white; /* light blue */
     padding: 32px;
     /* border-radius: 5px; */
     width: 500px;
@@ -27,7 +27,7 @@
     gap: 4px;
 }
 
-.header-group h1{
+.header-group h1 {
     font-weight: bold;
     font-size: 40px;
     color: white;

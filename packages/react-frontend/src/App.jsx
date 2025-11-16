@@ -20,49 +20,59 @@ function App() {
     const showNavbar = location.pathname !== "/";
 
     // const [currentView, setCurrentView] = useState("form");
-    const [users, setUsers] = useState([ ]); // not sure ab this
-    const [entries, setEntries] = useState([ ]);
+    const [users, setUsers] = useState([]); // not sure ab this
+    const [entries, setEntries] = useState([]);
 
-    function postUser(person){
-        const promise = fetch("http://localhost:8000/users", { // is this the issue?
+    function postUser(person) {
+        const promise = fetch("http://localhost:8000/users", {
+            // is this the issue?
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(person)
+            body: JSON.stringify(person),
         });
         return promise;
     }
 
-    function updateUsers(person){
-        postUser(person).then((res) => {
-            if (res.status == 201) {
-                res.json().then((res) => { 
-                    setUsers([...users, res]) // not sure ab this
-                });
-            } else { console.log("wrong status code: ", res.status) } 
-        }).catch((error) => {
-            console.log(error);
-        })
+    function updateUsers(person) {
+        postUser(person)
+            .then((res) => {
+                if (res.status == 201) {
+                    res.json().then((res) => {
+                        setUsers([...users, res]); // not sure ab this
+                    });
+                } else {
+                    console.log("wrong status code: ", res.status);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
-    function updateEntries(entry){
-        postEntry(entry).then((res) => {
-            if (res.status == 201) { // if post is successful
-                res.json().then((res) => {
-                    setEntries([...entries, res])
-                });
-            } else { console.log("wrong status code: ", res.status) }
-        }).catch((error) => console.log(error) );
+    function updateEntries(entry) {
+        postEntry(entry)
+            .then((res) => {
+                if (res.status == 201) {
+                    // if post is successful
+                    res.json().then((res) => {
+                        setEntries([...entries, res]);
+                    });
+                } else {
+                    console.log("wrong status code: ", res.status);
+                }
+            })
+            .catch((error) => console.log(error));
     }
 
-    function postEntry(entry){
+    function postEntry(entry) {
         const promise = fetch("http://localhost:8000/entries", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(entry)
+            body: JSON.stringify(entry),
         });
         return promise;
     }
@@ -71,9 +81,15 @@ function App() {
         <>
             {showNavbar && <Navbar />}
             <Routes>
-                <Route path="/" element={<Form handleSubmitPerson={updateUsers} />}/>
+                <Route
+                    path="/"
+                    element={<Form handleSubmitPerson={updateUsers} />}
+                />
                 <Route path="/DailyView" element={<DailyView />} />
-                <Route path="/DiaryEntry" element={<DiaryEntry handleSubmitEntry={updateEntries} />} />
+                <Route
+                    path="/DiaryEntry"
+                    element={<DiaryEntry handleSubmitEntry={updateEntries} />}
+                />
             </Routes>
         </>
     );

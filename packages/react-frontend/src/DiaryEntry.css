@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     background-color: #faf7ff;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     color: #443d5a;
 }
 
@@ -29,7 +29,8 @@
     height: 100vh;
 }
 
-h1, h2 {
+h1,
+h2 {
     color: #7a6ccf;
     margin-bottom: 1rem;
 }
@@ -49,7 +50,9 @@ h1, h2 {
     color: #443d5a;
     cursor: pointer;
     font-size: 0.95rem;
-    transition: background-color 0.25s ease, transform 0.1s ease;
+    transition:
+        background-color 0.25s ease,
+        transform 0.1s ease;
 }
 
 .mood-option:hover {

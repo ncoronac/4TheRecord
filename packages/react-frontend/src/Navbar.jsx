@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,31 +57,36 @@ function Navbar() {
                 height: "77px",
                 zIndex: 1000,
                 boxShadow: "0 2px 10px rgba(139, 92, 246, 0.08)",
-                borderBottom: "1px solid #f3e8ff"
+                borderBottom: "1px solid #f3e8ff",
             }}
         >
             {/* 4TheRecord */}
             <Link to="/DailyView">
-                    <div style={{ 
-                        position: "absolute", 
+                <div
+                    style={{
+                        position: "absolute",
                         left: "20px",
                         top: "50%",
                         transform: "translateY(-50%)",
                         fontWeight: "bold",
                         fontSize: "24px",
-                        color: "black"
-                    }}>
-                        4TheRecord
-                    </div>
+                        color: "black",
+                    }}
+                >
+                    4TheRecord
+                </div>
             </Link>
 
             {/* User Profile Menu */}
-            <div style={{ 
-                position: "absolute", 
-                right: "20px",
-                top: "50%",
-                transform: "translateY(-50%)"
-            }} ref={menuRef}>
+            <div
+                style={{
+                    position: "absolute",
+                    right: "20px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                }}
+                ref={menuRef}
+            >
                 <div
                     style={{
                         width: "40px",
@@ -97,16 +102,18 @@ function Navbar() {
                         fontSize: "14px",
                         transition: "all 0.2s ease-in-out",
                         boxShadow: "0 2px 8px rgba(139, 92, 246, 0.3)",
-                        border: "2px solid white"
+                        border: "2px solid white",
                     }}
                     onClick={handleProfileClick}
                     onMouseEnter={(e) => {
                         e.target.style.transform = "scale(1.1)";
-                        e.target.style.boxShadow = "0 4px 12px rgba(139, 92, 246, 0.4)";
+                        e.target.style.boxShadow =
+                            "0 4px 12px rgba(139, 92, 246, 0.4)";
                     }}
                     onMouseLeave={(e) => {
                         e.target.style.transform = "scale(1)";
-                        e.target.style.boxShadow = "0 2px 8px rgba(139, 92, 246, 0.3)";
+                        e.target.style.boxShadow =
+                            "0 2px 8px rgba(139, 92, 246, 0.3)";
                     }}
                 >
                     U
@@ -126,27 +133,33 @@ function Navbar() {
                             zIndex: 1001,
                             boxShadow: "0 10px 25px rgba(139, 92, 246, 0.15)",
                             overflow: "hidden",
-                            animation: "slideDown 0.2s ease-out"
+                            animation: "slideDown 0.2s ease-out",
                         }}
                     >
                         {/* User Info Header */}
-                        <div style={{
-                            padding: "12px 16px",
-                            borderBottom: "1px solid #f3e8ff",
-                            backgroundColor: "#faf5ff"
-                        }}>
-                            <div style={{
-                                fontWeight: "600",
-                                color: "#1a202c",
-                                fontSize: "14px"
-                            }}>
+                        <div
+                            style={{
+                                padding: "12px 16px",
+                                borderBottom: "1px solid #f3e8ff",
+                                backgroundColor: "#faf5ff",
+                            }}
+                        >
+                            <div
+                                style={{
+                                    fontWeight: "600",
+                                    color: "#1a202c",
+                                    fontSize: "14px",
+                                }}
+                            >
                                 Fake User
                             </div>
-                            <div style={{
-                                color: "#718096",
-                                fontSize: "12px",
-                                marginTop: "2px"
-                            }}>
+                            <div
+                                style={{
+                                    color: "#718096",
+                                    fontSize: "12px",
+                                    marginTop: "2px",
+                                }}
+                            >
                                 Fakeuser@example.com
                             </div>
                         </div>
@@ -161,7 +174,7 @@ function Navbar() {
                                 gap: "10px",
                                 color: "#4a5568",
                                 fontSize: "14px",
-                                borderBottom: "1px solid #f3e8ff"
+                                borderBottom: "1px solid #f3e8ff",
                             }}
                             onClick={handleChangeProfilePicture}
                             onMouseEnter={(e) => {
@@ -187,7 +200,7 @@ function Navbar() {
                                 gap: "10px",
                                 color: "#4a5568",
                                 fontSize: "14px",
-                                borderBottom: "1px solid #f3e8ff"
+                                borderBottom: "1px solid #f3e8ff",
                             }}
                             onClick={handleInsights}
                             onMouseEnter={(e) => {
@@ -213,7 +226,7 @@ function Navbar() {
                                 gap: "10px",
                                 color: "#4a5568",
                                 fontSize: "14px",
-                                borderBottom: "1px solid #f3e8ff"
+                                borderBottom: "1px solid #f3e8ff",
                             }}
                             onClick={handleSettings}
                             onMouseEnter={(e) => {
@@ -238,7 +251,7 @@ function Navbar() {
                                 alignItems: "center",
                                 gap: "10px",
                                 color: "#e53e3e",
-                                fontSize: "14px"
+                                fontSize: "14px",
                             }}
                             onClick={handleLogout}
                             onMouseEnter={(e) => {
@@ -256,7 +269,6 @@ function Navbar() {
                     </div>
                 )}
             </div>
-
         </nav>
     );
 }

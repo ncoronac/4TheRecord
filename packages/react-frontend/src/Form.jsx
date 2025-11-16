@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./Form.css";
 
-function Form( {handleSubmitPerson} ) {
+function Form({ handleSubmitPerson }) {
     const navigate = useNavigate();
 
     const [person, setPerson] = useState({
@@ -16,11 +16,11 @@ function Form( {handleSubmitPerson} ) {
         setPerson({ ...person, [name]: value }); // may need to change this to log back into an exising person (instead of create a new person) in the future
     }
 
-    function submitForm(event){
+    function submitForm(event) {
         event.preventDefault();
         // calls Users(person) which sends POST to backend
         handleSubmitPerson(person);
-        setPerson({firstname: "", lastname: "", email: ""});
+        setPerson({ firstname: "", lastname: "", email: "" });
 
         // goes to daily view page afterward
         navigate("/DailyView");
@@ -32,7 +32,7 @@ function Form( {handleSubmitPerson} ) {
                 <h2>4TheRecord</h2>
                 <h1>Welcome!</h1>
             </div>
- 
+
             <div className="form-container">
                 <form onSubmit={submitForm}>
                     <label htmlFor="firstname">First Name*</label>

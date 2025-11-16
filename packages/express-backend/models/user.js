@@ -2,52 +2,52 @@ import mongoose from "mongoose";
 
 const EntrySchema = new mongoose.Schema(
     {
-        title:{
+        title: {
             type: String,
             required: false,
-            trim: true
+            trim: true,
         },
-        date:{
+        date: {
             type: Date,
-            required: true
+            required: true,
         },
         mood: {
             type: String,
-            required: false
+            required: false,
         },
-        content:{
+        content: {
             type: String,
             required: false,
-            trim: true
+            trim: true,
         },
     },
-    {collection: "entries_list"}
+    { collection: "entries_list" }
 );
 
 const UserSchema = new mongoose.Schema(
     {
-        firstname:{
+        firstname: {
             type: String,
             required: true,
             trim: true,
         },
-        lastname:{
+        lastname: {
             type: String,
             required: true,
             trim: true,
         },
-        email:{
+        email: {
             type: String,
-            required: true, 
+            required: true,
             trim: true,
         },
-        entries:{
+        entries: {
             type: Array,
             required: false,
-            trim: true
-        }
+            trim: true,
+        },
     },
-    {collection: "users_list"}
+    { collection: "users_list" }
 );
 
 const User = mongoose.model("User", UserSchema);

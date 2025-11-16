@@ -1,7 +1,7 @@
 //import React, { useState } from 'react';
-import './Icons.css';
+import "./Icons.css";
 
-function Icons ({ text, num }) {
+function Icons({ text, num }) {
     function handleClick(event) {
         event.preventDefault();
         console.log("Submitted: ", text, num);
