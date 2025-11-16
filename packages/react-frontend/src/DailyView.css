@@ -6,7 +6,7 @@
     margin: 0;
     padding: 0;
     background-color: #faf7ff;
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     color: #443d5a;
 }
 .calendar-section {
@@ -19,25 +19,24 @@
     height: 100vh;
 }
 .daily-prompts {
-
     width: 50%;
     background-color: #faf7ff;
     padding: 2rem 3rem;
     border-right: 1px solid #e8e0ff;
     box-sizing: border-box;
     overflow-y: auto;
-    height: 100vh; 
+    height: 100vh;
 }
 .nav-buttons button {
-  background-color: #b9aaff; 
-  color: white;           
-  border: none;            
-  border-radius: 8px;        
-  padding: 0.7rem 1.4rem;
-  cursor: pointer;
-  transition: background-color 0.25s ease;
+    background-color: #b9aaff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.4rem;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
 }
 
 .nav-buttons button:hover {
-  background-color: #8e7aff;
+    background-color: #8e7aff;
 }

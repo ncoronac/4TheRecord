@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import schema from "./user.js";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
 dotenv.config();
 mongoose.set("debug", true);
@@ -8,40 +8,33 @@ mongoose.set("debug", true);
 const uri = process.env.MONGODB_URI;
 
 mongoose
-  .connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((error) => console.error("MongoDB connection error:", error));
+    .connect(uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .then(() => console.log("Connected to MongoDB"))
+    .catch((error) => console.error("MongoDB connection error:", error));
 
 function getUsers(firstname, lastname) {
     let promise;
-    if (firstname === undefined && lastname === undefined ){
+    if (firstname === undefined && lastname === undefined) {
         promise = schema.User.find();
-    } else if (firstname && !lastname) {
-        promise = findUserByFirst(firstname); // method DNE
-    } else if (!firstname && lastname) {
-        promise = findUserByLast (lastname); // method DNE 
     }
-    else {
-        promise = findUserByFullName(firstname, lastname); // method DNE
-    }
-    return promise;
 }
 
-function getEntries(){ // eventually pass parameters that are related to how we want to filter entries -- like account, etc??
+function getEntries() {
+    // eventually pass parameters that are related to how we want to filter entries -- like account, etc??
     let promise = schema.Entry.find();
     return promise;
 }
 
-function addUser(user){
+function addUser(user) {
     const userToAdd = new schema.User(user);
     const promise = userToAdd.save();
     return promise;
 }
 
-function addEntry(entry){
+function addEntry(entry) {
     const entryToAdd = new schema.Entry(entry);
     const promise = entryToAdd.save();
     return promise;
@@ -51,5 +44,5 @@ export default {
     getUsers,
     addUser,
     getEntries,
-    addEntry
+    addEntry,
 };

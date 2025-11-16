@@ -8,7 +8,7 @@ const TrackerContainer = ({ title, icons }) => {
             <h3>{title}</h3>
             <div className="icon-row">
                 {icons.map((icon, index) => (
-                    <Icons key={index} text={icon.text} num={icon.num}/>
+                    <Icons key={index} text={icon.text} num={icon.num} />
                 ))}
             </div>
         </div>
