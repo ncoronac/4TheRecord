@@ -16,9 +16,8 @@ mongoose
     .catch((error) => console.error("MongoDB connection error:", error));
 
 function getUsers(firstname, lastname) {
-    let promise;
     if (firstname === undefined && lastname === undefined) {
-        promise = schema.User.find();
+        schema.User.find();
     }
 }
 

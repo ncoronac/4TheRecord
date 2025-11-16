@@ -35,7 +35,7 @@ app.get("/entries", async (req, res) => {
 
 app.post("/users", (req, res) => {
     const userToAdd = req.body;
-    const newUser = userServices
+    userServices
         .addUser(userToAdd)
         .then((user) => res.status(201).send(user))
         .catch((error) => console.log(error));
@@ -44,7 +44,7 @@ app.post("/users", (req, res) => {
 app.post("/entries", (req, res) => {
     const entryToAdd = req.body;
     console.log("in backend: ", entryToAdd);
-    const newEntry = userServices
+    userServices
         .addEntry(entryToAdd)
         .then((entry) => res.status(201).send(entry))
         .catch((error) => console.log(error));

@@ -47,6 +47,11 @@ function DailyView() {
         },
     ];
 
+    function handleClick(prompt) {
+        // dummy function; just exists to pass eslint checks, will add real functionality later
+        return prompt;
+    }
+
     // State: current month & year
     const [currentMonth, setCurrentMonth] = useState(today.getMonth());
     const [currentYear, setCurrentYear] = useState(today.getFullYear());
