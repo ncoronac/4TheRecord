@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./DiaryEntry.css"; // Make sure to include this stylesheet
+import "./DiaryEntry.css";
 import TrackerContainer from "./TrackerContainer";
 import { Link } from "react-router-dom";
 
@@ -9,6 +9,7 @@ function DiaryEntry(props) {
         title: "",
         content: "",
         mood: "",
+        images: [] // Array to store uploaded images
     });
 
     function handleChange(event) {
@@ -16,16 +17,28 @@ function DiaryEntry(props) {
         setEntry({ ...entry, [name]: value });
     }
 
-    // function handleMoodSelect(mood) {
-
-    //     setEntry({ ...entry, mood: mood });
-    // }
+    function handleImageUpload(event) {
+        const files = Array.from(event.target.files);
+        setEntry({ ...entry, images: files });
+    }
 
     function submitForm(event) {
         event.preventDefault();
-        props.handleSubmitEntry(entry);
-        // console.log("Diary Entry Submitted: ", entry); // for testing, can remove later
-        setEntry({ date: "", title: "", content: "", mood: "" });
+        
+        // Create FormData for file uploads
+        const formData = new FormData();
+        formData.append('date', entry.date);
+        formData.append('title', entry.title);
+        formData.append('content', entry.content);
+        formData.append('mood', entry.mood);
+        
+        // Append all image files
+        entry.images.forEach(image => {
+            formData.append('images', image);
+        });
+
+        props.handleSubmitEntry(formData);
+        setEntry({ date: "", title: "", content: "", mood: "", images: [] });
     }
 
     const trackers = [
@@ -111,6 +124,17 @@ function DiaryEntry(props) {
                         required
                     />
 
+                    {/* Simple Image Upload */}
+                    <label htmlFor="images">Upload Images</label>
+                    <input
+                        type="file"
+                        name="images"
+                        id="images"
+                        multiple
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                    />
+
                     <button type="submit">Save Entry</button>
                 </form>
 
@@ -126,6 +150,11 @@ function DiaryEntry(props) {
                         <p>
                             <strong>Content:</strong> {entry.content}
                         </p>
+                        {entry.images.length > 0 && (
+                            <p>
+                                <strong>Images:</strong> {entry.images.length} image(s) attached
+                            </p>
+                        )}
                     </div>
                 )}
             </div>
