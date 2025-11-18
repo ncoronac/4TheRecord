@@ -19,7 +19,22 @@ function DiaryEntry(props) {
 
     function handleImageUpload(event) {
         const files = Array.from(event.target.files);
-        setEntry({ ...entry, images: files });
+        
+        const imagePreviews = files.map(file => ({
+            file: file,
+            preview: URL.createObjectURL(file)
+        }));
+
+        setEntry({ 
+            ...entry, 
+            images: [...entry.images, ...imagePreviews] 
+        });
+    }
+
+    function removeImage(index) {
+        const updatedImages = entry.images.filter((_, i) => i !== index);
+        URL.revokeObjectURL(entry.images[index].preview);
+        setEntry({ ...entry, images: updatedImages });
     }
 
     function submitForm(event) {
@@ -34,10 +49,15 @@ function DiaryEntry(props) {
         
         // Append all image files
         entry.images.forEach(image => {
-            formData.append('images', image);
+            formData.append('images', image.file);
         });
 
         props.handleSubmitEntry(formData);
+        
+        // Clean up object URLs
+        entry.images.forEach(image => URL.revokeObjectURL(image.preview));
+        
+        // Reset form
         setEntry({ date: "", title: "", content: "", mood: "", images: [] });
     }
 
@@ -124,7 +144,7 @@ function DiaryEntry(props) {
                         required
                     />
 
-                    {/* Simple Image Upload */}
+                    {/* Image Upload */}
                     <label htmlFor="images">Upload Images</label>
                     <input
                         type="file"
@@ -134,6 +154,29 @@ function DiaryEntry(props) {
                         accept="image/*"
                         onChange={handleImageUpload}
                     />
+
+                    {/* Image Previews */}
+                    {entry.images.length > 0 && (
+                        <div className="image-previews">
+                            <h4>Image Previews:</h4>
+                            <div className="preview-container">
+                                {entry.images.map((image, index) => (
+                                    <div key={index} className="image-preview">
+                                        <img 
+                                            src={image.preview} 
+                                            alt={`Preview ${index + 1}`}
+                                        />
+                                        <button 
+                                            type="button"
+                                            onClick={() => removeImage(index)}
+                                        >
+                                            ×
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
 
                     <button type="submit">Save Entry</button>
                 </form>
@@ -150,11 +193,6 @@ function DiaryEntry(props) {
                         <p>
                             <strong>Content:</strong> {entry.content}
                         </p>
-                        {entry.images.length > 0 && (
-                            <p>
-                                <strong>Images:</strong> {entry.images.length} image(s) attached
-                            </p>
-                        )}
                     </div>
                 )}
             </div>
