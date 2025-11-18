@@ -2,13 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./Form.css";
 
-function Form({ handleSubmitPerson }) {
+function Login({ handleSubmitPerson }) {
     const navigate = useNavigate();
 
     const [person, setPerson] = useState({
         firstname: "",
         lastname: "",
-        email: "",
     });
 
     function handleChange(event) {
@@ -20,7 +19,7 @@ function Form({ handleSubmitPerson }) {
         event.preventDefault();
         // calls Users(person) which sends POST to backend
         handleSubmitPerson(person);
-        setPerson({ firstname: "", lastname: "", email: "" });
+        setPerson({ firstname: "", lastname: ""});
 
         // goes to daily view page afterward
         navigate("/DailyView");
@@ -55,26 +54,16 @@ function Form({ handleSubmitPerson }) {
                         required
                     />
 
-                    <label htmlFor="email">Email*</label>
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        value={person.email}
-                        onChange={handleChange} // triggered when there is any change in the input field
-                        required
-                    />
+                    <button type="submit">Log in</button>
 
-                    <button type="submit">Sign Up</button>
-                    <button type = "submit" onClick={() => navigate("/")}>
-                    Already a User? 
+                    <button type = "submit" onClick={() => navigate("/Form")}>
+                    New User? 
                     </button>
                     
-
                 </form>
             </div>
         </div>
     );
 }
 
-export default Form;
+export default Login;
