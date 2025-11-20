@@ -9,7 +9,7 @@ function DiaryEntry(props) {
         title: "",
         content: "",
         mood: "",
-        images: [] // Array to store uploaded images
+        images: [], // Array to store uploaded images
     });
 
     function handleChange(event) {
@@ -19,15 +19,15 @@ function DiaryEntry(props) {
 
     function handleImageUpload(event) {
         const files = Array.from(event.target.files);
-        
-        const imagePreviews = files.map(file => ({
+
+        const imagePreviews = files.map((file) => ({
             file: file,
-            preview: URL.createObjectURL(file)
+            preview: URL.createObjectURL(file),
         }));
 
-        setEntry({ 
-            ...entry, 
-            images: [...entry.images, ...imagePreviews] 
+        setEntry({
+            ...entry,
+            images: [...entry.images, ...imagePreviews],
         });
     }
 
@@ -39,24 +39,24 @@ function DiaryEntry(props) {
 
     function submitForm(event) {
         event.preventDefault();
-        
+
         // Create FormData for file uploads
         const formData = new FormData();
-        formData.append('date', entry.date);
-        formData.append('title', entry.title);
-        formData.append('content', entry.content);
-        formData.append('mood', entry.mood);
-        
+        formData.append("date", entry.date);
+        formData.append("title", entry.title);
+        formData.append("content", entry.content);
+        formData.append("mood", entry.mood);
+
         // Append all image files
-        entry.images.forEach(image => {
-            formData.append('images', image.file);
+        entry.images.forEach((image) => {
+            formData.append("images", image.file);
         });
 
         props.handleSubmitEntry(formData);
-        
+
         // Clean up object URLs
-        entry.images.forEach(image => URL.revokeObjectURL(image.preview));
-        
+        entry.images.forEach((image) => URL.revokeObjectURL(image.preview));
+
         // Reset form
         setEntry({ date: "", title: "", content: "", mood: "", images: [] });
     }
@@ -162,11 +162,11 @@ function DiaryEntry(props) {
                             <div className="preview-container">
                                 {entry.images.map((image, index) => (
                                     <div key={index} className="image-preview">
-                                        <img 
-                                            src={image.preview} 
+                                        <img
+                                            src={image.preview}
                                             alt={`Preview ${index + 1}`}
                                         />
-                                        <button 
+                                        <button
                                             type="button"
                                             onClick={() => removeImage(index)}
                                         >
