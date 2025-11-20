@@ -24,7 +24,7 @@ function App() {
     const [entries, setEntries] = useState([]);
 
     function postUser(person) {
-        const promise = fetch("http://localhost:8000/users", {
+        const promise = fetch("https://4therecord-dycbdgaxc8cvdpb3.westus-01.azurewebsites.net/users", {
             // is this the issue?
             method: "POST",
             headers: {
@@ -67,7 +67,7 @@ function App() {
     }
 
     function postEntry(entry) {
-        const promise = fetch("http://localhost:8000/entries", {
+        const promise = fetch("https://4therecord-dycbdgaxc8cvdpb3.westus-01.azurewebsites.net/entries", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
