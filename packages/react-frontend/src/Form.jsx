@@ -8,6 +8,8 @@ function Form({ handleSubmitPerson }) {
     const [person, setPerson] = useState({
         firstname: "",
         lastname: "",
+        username:"",
+        pwd: "",
         email: "",
     });
 
@@ -16,14 +18,34 @@ function Form({ handleSubmitPerson }) {
         setPerson({ ...person, [name]: value }); // may need to change this to log back into an exising person (instead of create a new person) in the future
     }
 
-    function submitForm(event) {
+    async function submitForm(event) {
         event.preventDefault();
-        // calls Users(person) which sends POST to backend
-        handleSubmitPerson(person);
-        setPerson({ firstname: "", lastname: "", email: "" });
 
-        // goes to daily view page afterward
-        navigate("/DailyView");
+        try {
+        const res = await fetch("http://localhost:8000/signup", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(person),
+        });
+
+        if (res.status !== 201) {
+            const text = await res.text();
+            throw new Error(`Signup failed ${res.status}: ${text || "unknown"}`);
+        }
+
+        setPerson({
+            firstname: "",
+            lastname: "",
+            username: "",
+            pwd: "",
+            email: "",
+        });
+
+        navigate("/");
+        } catch (err) {
+        console.error(err);
+       
+        }
     }
 
     return (
@@ -54,7 +76,24 @@ function Form({ handleSubmitPerson }) {
                         onChange={handleChange} // triggered when there is any change in the input field
                         required
                     />
-
+                    <label htmlFor="username">Username*</label>
+                    <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        value={person.username}
+                        onChange={handleChange} // triggered when there is any change in the input field
+                        required
+                    />
+                    <label htmlFor="pwd">Password*</label>
+                    <input
+                        type="password"
+                        name="pwd"
+                        id="pwd"
+                        value={person.pwd}
+                        onChange={handleChange} // triggered when there is any change in the input field
+                        required
+                    />
                     <label htmlFor="email">Email*</label>
                     <input
                         type="email"

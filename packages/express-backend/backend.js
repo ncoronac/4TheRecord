@@ -1,11 +1,15 @@
 import express from "express";
 import cors from "cors";
 import userServices from "./models/user-services.js";
+import { registerUser, loginUser, authenticateUser } from "./auth.js";
 
 const app = express();
 const port = 8000;
 
-app.use(cors()); // lets backend respond to calls from diff. locations (cross-origin resource sharing)
+app.use(cors({
+  origin: [ "http://localhost:5173"], // your frontend(s)
+}));
+ // lets backend respond to calls from diff. locations (cross-origin resource sharing)
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -33,7 +37,7 @@ app.get("/entries", async (req, res) => {
     }
 });
 
-app.post("/users", (req, res) => {
+app.post("/users", authenticateUser, (req, res) => {
     const userToAdd = req.body;
     userServices
         .addUser(userToAdd)
@@ -49,6 +53,9 @@ app.post("/entries", (req, res) => {
         .then((entry) => res.status(201).send(entry))
         .catch((error) => console.log(error));
 });
+
+app.post("/signup", registerUser);
+app.post("/login", loginUser);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);

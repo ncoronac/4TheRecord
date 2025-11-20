@@ -83,7 +83,7 @@ function App() {
         <>
             {showNavbar && <Navbar />}
             <Routes>
-                <Route path = "/" element = {<Login handleSubmitPerson={updateUsers}/>} />
+                <Route path = "/" element = {<Login />} />
                 <Route
                     path="/Form"
                     element={<Form handleSubmitPerson={updateUsers} />}
@@ -98,4 +98,4 @@ function App() {
     );
 }
 
-export default AppWrapper;
+export default AppWrapper ;

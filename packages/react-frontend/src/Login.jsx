@@ -4,25 +4,58 @@ import "./Form.css";
 
 function Login({ handleSubmitPerson }) {
     const navigate = useNavigate();
-
-    const [person, setPerson] = useState({
-        firstname: "",
-        lastname: "",
-    });
+    const [creds, setCreds] = useState({username: "", pwd: ""});
+    const [message, setMessage] = useState("");
+    const [submitting, setSubmitting] = useState(false);
 
     function handleChange(event) {
-        const { name, value } = event.target; // const name = event.target.name; const value = event.target.value
-        setPerson({ ...person, [name]: value }); // may need to change this to log back into an exising person (instead of create a new person) in the future
+        const { name, value } = event.target;
+        switch (name) {
+        case "username":
+            setCreds({ ...creds, username: value });
+            break;
+        case "pwd":
+            setCreds({ ...creds, pwd: value });
+            break;
+        }
+  }
+    function loginUser(creds) {
+        const promise = fetch(`${API_PREFIX}/login`, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify(creds)
+        })
+            .then((response) => {
+            if (response.status === 200) {
+                response
+                .json()
+                .then((payload) => setToken(payload.token));
+                setMessage(`Login successful; auth token saved`);
+            } else {
+                setMessage(
+                `Login Error ${response.status}: ${response.data}`
+                );
+            }
+            })
+            .catch((error) => {
+            setMessage(`Login Error: ${error}`);
+            });
+
+        return promise;
     }
 
-    function submitForm(event) {
-        event.preventDefault();
-        // calls Users(person) which sends POST to backend
-        handleSubmitPerson(person);
-        setPerson({ firstname: "", lastname: ""});
+    function submitForm(e) {
+        e.preventDefault();
+        setMessage("")
+        setSubmitting(true)
+        handleSubmit(creds);
+        setCreds({username: "", pwd: ""});
+    }
 
-        // goes to daily view page afterward
-        navigate("/DailyView");
+    function fetchUsers() {
+        return fetch("http://localhost:8000/users");
     }
 
     return (
@@ -34,29 +67,29 @@ function Login({ handleSubmitPerson }) {
 
             <div className="form-container">
                 <form onSubmit={submitForm}>
-                    <label htmlFor="firstname">First Name*</label>
+                    <label htmlFor="username">Username*</label>
                     <input
                         type="text"
-                        name="firstname"
-                        id="firstname"
-                        value={person.firstname}
+                        name="username"
+                        id="username"
+                        value={creds.username}
                         onChange={handleChange} // triggered when there is any change in the input field
                         required
                     />
 
-                    <label htmlFor="lastname">Last Name*</label>
+                    <label htmlFor="pwd">Password*</label>
                     <input
-                        type="text"
-                        name="lastname"
-                        id="lastname"
-                        value={person.lastname}
+                        type="password"
+                        name="pwd"
+                        id="pwd"
+                        value={creds.pwd}
                         onChange={handleChange} // triggered when there is any change in the input field
                         required
                     />
 
                     <button type="submit">Log in</button>
 
-                    <button type = "submit" onClick={() => navigate("/Form")}>
+                    <button type = "button" onClick={() => navigate("/Form")}>
                     New User? 
                     </button>
                     

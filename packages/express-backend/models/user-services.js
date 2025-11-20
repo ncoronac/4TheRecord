@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import schema from "./user.js";
 import dotenv from "dotenv";
+const { User, Entry } = schema;
 
 dotenv.config();
 mongoose.set("debug", true);
@@ -15,10 +16,11 @@ mongoose
     .then(() => console.log("Connected to MongoDB"))
     .catch((error) => console.error("MongoDB connection error:", error));
 
-function getUsers(firstname, lastname) {
-    if (firstname === undefined && lastname === undefined) {
-        schema.User.find();
-    }
+function getUsers() {
+    return User.find().lean();
+}
+function findUserByUsername(username){
+    schema.User.find({ username: {username } })
 }
 
 function getEntries() {
@@ -44,4 +46,5 @@ export default {
     addUser,
     getEntries,
     addEntry,
+    findUserByUsername
 };
