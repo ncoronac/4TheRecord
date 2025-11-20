@@ -1,9 +1,31 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar(props) {
+    async function loadCSS(){
+        if (props.colorTheme == "purple"){
+            await import("./PurpleTheme.css");
+        } else if (props.colorTheme == "pink"){
+            await import("./PinkTheme.css");
+        } else if (props.colorTheme == "blue"){
+            await import("./PurpleTheme.css");
+        } else if (props.colorTheme == "green"){
+            await import("./PurpleTheme.css");
+        } else if (props.colorTheme == "yellow"){
+            await import("./PurpleTheme.css");
+        }
+    }
+    loadCSS();
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
+    const colorButtons = [
+        {color: "purple", hex: "#cec1ffff"},
+        {color: "pink", hex: "#f5d4f7ff"},
+        {color: "blue", hex: "#b1dbfa"},
+        {color: "green", hex: "#c3e6c5"},
+        {color: "yellow", hex: "#f7efb2"}
+    ]
 
     // Close menu when clicking outside
     useEffect(() => {
@@ -43,226 +65,78 @@ function Navbar() {
         setIsMenuOpen(false);
     };
 
+    const handleColorChange = (button) => {
+        props.pickColor(button.color); // updates state of colorTheme w/ useState
+        
+    }
+
     return (
-        <nav
-            style={{
-                display: "flex",
-                justifyContent: "center",
-                gap: "30px",
-                backgroundColor: "white",
-                padding: "15px 0",
-                position: "sticky",
-                top: 0,
-                width: "100%",
-                height: "77px",
-                zIndex: 1000,
-                boxShadow: "0 2px 10px rgba(139, 92, 246, 0.08)",
-                borderBottom: "1px solid #f3e8ff",
-            }}
-        >
+        <nav className="navbar-box">
             {/* 4TheRecord */}
             <Link to="/DailyView">
-                <div
-                    style={{
-                        position: "absolute",
-                        left: "20px",
-                        top: "50%",
-                        transform: "translateY(-50%)",
-                        fontWeight: "bold",
-                        fontSize: "24px",
-                        color: "black",
-                    }}
-                >
+                <div className="navbar-title">
                     4TheRecord
                 </div>
             </Link>
 
             {/* User Profile Menu */}
-            <div
-                style={{
-                    position: "absolute",
-                    right: "20px",
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                }}
-                ref={menuRef}
-            >
-                <div
-                    style={{
-                        width: "40px",
-                        height: "40px",
-                        borderRadius: "50%",
-                        backgroundColor: "#8b5cf6",
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        color: "white",
-                        fontWeight: "bold",
-                        fontSize: "14px",
-                        transition: "all 0.2s ease-in-out",
-                        boxShadow: "0 2px 8px rgba(139, 92, 246, 0.3)",
-                        border: "2px solid white",
-                    }}
+            <div className="navbar-menu" ref={menuRef}>
+                <div className="navbar-circle"
                     onClick={handleProfileClick}
-                    onMouseEnter={(e) => {
-                        e.target.style.transform = "scale(1.1)";
-                        e.target.style.boxShadow =
-                            "0 4px 12px rgba(139, 92, 246, 0.4)";
-                    }}
-                    onMouseLeave={(e) => {
-                        e.target.style.transform = "scale(1)";
-                        e.target.style.boxShadow =
-                            "0 2px 8px rgba(139, 92, 246, 0.3)";
-                    }}
                 >
                     U
                 </div>
 
                 {/* Dropdown Menu */}
                 {isMenuOpen && (
-                    <div
-                        style={{
-                            position: "absolute",
-                            top: "45px",
-                            right: "0",
-                            backgroundColor: "white",
-                            border: "1px solid #f3e8ff",
-                            borderRadius: "8px",
-                            minWidth: "200px",
-                            zIndex: 1001,
-                            boxShadow: "0 10px 25px rgba(139, 92, 246, 0.15)",
-                            overflow: "hidden",
-                            animation: "slideDown 0.2s ease-out",
-                        }}
-                    >
+                    <div className="navbar-dropdownmenu">
                         {/* User Info Header */}
-                        <div
-                            style={{
-                                padding: "12px 16px",
-                                borderBottom: "1px solid #f3e8ff",
-                                backgroundColor: "#faf5ff",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    fontWeight: "600",
-                                    color: "#1a202c",
-                                    fontSize: "14px",
-                                }}
-                            >
+                        <div className="navbar-userinfo-box">
+                            <div className="navbar-userinfo-name">
                                 Fake User
                             </div>
-                            <div
-                                style={{
-                                    color: "#718096",
-                                    fontSize: "12px",
-                                    marginTop: "2px",
-                                }}
-                            >
+                            <div className="navbar-userinfo-email">
                                 Fakeuser@example.com
                             </div>
                         </div>
-
-                        <div
-                            style={{
-                                padding: "12px 16px",
-                                cursor: "pointer",
-                                transition: "all 0.15s ease",
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "10px",
-                                color: "#4a5568",
-                                fontSize: "14px",
-                                borderBottom: "1px solid #f3e8ff",
-                            }}
+                    {/* Change Profile Picture */}
+                        <div className="navbar-dropdown-item"
                             onClick={handleChangeProfilePicture}
-                            onMouseEnter={(e) => {
-                                e.target.style.backgroundColor = "#faf5ff";
-                                e.target.style.color = "#8b5cf6";
-                            }}
-                            onMouseLeave={(e) => {
-                                e.target.style.backgroundColor = "transparent";
-                                e.target.style.color = "#4a5568";
-                            }}
                         >
                             <span>👤</span>
                             Change Profile Picture
                         </div>
-
-                        <div
-                            style={{
-                                padding: "12px 16px",
-                                cursor: "pointer",
-                                transition: "all 0.15s ease",
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "10px",
-                                color: "#4a5568",
-                                fontSize: "14px",
-                                borderBottom: "1px solid #f3e8ff",
-                            }}
+                    {/* Insights */}
+                        <div className="navbar-dropdown-item"
                             onClick={handleInsights}
-                            onMouseEnter={(e) => {
-                                e.target.style.backgroundColor = "#faf5ff";
-                                e.target.style.color = "#8b5cf6";
-                            }}
-                            onMouseLeave={(e) => {
-                                e.target.style.backgroundColor = "transparent";
-                                e.target.style.color = "#4a5568";
-                            }}
                         >
                             <span>📊</span>
                             Insights
                         </div>
-
-                        <div
-                            style={{
-                                padding: "12px 16px",
-                                cursor: "pointer",
-                                transition: "all 0.15s ease",
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "10px",
-                                color: "#4a5568",
-                                fontSize: "14px",
-                                borderBottom: "1px solid #f3e8ff",
-                            }}
+                    {/* Settings */}
+                        <div className="navbar-dropdown-item"
                             onClick={handleSettings}
-                            onMouseEnter={(e) => {
-                                e.target.style.backgroundColor = "#faf5ff";
-                                e.target.style.color = "#8b5cf6";
-                            }}
-                            onMouseLeave={(e) => {
-                                e.target.style.backgroundColor = "transparent";
-                                e.target.style.color = "#4a5568";
-                            }}
                         >
                             <span>⚙️</span>
                             Settings
                         </div>
-
-                        <div
-                            style={{
-                                padding: "12px 16px",
-                                cursor: "pointer",
-                                transition: "all 0.15s ease",
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "10px",
-                                color: "#e53e3e",
-                                fontSize: "14px",
-                            }}
-                            onClick={handleLogout}
-                            onMouseEnter={(e) => {
-                                e.target.style.backgroundColor = "#fed7d7";
-                                e.target.style.color = "#c53030";
-                            }}
-                            onMouseLeave={(e) => {
-                                e.target.style.backgroundColor = "transparent";
-                                e.target.style.color = "#e53e3e";
-                            }}
-                        >
+                    {/* Color Picker Button */}
+                    <div className="color-buttons-row">
+                        {colorButtons.map((button) => (
+                            <button
+                                className="color-buttons"
+                                style={{backgroundColor: button.hex}}
+                                key={button.color}
+                                onClick={(button) => {
+                                    console.log(button);
+                                    props.pickColor(button.color);
+                                }}
+                            >
+                            </button>
+                        ))}
+                    </div>
+                    {/* Logout */}
+                        <div className="navbar-logout">
                             <span>🚪</span>
                             Logout
                         </div>

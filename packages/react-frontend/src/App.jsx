@@ -20,8 +20,9 @@ function App() {
     const showNavbar = location.pathname !== "/";
 
     // const [currentView, setCurrentView] = useState("form");
-    const [users, setUsers] = useState([]); // not sure ab this
+    const [users, setUsers] = useState([]);
     const [entries, setEntries] = useState([]);
+    const [colorTheme, setColorTheme] = useState("purple"); // intial theme is purple
 
     function postUser(person) {
         const promise = fetch("http://localhost:8000/users", {
@@ -79,16 +80,16 @@ function App() {
 
     return (
         <>
-            {showNavbar && <Navbar />}
+            {showNavbar && <Navbar pickColor={setColorTheme} colorTheme={colorTheme}/>}
             <Routes>
                 <Route
                     path="/"
-                    element={<Form handleSubmitPerson={updateUsers} />}
+                    element={<Form handleSubmitPerson={updateUsers} colorTheme={colorTheme}/>}
                 />
-                <Route path="/DailyView" element={<DailyView />} />
+                <Route path="/DailyView" element={<DailyView colorTheme={colorTheme}/>} />
                 <Route
                     path="/DiaryEntry"
-                    element={<DiaryEntry handleSubmitEntry={updateEntries} />}
+                    element={<DiaryEntry handleSubmitEntry={updateEntries} colorTheme={colorTheme}/>}
                 />
             </Routes>
         </>

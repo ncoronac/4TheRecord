@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./DailyView.css";
 
-function DailyView() {
+function DailyView(props) {
+    async function loadCSS(){
+        if (props.colorTheme == "purple"){
+            await import("./PurpleTheme.css");
+        } else if (props.colorTheme == "pink"){
+            await import("./PinkTheme.css");
+        }
+    }
+    loadCSS();
+    
     const months = [
         "January",
         "February",

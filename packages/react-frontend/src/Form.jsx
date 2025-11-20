@@ -1,8 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import "./Form.css";
+// import "./PurpleTheme.css";
 
-function Form({ handleSubmitPerson }) {
+function Form(props) {
+    async function loadCSS(){
+        if (props.colorTheme == "purple"){
+            await import("./PurpleTheme.css");
+        }
+    }
+    loadCSS();
+
     const navigate = useNavigate();
 
     const [person, setPerson] = useState({
@@ -10,6 +17,7 @@ function Form({ handleSubmitPerson }) {
         lastname: "",
         email: "",
     });
+
 
     function handleChange(event) {
         const { name, value } = event.target; // const name = event.target.name; const value = event.target.value
@@ -19,7 +27,7 @@ function Form({ handleSubmitPerson }) {
     function submitForm(event) {
         event.preventDefault();
         // calls Users(person) which sends POST to backend
-        handleSubmitPerson(person);
+        props.handleSubmitPerson(person);
         setPerson({ firstname: "", lastname: "", email: "" });
 
         // goes to daily view page afterward
@@ -29,8 +37,8 @@ function Form({ handleSubmitPerson }) {
     return (
         <div className="form-page">
             <div className="header-group">
-                <h2>4TheRecord</h2>
-                <h1>Welcome!</h1>
+                <h2 className="header-group-h2">4TheRecord</h2>
+                <h1 className="header-group-h1">Welcome!</h1>
             </div>
 
             <div className="form-container">

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./DiaryEntry.css"; // Make sure to include this stylesheet
 import TrackerContainer from "./TrackerContainer";
 import { Link } from "react-router-dom";
 
@@ -11,6 +10,13 @@ function DiaryEntry(props) {
         mood: "",
     });
 
+    async function loadCSS(){
+        if (props.colorTheme == "purple"){
+            await import("./PurpleTheme.css");
+        }
+    }
+    loadCSS();
+    
     function handleChange(event) {
         const { name, value } = event.target;
         setEntry({ ...entry, [name]: value });
@@ -70,7 +76,7 @@ function DiaryEntry(props) {
     ];
 
     return (
-        <div className="page-container">
+        <div className="diary-page-container">
             {/* Left Side — Diary Entry */}
             <div className="diary-container">
                 <Link to="/DailyView">

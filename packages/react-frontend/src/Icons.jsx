@@ -1,15 +1,22 @@
-//import React, { useState } from 'react';
-import "./Icons.css";
+import React, { useState } from 'react';
+// import "./Icons.css";
 
-function Icons({ text, num }) {
+function Icons(props) {
+    async function loadCSS(){
+        if (props.colorTheme == "purple"){
+            await import("./PurpleTheme.css");
+        }
+    }
+    loadCSS();
+    
     function handleClick(event) {
         event.preventDefault();
-        console.log("Submitted: ", text, num);
+        console.log("Submitted: ", props.text, props.num);
     }
 
     return (
         <button className="icon-button" onClick={handleClick}>
-            {text}
+            {props.text}
         </button>
     );
 }

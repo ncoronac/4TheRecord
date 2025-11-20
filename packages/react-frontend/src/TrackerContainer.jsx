@@ -1,13 +1,20 @@
 import Icons from "./Icons";
-import "./Icons.css";
+//import "./Icons.css";
 
-const TrackerContainer = ({ title, icons }) => {
+function TrackerContainer(props){
+    async function loadCSS(){
+        if (props.colorTheme == "purple"){
+            await import("./PurpleTheme.css");
+        }
+    }
+    loadCSS();
+    
     return (
         <div className="tracker-container">
-            <h3>{title}</h3>
+            <h3>{props.title}</h3>
             <div className="icon-row">
-                {icons.map((icon, index) => (
-                    <Icons key={index} text={icon.text} num={icon.num} />
+                {props.icons.map((icon, index) => (
+                    <Icons key={index} text={icon.text} num={icon.num} colorTheme={props.colorTheme}/>
                 ))}
             </div>
         </div>
