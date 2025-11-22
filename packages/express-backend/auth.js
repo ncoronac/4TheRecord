@@ -3,7 +3,6 @@ import jwt from "jsonwebtoken";
 import userServices from "./models/user-services.js";
 
 const creds = [];
-const { TOKEN_SECRET } = process.env;
 
 function generateAccessToken(username) {
     return new Promise((resolve, reject) => {
@@ -46,9 +45,10 @@ export async function registerUser(req, res) {
         return res
             .status(201)
             .send({ token, user: { id: saved._id, username } });
+
     } catch (err) {
         console.error("loginUser error:", err);
-        return res.status(500).send("Server error");
+        return res.status(400).send("loginUser error"); //fixed this to become a 400 error!
     }
 }
 

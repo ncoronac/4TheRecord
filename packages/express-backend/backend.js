@@ -8,7 +8,7 @@ const port = 8000;
 
 app.use(
     cors({
-        origin: ["http://localhost:5173"], // your frontend(s)
+        origin: ["http://localhost:5173"], //defined this explicitly while trying to fix bugs! might revert later
     })
 );
 // lets backend respond to calls from diff. locations (cross-origin resource sharing)
@@ -39,6 +39,7 @@ app.get("/entries", async (req, res) => {
     }
 });
 
+//uses the middleware to authenticate the user!
 app.post("/users", authenticateUser, (req, res) => {
     const userToAdd = req.body;
     userServices
