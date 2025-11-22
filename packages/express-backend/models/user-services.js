@@ -19,8 +19,8 @@ mongoose
 function getUsers() {
     return User.find().lean();
 }
-function findUserByUsername(username){
-    schema.User.find({ username: {username } })
+function findUserByUsername(username) {
+    schema.User.find({ username: { username } });
 }
 
 function getEntries() {
@@ -46,5 +46,5 @@ export default {
     addUser,
     getEntries,
     addEntry,
-    findUserByUsername
+    findUserByUsername,
 };

@@ -6,10 +6,12 @@ import { registerUser, loginUser, authenticateUser } from "./auth.js";
 const app = express();
 const port = 8000;
 
-app.use(cors({
-  origin: [ "http://localhost:5173"], // your frontend(s)
-}));
- // lets backend respond to calls from diff. locations (cross-origin resource sharing)
+app.use(
+    cors({
+        origin: ["http://localhost:5173"], // your frontend(s)
+    })
+);
+// lets backend respond to calls from diff. locations (cross-origin resource sharing)
 app.use(express.json());
 
 app.get("/", (req, res) => {

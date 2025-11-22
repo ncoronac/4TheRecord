@@ -71,7 +71,7 @@ function Login({ handleSubmitPerson }) {
                         name="username"
                         id="username"
                         value={creds.username}
-                        onChange={handleChange} 
+                        onChange={handleChange}
                         required
                     />
 
@@ -81,7 +81,7 @@ function Login({ handleSubmitPerson }) {
                         name="pwd"
                         id="pwd"
                         value={creds.pwd}
-                        onChange={handleChange} 
+                        onChange={handleChange}
                         required
                     />
 

@@ -74,7 +74,7 @@ function Form({ handleSubmitPerson }) {
                         name="lastname"
                         id="lastname"
                         value={person.lastname}
-                        onChange={handleChange} 
+                        onChange={handleChange}
                         required
                     />
                     <label htmlFor="username">Username*</label>
@@ -83,7 +83,7 @@ function Form({ handleSubmitPerson }) {
                         name="username"
                         id="username"
                         value={person.username}
-                        onChange={handleChange} 
+                        onChange={handleChange}
                         required
                     />
                     <label htmlFor="pwd">Password*</label>
@@ -92,7 +92,7 @@ function Form({ handleSubmitPerson }) {
                         name="pwd"
                         id="pwd"
                         value={person.pwd}
-                        onChange={handleChange} 
+                        onChange={handleChange}
                         required
                     />
                     <label htmlFor="email">Email*</label>
@@ -101,7 +101,7 @@ function Form({ handleSubmitPerson }) {
                         name="email"
                         id="email"
                         value={person.email}
-                        onChange={handleChange} 
+                        onChange={handleChange}
                         required
                     />
 
