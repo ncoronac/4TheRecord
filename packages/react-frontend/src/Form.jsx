@@ -8,7 +8,7 @@ function Form({ handleSubmitPerson }) {
     const [person, setPerson] = useState({
         firstname: "",
         lastname: "",
-        username:"",
+        username: "",
         pwd: "",
         email: "",
     });
@@ -22,29 +22,30 @@ function Form({ handleSubmitPerson }) {
         event.preventDefault();
 
         try {
-        const res = await fetch("http://localhost:8000/signup", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(person),
-        });
+            const res = await fetch("http://localhost:8000/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(person),
+            });
 
-        if (res.status !== 201) {
-            const text = await res.text();
-            throw new Error(`Signup failed ${res.status}: ${text || "unknown"}`);
-        }
+            if (res.status !== 201) {
+                const text = await res.text();
+                throw new Error(
+                    `Signup failed ${res.status}: ${text || "unknown"}`
+                );
+            }
 
-        setPerson({
-            firstname: "",
-            lastname: "",
-            username: "",
-            pwd: "",
-            email: "",
-        });
+            setPerson({
+                firstname: "",
+                lastname: "",
+                username: "",
+                pwd: "",
+                email: "",
+            });
 
-        navigate("/");
+            navigate("/");
         } catch (err) {
-        console.error(err);
-       
+            console.error(err);
         }
     }
 
@@ -73,7 +74,7 @@ function Form({ handleSubmitPerson }) {
                         name="lastname"
                         id="lastname"
                         value={person.lastname}
-                        onChange={handleChange} // triggered when there is any change in the input field
+                        onChange={handleChange} 
                         required
                     />
                     <label htmlFor="username">Username*</label>
@@ -82,7 +83,7 @@ function Form({ handleSubmitPerson }) {
                         name="username"
                         id="username"
                         value={person.username}
-                        onChange={handleChange} // triggered when there is any change in the input field
+                        onChange={handleChange} 
                         required
                     />
                     <label htmlFor="pwd">Password*</label>
@@ -91,7 +92,7 @@ function Form({ handleSubmitPerson }) {
                         name="pwd"
                         id="pwd"
                         value={person.pwd}
-                        onChange={handleChange} // triggered when there is any change in the input field
+                        onChange={handleChange} 
                         required
                     />
                     <label htmlFor="email">Email*</label>
@@ -100,16 +101,14 @@ function Form({ handleSubmitPerson }) {
                         name="email"
                         id="email"
                         value={person.email}
-                        onChange={handleChange} // triggered when there is any change in the input field
+                        onChange={handleChange} 
                         required
                     />
 
                     <button type="submit">Sign Up</button>
-                    <button type = "submit" onClick={() => navigate("/")}>
-                    Already a User? 
+                    <button type="submit" onClick={() => navigate("/")}>
+                        Already a User?
                     </button>
-                    
-
                 </form>
             </div>
         </div>

@@ -4,43 +4,41 @@ import "./Form.css";
 
 function Login({ handleSubmitPerson }) {
     const navigate = useNavigate();
-    const [creds, setCreds] = useState({username: "", pwd: ""});
+    const [creds, setCreds] = useState({ username: "", pwd: "" });
     const [message, setMessage] = useState("");
     const [submitting, setSubmitting] = useState(false);
 
     function handleChange(event) {
         const { name, value } = event.target;
         switch (name) {
-        case "username":
-            setCreds({ ...creds, username: value });
-            break;
-        case "pwd":
-            setCreds({ ...creds, pwd: value });
-            break;
+            case "username":
+                setCreds({ ...creds, username: value });
+                break;
+            case "pwd":
+                setCreds({ ...creds, pwd: value });
+                break;
         }
-  }
+    }
     function loginUser(creds) {
         const promise = fetch(`${API_PREFIX}/login`, {
             method: "POST",
             headers: {
-            "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(creds)
+            body: JSON.stringify(creds),
         })
             .then((response) => {
-            if (response.status === 200) {
-                response
-                .json()
-                .then((payload) => setToken(payload.token));
-                setMessage(`Login successful; auth token saved`);
-            } else {
-                setMessage(
-                `Login Error ${response.status}: ${response.data}`
-                );
-            }
+                if (response.status === 200) {
+                    response.json().then((payload) => setToken(payload.token));
+                    setMessage(`Login successful; auth token saved`);
+                } else {
+                    setMessage(
+                        `Login Error ${response.status}: ${response.data}`
+                    );
+                }
             })
             .catch((error) => {
-            setMessage(`Login Error: ${error}`);
+                setMessage(`Login Error: ${error}`);
             });
 
         return promise;
@@ -48,10 +46,10 @@ function Login({ handleSubmitPerson }) {
 
     function submitForm(e) {
         e.preventDefault();
-        setMessage("")
-        setSubmitting(true)
+        setMessage("");
+        setSubmitting(true);
         handleSubmit(creds);
-        setCreds({username: "", pwd: ""});
+        setCreds({ username: "", pwd: "" });
     }
 
     function fetchUsers() {
@@ -73,7 +71,7 @@ function Login({ handleSubmitPerson }) {
                         name="username"
                         id="username"
                         value={creds.username}
-                        onChange={handleChange} // triggered when there is any change in the input field
+                        onChange={handleChange} 
                         required
                     />
 
@@ -83,16 +81,15 @@ function Login({ handleSubmitPerson }) {
                         name="pwd"
                         id="pwd"
                         value={creds.pwd}
-                        onChange={handleChange} // triggered when there is any change in the input field
+                        onChange={handleChange} 
                         required
                     />
 
                     <button type="submit">Log in</button>
 
-                    <button type = "button" onClick={() => navigate("/Form")}>
-                    New User? 
+                    <button type="button" onClick={() => navigate("/Form")}>
+                        New User?
                     </button>
-                    
                 </form>
             </div>
         </div>

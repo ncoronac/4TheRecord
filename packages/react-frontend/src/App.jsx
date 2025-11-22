@@ -18,7 +18,7 @@ function AppWrapper() {
 function App() {
     // used to get the current page for conditional rendering
     const location = useLocation();
-    const hideOn = ["/", "/Form"]; 
+    const hideOn = ["/", "/Form"];
     const showNavbar = !hideOn.includes(location.pathname);
 
     // const [currentView, setCurrentView] = useState("form");
@@ -83,7 +83,7 @@ function App() {
         <>
             {showNavbar && <Navbar />}
             <Routes>
-                <Route path = "/" element = {<Login />} />
+                <Route path="/" element={<Login />} />
                 <Route
                     path="/Form"
                     element={<Form handleSubmitPerson={updateUsers} />}
@@ -98,4 +98,4 @@ function App() {
     );
 }
 
-export default AppWrapper ;
+export default AppWrapper;
