@@ -55,6 +55,7 @@ function DailyView() {
     // State: current month & year
     const [currentMonth, setCurrentMonth] = useState(today.getMonth());
     const [currentYear, setCurrentYear] = useState(today.getFullYear());
+    
 
     function daysInMonth(month, year) {
         return 32 - new Date(year, month, 32).getDate();
@@ -70,8 +71,8 @@ function DailyView() {
     }
 
     function previousMonth() {
-        if (currentMonth === 1) {
-            setCurrentMonth(12);
+        if (currentMonth === 0) {
+            setCurrentMonth(11);
             setCurrentYear(currentYear - 1);
         } else {
             setCurrentMonth(currentMonth - 1);
