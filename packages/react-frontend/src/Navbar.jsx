@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+// import "./PinkTheme.css";
 
 function Navbar(props) {
     async function loadCSS(){
@@ -128,8 +129,8 @@ function Navbar(props) {
                                 style={{backgroundColor: button.hex}}
                                 key={button.color}
                                 onClick={(button) => {
-                                    console.log(button);
                                     props.pickColor(button.color);
+                                    console.log("in button, button object is:",button);
                                 }}
                             >
                             </button>

@@ -24,9 +24,13 @@ function App() {
     const [entries, setEntries] = useState([]);
     const [colorTheme, setColorTheme] = useState("purple"); // intial theme is purple
 
+    const toggleTheme = (color) => {
+        setColorTheme(color);
+        console.log("toggle theme:", color);
+    }
+
     function postUser(person) {
         const promise = fetch("http://localhost:8000/users", {
-            // is this the issue?
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -80,7 +84,7 @@ function App() {
 
     return (
         <>
-            {showNavbar && <Navbar pickColor={setColorTheme} colorTheme={colorTheme}/>}
+            {showNavbar && <Navbar pickColor={toggleTheme} colorTheme={colorTheme}/>}
             <Routes>
                 <Route
                     path="/"
