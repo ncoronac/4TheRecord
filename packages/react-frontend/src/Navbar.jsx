@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // import "./PurpleTheme.css";
 
 function Navbar(props) {
-    async function loadCSS(){
+    async function loadCSS(){ // these are all purple and pink for now while i work, they will later be different css files
         if (props.colorTheme == "purple"){
             await import("./PurpleTheme.css");
         } else if (props.colorTheme == "pink"){
