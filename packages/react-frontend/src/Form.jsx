@@ -3,8 +3,8 @@ import { useState } from "react";
 // import "./PurpleTheme.css";
 
 function Form(props) {
-    async function loadCSS(){
-        if (props.colorTheme == "purple"){
+    async function loadCSS() {
+        if (props.colorTheme == "purple") {
             await import("./PurpleTheme.css");
         }
     }
@@ -17,7 +17,6 @@ function Form(props) {
         lastname: "",
         email: "",
     });
-
 
     function handleChange(event) {
         const { name, value } = event.target; // const name = event.target.name; const value = event.target.value

@@ -12,13 +12,13 @@ function DiaryEntry(props) {
         images: [], // Array to store uploaded images
     });
 
-    async function loadCSS(){
-        if (props.colorTheme == "purple"){
+    async function loadCSS() {
+        if (props.colorTheme == "purple") {
             await import("./PurpleTheme.css");
         }
     }
     loadCSS();
-    
+
     function handleChange(event) {
         const { name, value } = event.target;
         setEntry({ ...entry, [name]: value });

@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 // import "./PurpleTheme.css";
 
 function Navbar(props) {
-    async function loadCSS(){ // these are all purple and pink for now while i work, they will later be different css files
-        if (props.colorTheme == "purple"){
+    async function loadCSS() {
+        // these are all purple and pink for now while i work, they will later be different css files
+        if (props.colorTheme == "purple") {
             await import("./PurpleTheme.css");
-        } else if (props.colorTheme == "pink"){
+        } else if (props.colorTheme == "pink") {
             await import("./PinkTheme.css");
-        } else if (props.colorTheme == "blue"){
+        } else if (props.colorTheme == "blue") {
             await import("./PurpleTheme.css");
-        } else if (props.colorTheme == "green"){
+        } else if (props.colorTheme == "green") {
             await import("./PurpleTheme.css");
-        } else if (props.colorTheme == "yellow"){
+        } else if (props.colorTheme == "yellow") {
             await import("./PurpleTheme.css");
         }
     }
@@ -21,12 +22,12 @@ function Navbar(props) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
     const colorButtons = [
-        {color: "purple", hex: "#cec1ffff"},
-        {color: "pink", hex: "#f5d4f7ff"},
-        {color: "blue", hex: "#b1dbfa"},
-        {color: "green", hex: "#c3e6c5"},
-        {color: "yellow", hex: "#f7efb2"}
-    ]
+        { color: "purple", hex: "#cec1ffff" },
+        { color: "pink", hex: "#f5d4f7ff" },
+        { color: "blue", hex: "#b1dbfa" },
+        { color: "green", hex: "#c3e6c5" },
+        { color: "yellow", hex: "#f7efb2" },
+    ];
 
     // Close menu when clicking outside
     useEffect(() => {
@@ -68,23 +69,19 @@ function Navbar(props) {
 
     const handleColorChange = (button) => {
         props.pickColor(button.color); // updates state of colorTheme w/ useState
-        
-    }
+        console.log("in button, button object is:", button); // for testing, delete later
+    };
 
     return (
         <nav className="navbar-box">
             {/* 4TheRecord */}
             <Link to="/DailyView">
-                <div className="navbar-title">
-                    4TheRecord
-                </div>
+                <div className="navbar-title">4TheRecord</div>
             </Link>
 
             {/* User Profile Menu */}
             <div className="navbar-menu" ref={menuRef}>
-                <div className="navbar-circle"
-                    onClick={handleProfileClick}
-                >
+                <div className="navbar-circle" onClick={handleProfileClick}>
                     U
                 </div>
 
@@ -100,44 +97,43 @@ function Navbar(props) {
                                 Fakeuser@example.com
                             </div>
                         </div>
-                    {/* Change Profile Picture */}
-                        <div className="navbar-dropdown-item"
+                        {/* Change Profile Picture */}
+                        <div
+                            className="navbar-dropdown-item"
                             onClick={handleChangeProfilePicture}
                         >
                             <span>👤</span>
                             Change Profile Picture
                         </div>
-                    {/* Insights */}
-                        <div className="navbar-dropdown-item"
+                        {/* Insights */}
+                        <div
+                            className="navbar-dropdown-item"
                             onClick={handleInsights}
                         >
                             <span>📊</span>
                             Insights
                         </div>
-                    {/* Settings */}
-                        <div className="navbar-dropdown-item"
+                        {/* Settings */}
+                        <div
+                            className="navbar-dropdown-item"
                             onClick={handleSettings}
                         >
                             <span>⚙️</span>
                             Settings
                         </div>
-                    {/* Color Picker Button */}
-                    <div className="color-buttons-row">
-                        {colorButtons.map((button) => (
-                            <button
-                                className="color-buttons"
-                                style={{backgroundColor: button.hex}}
-                                key={button.color}
-                                onClick={(button) => {
-                                    props.pickColor(button.color);
-                                    console.log("in button, button object is:",button);
-                                }}
-                            >
-                            </button>
-                        ))}
-                    </div>
-                    {/* Logout */}
-                        <div className="navbar-logout">
+                        {/* Color Picker Button */}
+                        <div className="color-buttons-row">
+                            {colorButtons.map((button) => (
+                                <button
+                                    className="color-buttons"
+                                    style={{ backgroundColor: button.hex }}
+                                    key={button.color}
+                                    onClick={handleColorChange}
+                                ></button>
+                            ))}
+                        </div>
+                        {/* Logout */}
+                        <div className="navbar-logout" onClick={handleLogout}>
                             <span>🚪</span>
                             Logout
                         </div>

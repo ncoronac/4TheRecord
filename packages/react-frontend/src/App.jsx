@@ -27,13 +27,12 @@ function App() {
     const toggleTheme = (color) => {
         setColorTheme(color);
         console.log("toggle theme:", color);
-    }
+    };
 
     function postUser(person) {
         const promise = fetch(
             "https://4therecord-dycbdgaxc8cvdpb3.westus-01.azurewebsites.net/users",
             {
-            
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -91,16 +90,31 @@ function App() {
 
     return (
         <>
-            {showNavbar && <Navbar pickColor={toggleTheme} colorTheme={colorTheme}/>}
+            {showNavbar && (
+                <Navbar pickColor={toggleTheme} colorTheme={colorTheme} />
+            )}
             <Routes>
                 <Route
                     path="/"
-                    element={<Form handleSubmitPerson={updateUsers} colorTheme={colorTheme}/>}
+                    element={
+                        <Form
+                            handleSubmitPerson={updateUsers}
+                            colorTheme={colorTheme}
+                        />
+                    }
                 />
-                <Route path="/DailyView" element={<DailyView colorTheme={colorTheme}/>} />
+                <Route
+                    path="/DailyView"
+                    element={<DailyView colorTheme={colorTheme} />}
+                />
                 <Route
                     path="/DiaryEntry"
-                    element={<DiaryEntry handleSubmitEntry={updateEntries} colorTheme={colorTheme}/>}
+                    element={
+                        <DiaryEntry
+                            handleSubmitEntry={updateEntries}
+                            colorTheme={colorTheme}
+                        />
+                    }
                 />
             </Routes>
         </>
