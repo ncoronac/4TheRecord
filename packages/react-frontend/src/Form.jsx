@@ -27,6 +27,10 @@ function Form(props) {
         event.preventDefault();
         // calls Users(person) which sends POST to backend
         props.handleSubmitPerson(person);
+
+        // save user globally
+        localStorage.setItem("currentUser", JSON.stringify(person));
+        
         setPerson({ firstname: "", lastname: "", email: "" });
 
         // goes to daily view page afterward
