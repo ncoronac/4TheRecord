@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./DiaryEntry.css";
+// import "./PurpleTheme.css";
 import TrackerContainer from "./TrackerContainer";
 import { Link } from "react-router-dom";
 

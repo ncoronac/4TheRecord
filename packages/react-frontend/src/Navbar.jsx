@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import "./PinkTheme.css";
+// import "./PurpleTheme.css";
 
 function Navbar(props) {
     async function loadCSS(){
