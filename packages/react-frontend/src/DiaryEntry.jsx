@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./DiaryEntry.css";
 import TrackerContainer from "./TrackerContainer";
 import { Link } from "react-router-dom";
 
@@ -8,6 +9,7 @@ function DiaryEntry(props) {
         title: "",
         content: "",
         mood: "",
+        images: [], // Array to store uploaded images
     });
 
     async function loadCSS(){
@@ -22,16 +24,48 @@ function DiaryEntry(props) {
         setEntry({ ...entry, [name]: value });
     }
 
-    // function handleMoodSelect(mood) {
+    function handleImageUpload(event) {
+        const files = Array.from(event.target.files);
 
-    //     setEntry({ ...entry, mood: mood });
-    // }
+        const imagePreviews = files.map((file) => ({
+            file: file,
+            preview: URL.createObjectURL(file),
+        }));
+
+        setEntry({
+            ...entry,
+            images: [...entry.images, ...imagePreviews],
+        });
+    }
+
+    function removeImage(index) {
+        const updatedImages = entry.images.filter((_, i) => i !== index);
+        URL.revokeObjectURL(entry.images[index].preview);
+        setEntry({ ...entry, images: updatedImages });
+    }
 
     function submitForm(event) {
         event.preventDefault();
-        props.handleSubmitEntry(entry);
-        // console.log("Diary Entry Submitted: ", entry); // for testing, can remove later
-        setEntry({ date: "", title: "", content: "", mood: "" });
+
+        // Create FormData for file uploads
+        const formData = new FormData();
+        formData.append("date", entry.date);
+        formData.append("title", entry.title);
+        formData.append("content", entry.content);
+        formData.append("mood", entry.mood);
+
+        // Append all image files
+        entry.images.forEach((image) => {
+            formData.append("images", image.file);
+        });
+
+        props.handleSubmitEntry(formData);
+
+        // Clean up object URLs
+        entry.images.forEach((image) => URL.revokeObjectURL(image.preview));
+
+        // Reset form
+        setEntry({ date: "", title: "", content: "", mood: "", images: [] });
     }
 
     const trackers = [
@@ -116,6 +150,40 @@ function DiaryEntry(props) {
                         rows="6"
                         required
                     />
+
+                    {/* Image Upload */}
+                    <label htmlFor="images">Upload Images</label>
+                    <input
+                        type="file"
+                        name="images"
+                        id="images"
+                        multiple
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                    />
+
+                    {/* Image Previews */}
+                    {entry.images.length > 0 && (
+                        <div className="image-previews">
+                            <h4>Image Previews:</h4>
+                            <div className="preview-container">
+                                {entry.images.map((image, index) => (
+                                    <div key={index} className="image-preview">
+                                        <img
+                                            src={image.preview}
+                                            alt={`Preview ${index + 1}`}
+                                        />
+                                        <button
+                                            type="button"
+                                            onClick={() => removeImage(index)}
+                                        >
+                                            ×
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
 
                     <button type="submit">Save Entry</button>
                 </form>
