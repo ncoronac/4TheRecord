@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import "./PurpleTheme.css";
 import TrackerContainer from "./TrackerContainer";
 import { Link } from "react-router-dom";
 
@@ -11,13 +10,6 @@ function DiaryEntry(props) {
         mood: "",
         images: [], // Array to store uploaded images
     });
-    /* 
-    async function loadCSS(){
-        if (props.colorTheme == "purple"){
-            await import("./PurpleTheme.css");
-        }
-    }
-    loadCSS(); */
     
     function handleChange(event) {
         const { name, value } = event.target;

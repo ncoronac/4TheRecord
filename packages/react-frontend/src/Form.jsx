@@ -1,14 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-// import "./PurpleTheme.css";
 
 function Form(props) {
-    /* async function loadCSS() {
-        if (props.colorTheme == "purple") {
-            await import("./PurpleTheme.css");
-        }
-    }
-    loadCSS(); */
 
     const navigate = useNavigate();
 

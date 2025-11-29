@@ -1,18 +1,17 @@
 /* color manifest -- for mapping changes 
 
-#faf7ff -> #fff7ff
-#f6f2ff
-#e8e0ff
-#b9aaff
-#8e7aff
-#e8e0ff
-#7a6ccf
-#ece8ff
+#faf7ff -> #fffeee
+#f6f2ff -> #fffde7
+#e8e0ff -> #fffdc6
+#b9aaff -> #fffbbc
+#8e7aff -> #e8e677
+#7a6ccf -> #d8d77a
+#ece8ff -> #fffee0
 #dfd8ff
 rgba(122, 108, 207, 0.3)
 #d6ccff
 #fefcff
-#443d5a
+#443d5a -> #888137
 #a495ff
 #f9f7ff
 #e1d9ff
@@ -33,39 +32,40 @@ rgba(139, 92, 246, 0.15)
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #fff7ff;
+    background-color: #fffeee;
     font-family: "Poppins", sans-serif;
-    color: #443d5a;
+    color: #a29d5f;
 }
 .calendar-section {
     width: 50%;
-    background-color: #f6f2ff;
+    background-color: #fffde7;
     padding: 2rem 3rem;
-    border-right: 1px solid #e8e0ff;
+    border-right: 1px solid #f1efbf;
     box-sizing: border-box;
     overflow-y: auto;
     height: 100vh;
 }
 .daily-prompts {
     width: 50%;
-    background-color: #fbff00;
+    background-color: #fffde7;
     padding: 2rem 3rem;
-    border-right: 1px solid #e8e0ff;
+    border-right: 1px solid #f1efbf;
     box-sizing: border-box;
     overflow-y: auto;
     height: 100vh;
 }
 .nav-buttons button {
-    background-color: #b9aaff;
+    background-color: #ddd991;
     color: white;
-    border: none;
     border-radius: 8px;
+    border-color: #d5d18b;
     padding: 0.7rem 1.4rem;
     cursor: pointer;
     transition: background-color 0.25s ease;
 }
 .nav-buttons button:hover {
-    background-color: #8e7aff;
+    background-color: #d5d18b;
+    border-color: #cac684;
 }
 
 /* CSS for DiaryEntry */
@@ -76,16 +76,16 @@ rgba(139, 92, 246, 0.15)
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #faf7ff;
+    background-color: #fffeee;
     font-family: "Poppins", sans-serif;
-    color: #443d5a;
+    color: #a29d5f; 
 }
 
 .diary-container {
     width: 50%;
-    background-color: #f6f2ff;
+    background-color: #fffde7;
     padding: 2rem 3rem;
-    border-right: 1px solid #e8e0ff;
+    border-right: 1px solid #f1efbf;
     box-sizing: border-box;
     overflow-y: auto;
     height: 100vh;
@@ -102,7 +102,7 @@ rgba(139, 92, 246, 0.15)
 
 h1,
 h2 {
-    color: #7a6ccf;
+    color: #d8d77a;
     margin-bottom: 1rem;
 }
 
@@ -117,8 +117,8 @@ h2 {
     padding: 0.6rem 1rem;
     border: none;
     border-radius: 10px;
-    background-color: #ece8ff;
-    color: #443d5a;
+    background-color: #fffee0;
+    color: #a29d5f;
     cursor: pointer;
     font-size: 0.95rem;
     transition:
@@ -127,15 +127,15 @@ h2 {
 }
 
 .mood-option:hover {
-    background-color: #dfd8ff;
+    background-color: #eeec9d;
     transform: scale(1.02);
 }
 
 .mood-option.selected {
-    background-color: #b9aaff;
+    background-color: #d5d196;
     color: #fff;
     font-weight: 600;
-    box-shadow: 0 0 6px rgba(122, 108, 207, 0.3);
+    box-shadow: 0 0 6px rgba(207, 204, 108, 0.3);
 }
 
 form input,
@@ -145,25 +145,26 @@ form textarea {
     margin-bottom: 1rem;
     padding: 0.7rem;
     border-radius: 8px;
-    border: 1px solid #d6ccff;
-    background-color: #fefcff;
+    border: 1px solid #f1efbf;
+    background-color: #fffffc;
     font-size: 1rem;
-    color: #443d5a;
+    color: #a29d5f;
     font-family: inherit;
 }
 
 form input:focus,
 form textarea:focus {
     outline: none;
-    border-color: #b9aaff;
-    box-shadow: 0 0 4px rgba(185, 170, 255, 0.3);
+    border-color: #f1efbf;
+    box-shadow: 0 0 4px rgba(207, 204, 108, 0.3);
 }
 
 button[type="submit"] {
-    background-color: #b9aaff;
+    background-color: #ddd991;
+    border-color: #d5d18b;
     color: white;
     padding: 0.7rem 1.4rem;
-    border: none;
+    /* border: none; */ 
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.25s ease;
@@ -171,16 +172,17 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #a495ff;
+    background-color: #d5d18b;
+    border-color: #cac684;
 }
 
 .entry-preview {
     margin-top: 1.5rem;
     padding: 1rem;
-    background-color: #f9f7ff;
+    background-color: #fffeee;
     border-radius: 12px;
-    border: 1px solid #e1d9ff;
-    box-shadow: 0 2px 5px rgba(122, 108, 207, 0.1);
+    border: 1px solid #a29d5f;
+    box-shadow: 0 2px 5px rgba(207, 204, 108, 0.3);
 }
 
 @media (max-width: 900px) {
@@ -194,7 +196,7 @@ button[type="submit"]:hover {
         width: 100%;
         height: auto;
         border-right: none;
-        border-bottom: 1px solid #e8e0ff;
+        border-bottom: 1px solid #fdfbae;
     }
 }
 
@@ -205,7 +207,7 @@ button[type="submit"]:hover {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #9985b6;
+    background-color: #b6b485;
 }
 
 .form-container {
@@ -285,7 +287,7 @@ button[type="submit"]:hover {
     border: none;
     padding: 15px;
     border-radius: 5px;
-    background-color: #e1e9f2;
+    background-color: #eff3e2;
     margin-bottom: 20px;
 }
 
@@ -308,7 +310,7 @@ button[type="submit"]:hover {
     width: 100%;
     height: 77px;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(139, 92, 246, 0.08);
+    box-shadow: 0 2px 10px rgba(207, 204, 108, 0.3);
     border-bottom: 1px solid #f3e8ff;
 }
 
@@ -333,7 +335,7 @@ button[type="submit"]:hover {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #8b5cf6;
+    background-color: #e0d450;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -342,7 +344,7 @@ button[type="submit"]:hover {
     font-weight: bold;
     font-size: 14px;
     transition: all 0.2s ease-in-out;
-    box-shadow: 0 2px 8px rgba(80, 80, 80, 0.4);
+    box-shadow: 0 2px 8px rgba(207, 204, 108, 0.3);
     border: 2px solid white;
 }
 
@@ -359,7 +361,7 @@ button[type="submit"]:hover {
     border-radius: 8px;
     min-width: 200px;
     z-index: 1001;
-    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+    box-shadow: 0 10px 25px rgba(207, 204, 108, 0.3);
     overflow: hidden;
     animation: slideDown 0.2s ease-out;
 }
