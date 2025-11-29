@@ -2,12 +2,12 @@
 // import "./Icons.css";
 
 function Icons(props) {
-    async function loadCSS() {
+    /* async function loadCSS() {
         if (props.colorTheme == "purple") {
             await import("./PurpleTheme.css");
         }
     }
-    loadCSS();
+    loadCSS(); */
 
     function handleClick(event) {
         event.preventDefault();

@@ -2,12 +2,12 @@ import Icons from "./Icons";
 //import "./Icons.css";
 
 function TrackerContainer(props) {
-    async function loadCSS() {
+    /* async function loadCSS() {
         if (props.colorTheme == "purple") {
             await import("./PurpleTheme.css");
         }
     }
-    loadCSS();
+    loadCSS(); */
 
     return (
         <div className="tracker-container">

@@ -3,21 +3,23 @@ import { Link } from "react-router-dom";
 // import "./PurpleTheme.css";
 
 function Navbar(props) {
-    async function loadCSS() {
+    /* useEffect(() => {
         // these are all purple and pink for now while i work, they will later be different css files
-        if (props.colorTheme == "purple") {
-            await import("./PurpleTheme.css");
-        } else if (props.colorTheme == "pink") {
-            await import("./PinkTheme.css");
-        } else if (props.colorTheme == "blue") {
-            await import("./PurpleTheme.css");
-        } else if (props.colorTheme == "green") {
-            await import("./PurpleTheme.css");
-        } else if (props.colorTheme == "yellow") {
-            await import("./PurpleTheme.css");
+        async function loadCSS(){
+            if (props.colorTheme == "purple") {
+                await import("./PurpleTheme.css");
+            } else if (props.colorTheme == "pink") {
+                await import("./PinkTheme.css");
+            } else if (props.colorTheme == "blue") {
+                await import("./PurpleTheme.css");
+            } else if (props.colorTheme == "green") {
+                await import("./PurpleTheme.css");
+            } else if (props.colorTheme == "yellow") {
+                await import("./PurpleTheme.css");
+            }
         }
-    }
-    loadCSS();
+        loadCSS();
+    }, [props.colorTheme]);  */
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
@@ -69,7 +71,7 @@ function Navbar(props) {
 
     const handleColorChange = (button) => {
         props.pickColor(button.color); // updates state of colorTheme w/ useState
-        console.log("in button, button object is:", button); // for testing, delete later
+        // console.log("in button, button object is:", button); // for testing, delete later
     };
 
     return (
@@ -128,7 +130,7 @@ function Navbar(props) {
                                     className="color-buttons"
                                     style={{ backgroundColor: button.hex }}
                                     key={button.color}
-                                    onClick={handleColorChange}
+                                    onClick={() => handleColorChange(button)}
                                 ></button>
                             ))}
                         </div>

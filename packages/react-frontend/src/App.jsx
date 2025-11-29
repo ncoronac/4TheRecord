@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "./Form";
 import DiaryEntry from "./DiaryEntry";
 import DailyView from "./DailyView";
@@ -24,10 +24,47 @@ function App() {
     const [entries, setEntries] = useState([]);
     const [colorTheme, setColorTheme] = useState("purple"); // intial theme is purple
 
+    /* const toggleTheme = (color) => {
+        setColorTheme(color);
+        console.log("theme is now", color);
+        const themeMap = {
+                purple: "/themes/purple.css",
+                pink: "/themes/pink.css",
+                blue: "/themes/blue.css",
+                green: "/themes/green.css",
+                yellow: "/themes/yellow.css",
+            };
+    
+            const link = document.getElementById("theme-css");
+            console.log(link);
+            console.log(document.querySelectorAll("*"));
+            if (link) {
+                link.href = themeMap[colorTheme];
+            }
+    }; */
+
     const toggleTheme = (color) => {
         setColorTheme(color);
-        console.log("toggle theme:", color);
-    };
+        console.log("theme is now ", color);
+    }
+
+    useEffect(() => {
+            const themeMap = {
+                purple: "/themes/purple.css",
+                pink: "/themes/pink.css",
+                blue: "/themes/blue.css",
+                green: "/themes/green.css",
+                yellow: "/themes/yellow.css",
+            };
+    
+            const link = document.getElementById("theme-css");
+            // console.log("curr link: ", link);
+            if (link) {
+                link.href = themeMap[colorTheme];
+                // console.log("new link: ", link);
+            }
+    
+        }, [colorTheme]);
 
     function postUser(person) {
         const promise = fetch(
@@ -91,7 +128,7 @@ function App() {
     return (
         <>
             {showNavbar && (
-                <Navbar pickColor={toggleTheme} colorTheme={colorTheme} />
+                <Navbar pickColor={toggleTheme} />
             )}
             <Routes>
                 <Route

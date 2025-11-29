@@ -3,12 +3,12 @@ import { useState } from "react";
 // import "./PurpleTheme.css";
 
 function Form(props) {
-    async function loadCSS() {
+    /* async function loadCSS() {
         if (props.colorTheme == "purple") {
             await import("./PurpleTheme.css");
         }
     }
-    loadCSS();
+    loadCSS(); */
 
     const navigate = useNavigate();
 

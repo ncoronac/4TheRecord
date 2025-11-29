@@ -1,15 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function DailyView(props) {
-    async function loadCSS() {
+    /* async function loadCSS() {
         if (props.colorTheme == "purple") {
-            await import("./PurpleTheme.css");
+            await import("./PurpleTheme.css").then(console.log("updating theme to ", props.colorTheme));
         } else if (props.colorTheme == "pink") {
-            await import("./PinkTheme.css");
+            await import("./PinkTheme.css").then(console.log("updating theme"));
         }
     }
-    loadCSS();
+    loadCSS(); 
+
+    useEffect(() => {
+        // these are all purple and pink for now while i work, they will later be different css files
+        /* async function loadCSS(){
+            console.log(document.querySelectorAll('*'));
+            const stylesList = document.getElementsByTagName("style");
+            console.log("stylesList: ", stylesList);
+            const index = stylesList.length - 1;
+            console.log(index, stylesList.item(index));
+            document.removeChild(Node(stylesList.item(index)));
+            console.log("stylesList: ", stylesList);
+            if (props.colorTheme == "purple") {
+                await import("./PurpleTheme.css");
+            } else if (props.colorTheme == "pink") {
+                await import("./PinkTheme.css");
+            } else if (props.colorTheme == "blue") {
+                await import("./PurpleTheme.css");
+            } else if (props.colorTheme == "green") {
+                await import("./PurpleTheme.css");
+            } else if (props.colorTheme == "yellow") {
+                await import("./PurpleTheme.css");
+            }
+        }
+        loadCSS();
+    }, [props.colorTheme]); */ 
+
+
+    /*
+    useEffect(() => {
+        const themeMap = {
+            purple: "/themes/purple.css",
+            pink: "/themes/pink.css",
+            blue: "/themes/blue.css",
+            green: "/themes/green.css",
+            yellow: "/themes/yellow.css",
+        };
+
+        const link = document.getElementById("theme-css");
+        console.log(link);
+        if (link) {
+            link.href = themeMap[props.colorTheme];
+        }
+
+        console.log(document.getElementsByTagName("link"));
+
+    }, [props.colorTheme]); */
+
 
     const months = [
         "January",
