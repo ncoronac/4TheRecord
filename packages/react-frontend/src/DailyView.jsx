@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function DailyView(props) {
-
+function DailyView() {
     const months = [
         "January",
         "February",

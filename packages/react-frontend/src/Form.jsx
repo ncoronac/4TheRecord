@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function Form(props) {
-
     const navigate = useNavigate();
 
     const [person, setPerson] = useState({
@@ -23,7 +22,7 @@ function Form(props) {
 
         // save user globally
         localStorage.setItem("currentUser", JSON.stringify(person));
-        
+
         setPerson({ firstname: "", lastname: "", email: "" });
 
         // goes to daily view page afterward

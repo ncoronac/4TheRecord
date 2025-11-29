@@ -1,7 +1,6 @@
 // import React, { useState } from 'react';
 
 function Icons(props) {
-
     function handleClick(event) {
         event.preventDefault();
         console.log("Submitted: ", props.text, props.num);

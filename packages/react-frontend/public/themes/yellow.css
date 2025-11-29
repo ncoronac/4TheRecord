@@ -78,7 +78,7 @@ rgba(139, 92, 246, 0.15)
     padding: 0;
     background-color: #fffeee;
     font-family: "Poppins", sans-serif;
-    color: #a29d5f; 
+    color: #a29d5f;
 }
 
 .diary-container {
@@ -164,7 +164,7 @@ button[type="submit"] {
     border-color: #d5d18b;
     color: white;
     padding: 0.7rem 1.4rem;
-    /* border: none; */ 
+    /* border: none; */
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.25s ease;

@@ -27,26 +27,25 @@ function App() {
     // called when a button is pressed in the dropdown menu, updates state of colorTheme variable
     const toggleTheme = (color) => {
         setColorTheme(color);
-    }
+    };
 
     // occurs when state colorTheme var is changed
     useEffect(() => {
-            // maps each colorTheme to a css file
-            const themeMap = {
-                purple: "/themes/purple.css",
-                pink: "/themes/pink.css",
-                blue: "/themes/blue.css",
-                green: "/themes/green.css",
-                yellow: "/themes/yellow.css",
-            };
-            
-            // grabs the current "theme-css" link from index.html
-            const link = document.getElementById("theme-css");
-            if (link) {
-                link.href = themeMap[colorTheme]; // changes the file path in the "theme-css" link to the selected colorTheme
-            }
-    
-        }, [colorTheme]);
+        // maps each colorTheme to a css file
+        const themeMap = {
+            purple: "/themes/purple.css",
+            pink: "/themes/pink.css",
+            blue: "/themes/blue.css",
+            green: "/themes/green.css",
+            yellow: "/themes/yellow.css",
+        };
+
+        // grabs the current "theme-css" link from index.html
+        const link = document.getElementById("theme-css");
+        if (link) {
+            link.href = themeMap[colorTheme]; // changes the file path in the "theme-css" link to the selected colorTheme
+        }
+    }, [colorTheme]);
 
     function postUser(person) {
         const promise = fetch(
@@ -109,9 +108,7 @@ function App() {
 
     return (
         <>
-            {showNavbar && (
-                <Navbar pickColor={toggleTheme} />
-            )}
+            {showNavbar && <Navbar pickColor={toggleTheme} />}
             <Routes>
                 <Route
                     path="/"

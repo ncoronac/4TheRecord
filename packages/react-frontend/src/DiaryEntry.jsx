@@ -10,7 +10,7 @@ function DiaryEntry(props) {
         mood: "",
         images: [], // Array to store uploaded images
     });
-    
+
     function handleChange(event) {
         const { name, value } = event.target;
         setEntry({ ...entry, [name]: value });

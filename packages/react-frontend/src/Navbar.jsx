@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function Navbar(props) {
-
     const storedUser = JSON.parse(localStorage.getItem("currentUser"));
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
@@ -75,7 +74,9 @@ function Navbar(props) {
                         {/* User Info Header */}
                         <div className="navbar-userinfo-box">
                             <div className="navbar-userinfo-name">
-                                {storedUser ? `${storedUser.firstname} ${storedUser.lastname}` : "Guest"}
+                                {storedUser
+                                    ? `${storedUser.firstname} ${storedUser.lastname}`
+                                    : "Guest"}
                             </div>
                             <div className="navbar-userinfo-email">
                                 {storedUser ? storedUser.email : "No email"}
