@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 function Navbar(props) {
 
+    const storedUser = JSON.parse(localStorage.getItem("currentUser"));
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
     const colorButtons = [
@@ -65,7 +66,7 @@ function Navbar(props) {
             {/* User Profile Menu */}
             <div className="navbar-menu" ref={menuRef}>
                 <div className="navbar-circle" onClick={handleProfileClick}>
-                    U
+                    {storedUser ? storedUser.firstname[0].toUpperCase() : "U"}
                 </div>
 
                 {/* Dropdown Menu */}
@@ -74,10 +75,10 @@ function Navbar(props) {
                         {/* User Info Header */}
                         <div className="navbar-userinfo-box">
                             <div className="navbar-userinfo-name">
-                                Fake User
+                                {storedUser ? `${storedUser.firstname} ${storedUser.lastname}` : "Guest"}
                             </div>
                             <div className="navbar-userinfo-email">
-                                Fakeuser@example.com
+                                {storedUser ? storedUser.email : "No email"}
                             </div>
                         </div>
                         {/* Change Profile Picture */}
