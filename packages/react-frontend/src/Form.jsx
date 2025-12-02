@@ -58,6 +58,26 @@ function Form(props) {
                         required
                     />
 
+                    <label htmlFor="username">Username*</label>
+                    <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        value={person.username}
+                        onChange={handleChange} // triggered when there is any change in the input field
+                        required
+                    />
+
+                    <label htmlFor="password">Password*</label>
+                    <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        value={person.password}
+                        onChange={handleChange} // triggered when there is any change in the input field
+                        required
+                    />
+
                     <label htmlFor="email">Email*</label>
                     <input
                         type="email"

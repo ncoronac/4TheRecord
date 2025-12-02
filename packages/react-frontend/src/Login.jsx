@@ -33,22 +33,22 @@ function Login({ handleSubmitPerson }) {
 
             <div className="form-container">
                 <form onSubmit={submitForm}>
-                    <label htmlFor="firstname">First Name*</label>
+                    <label htmlFor="username">Username*</label>
                     <input
                         type="text"
-                        name="firstname"
-                        id="firstname"
-                        value={person.firstname}
+                        name="username"
+                        id="username"
+                        value={person.username}
                         onChange={handleChange} // triggered when there is any change in the input field
                         required
                     />
 
-                    <label htmlFor="lastname">Last Name*</label>
+                    <label htmlFor="password">Password*</label>
                     <input
-                        type="text"
-                        name="lastname"
-                        id="lastname"
-                        value={person.lastname}
+                        type="password"
+                        name="password"
+                        id="password"
+                        value={person.password}
                         onChange={handleChange} // triggered when there is any change in the input field
                         required
                     />
