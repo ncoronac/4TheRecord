@@ -5,13 +5,7 @@ import userServices from "./models/user-services.js";
 const app = express();
 const port = 8000;
 
-// if new changes dont work uncomment the line below this to restore
-// app.use(cors()); // lets backend respond to calls from diff. locations (cross-origin resource sharing)
-
-app.use(cors({
-    origin: "https://salmon-beach-0dcbc351e.3.azurestaticapps.net",
-    credentials: true
-}));
+app.use(cors()); // lets backend respond to calls from diff. locations (cross-origin resource sharing)
 app.use(express.json());
 
 app.get("/", (req, res) => {
