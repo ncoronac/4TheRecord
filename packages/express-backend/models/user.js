@@ -37,16 +37,16 @@ const UserSchema = new mongoose.Schema(
             trim: true,
         },
 
-        username: { 
-            type: String, 
-            required: true, 
-            unique: true
+        username: {
+            type: String,
+            required: true,
+            unique: true,
         },
-        hashedPassword: { 
-            type: String, 
-            required: true
+        hashedPassword: {
+            type: String,
+            required: true,
         },
-        
+
         email: {
             type: String,
             required: true,

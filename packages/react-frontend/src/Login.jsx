@@ -39,7 +39,7 @@ function Login({ handleSubmitPerson }) {
                         name="username"
                         id="username"
                         value={person.username}
-                        onChange={handleChange} // triggered when there is any change in the input field
+                        onChange={handleChange}
                         required
                     />
 
@@ -49,7 +49,7 @@ function Login({ handleSubmitPerson }) {
                         name="password"
                         id="password"
                         value={person.password}
-                        onChange={handleChange} // triggered when there is any change in the input field
+                        onChange={handleChange}
                         required
                     />
 

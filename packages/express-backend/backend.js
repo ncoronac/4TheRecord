@@ -1,9 +1,9 @@
 import express from "express";
 import cors from "cors";
 import userServices from "./models/user-services.js";
-
 const app = express();
 const port = 8000;
+import { registerUser, loginUser, authenticateUser } from "./auth.js";
 
 app.use(cors()); // lets backend respond to calls from diff. locations (cross-origin resource sharing)
 app.use(express.json());
@@ -33,7 +33,7 @@ app.get("/entries", async (req, res) => {
     }
 });
 
-app.post("/users", (req, res) => {
+app.post("/users", authenticateUser, (req, res) => {
     const userToAdd = req.body;
     userServices
         .addUser(userToAdd)
@@ -49,6 +49,9 @@ app.post("/entries", (req, res) => {
         .then((entry) => res.status(201).send(entry))
         .catch((error) => console.log(error));
 });
+
+app.post("/signup", registerUser);
+app.post("/login", loginUser);
 
 app.listen(process.env.PORT || port, () => {
     console.log("REST API is listening");
