@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-function Form(props) {
+function Login({ handleSubmitPerson }) {
     const navigate = useNavigate();
 
     const [person, setPerson] = useState({
         firstname: "",
         lastname: "",
-        email: "",
     });
 
     function handleChange(event) {
@@ -18,12 +17,8 @@ function Form(props) {
     function submitForm(event) {
         event.preventDefault();
         // calls Users(person) which sends POST to backend
-        props.handleSubmitPerson(person);
-
-        // save user globally
-        localStorage.setItem("currentUser", JSON.stringify(person));
-
-        setPerson({ firstname: "", lastname: "", email: "" });
+        handleSubmitPerson(person);
+        setPerson({ firstname: "", lastname: ""});
 
         // goes to daily view page afterward
         navigate("/DailyView");
@@ -32,8 +27,8 @@ function Form(props) {
     return (
         <div className="form-page">
             <div className="header-group">
-                <h2 className="header-group-h2">4TheRecord</h2>
-                <h1 className="header-group-h1">Welcome!</h1>
+                <h2>4TheRecord</h2>
+                <h1>Welcome!</h1>
             </div>
 
             <div className="form-container">
@@ -58,24 +53,16 @@ function Form(props) {
                         required
                     />
 
-                    <label htmlFor="email">Email*</label>
-                    <input
-                        type="email"
-                        name="email"
-                        id="email"
-                        value={person.email}
-                        onChange={handleChange} // triggered when there is any change in the input field
-                        required
-                    />
+                    <button type="submit">Log in</button>
 
-                    <button type="submit">Sign Up</button>
-                    <button type = "submit" onClick={() => navigate("/")}>
-                    Already a User? 
+                    <button type = "submit" onClick={() => navigate("/Form")}>
+                    New User? 
                     </button>
+                    
                 </form>
             </div>
         </div>
     );
 }
 
-export default Form;
+export default Login;
