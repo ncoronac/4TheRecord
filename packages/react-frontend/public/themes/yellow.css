@@ -34,7 +34,7 @@ rgba(139, 92, 246, 0.15)
     padding: 0;
     background-color: #fffeee;
     font-family: "Poppins", sans-serif;
-    color: #a29d5f;
+    color: #404040;
 }
 .calendar-section {
     width: 50%;
@@ -45,9 +45,10 @@ rgba(139, 92, 246, 0.15)
     overflow-y: auto;
     height: 100vh;
 }
+
 .daily-prompts {
     width: 50%;
-    background-color: #fffde7;
+    background-color: #fffef6;
     padding: 2rem 3rem;
     border-right: 1px solid #f1efbf;
     box-sizing: border-box;
@@ -78,7 +79,7 @@ rgba(139, 92, 246, 0.15)
     padding: 0;
     background-color: #fffeee;
     font-family: "Poppins", sans-serif;
-    color: #a29d5f;
+    color: #404040;
 }
 
 .diary-container {
@@ -196,7 +197,7 @@ button[type="submit"]:hover {
         width: 100%;
         height: auto;
         border-right: none;
-        border-bottom: 1px solid #fdfbae;
+        border-bottom: 1px solid #fdfbae; 
     }
 }
 
@@ -311,7 +312,7 @@ button[type="submit"]:hover {
     height: 77px;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(207, 204, 108, 0.3);
-    border-bottom: 1px solid #f3e8ff;
+    border-bottom: 1px solid #f1efbf;
 }
 
 .navbar-title {
@@ -357,7 +358,7 @@ button[type="submit"]:hover {
     top: 45px;
     right: 0;
     background-color: white;
-    border: 1px solid #f3e8ff;
+    border: 1px solid #f1efbf;
     border-radius: 8px;
     min-width: 200px;
     z-index: 1001;
@@ -368,8 +369,8 @@ button[type="submit"]:hover {
 
 .navbar-userinfo-box {
     padding: 20px 16px;
-    border-bottom: 1px solid #f3e8ff;
-    background-color: #faf5ff;
+    border-bottom: 1px solid #f1efbf;
+    background-color: #fffde7;
 }
 
 .navbar-userinfo-name {
@@ -393,12 +394,12 @@ button[type="submit"]:hover {
     gap: 10px;
     color: #4a5568;
     font-size: 14px;
-    border-bottom: 1px solid #f3e8ff;
+    border-bottom: 1px solid #f1efbf;
 }
 
 .navbar-dropdown-item:hover {
-    background-color: #faf5ff;
-    color: #8b5cf6;
+    background-color: #fffde7;
+    color: #aca444; /* e0d450 */
 }
 
 .navbar-logout {
@@ -421,9 +422,9 @@ button[type="submit"]:hover {
     display: flex;
     justify-content: space-evenly;
     /* gap: 1rem; */
+    border-bottom: 1px solid #f1efbf;
     align-items: center;
     margin-top: 0.7rem;
-    margin-bottom: 0.2rem;
 }
 
 .color-buttons {
