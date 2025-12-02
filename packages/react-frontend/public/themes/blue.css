@@ -1,27 +1,14 @@
 /* color manifest -- for mapping changes 
 
-#faf7ff -> #fff7ff
-#f6f2ff
-#e8e0ff
-#b9aaff
-#8e7aff
-#e8e0ff
-#7a6ccf
-#ece8ff
-#dfd8ff
-rgba(122, 108, 207, 0.3)
-#d6ccff
-#fefcff
-#443d5a
-#a495ff
-#f9f7ff
-#e1d9ff
-rgba(122, 108, 207, 0.1)
-#9985b6
-#f3e8ff
-#8b5cf6
-#faf5ff
-rgba(139, 92, 246, 0.15)
+#faf7ff -> #fffeee -> #dff5db (lightest bg color)
+#f6f2ff -> #fffde7
+#e8e0ff -> #fffdc6
+#b9aaff -> #fffbbc
+#8e7aff -> #e8e677
+#7a6ccf -> #d8d77a
+#ece8ff -> #fffee0
+
+#f1efbf -> #e9f5db (border-right)
 
 */
 
@@ -33,39 +20,41 @@ rgba(139, 92, 246, 0.15)
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #fff7ff;
+    background-color: #b1dbfa;
     font-family: "Poppins", sans-serif;
-    color: #443d5a;
+    color: #404040;
 }
 .calendar-section {
     width: 50%;
-    background-color: #f6f2ff;
+    background-color: #e0f2ff;
     padding: 2rem 3rem;
-    border-right: 1px solid #e8e0ff;
+    border-right: 1px solid #d6e7f3; /* f1efbf */
     box-sizing: border-box;
     overflow-y: auto;
     height: 100vh;
 }
+
 .daily-prompts {
     width: 50%;
-    background-color: #2e99e1;
+    background-color: #eef7ff;
     padding: 2rem 3rem;
-    border-right: 1px solid #e8e0ff;
+    border-right: 1px solid #cfe1b9;
     box-sizing: border-box;
     overflow-y: auto;
     height: 100vh;
 }
 .nav-buttons button {
-    background-color: #b9aaff;
+    background-color: #b9d7ed;
     color: white;
-    border: none;
     border-radius: 8px;
+    border-color: #aecbe0;
     padding: 0.7rem 1.4rem;
     cursor: pointer;
     transition: background-color 0.25s ease;
 }
 .nav-buttons button:hover {
-    background-color: #8e7aff;
+    background-color: #aecbe0;
+    border-color: #9ebace;
 }
 
 /* CSS for DiaryEntry */
@@ -76,16 +65,16 @@ rgba(139, 92, 246, 0.15)
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #faf7ff;
+    background-color: #f4faf1;
     font-family: "Poppins", sans-serif;
-    color: #443d5a;
+    color: #404040;
 }
 
 .diary-container {
     width: 50%;
-    background-color: #f6f2ff;
+    background-color: #eef8e8;
     padding: 2rem 3rem;
-    border-right: 1px solid #e8e0ff;
+    border-right: 1px solid #cfe1b9;
     box-sizing: border-box;
     overflow-y: auto;
     height: 100vh;
@@ -102,7 +91,7 @@ rgba(139, 92, 246, 0.15)
 
 h1,
 h2 {
-    color: #7a6ccf;
+    color: #d8d77a;
     margin-bottom: 1rem;
 }
 
@@ -117,8 +106,8 @@ h2 {
     padding: 0.6rem 1rem;
     border: none;
     border-radius: 10px;
-    background-color: #ece8ff;
-    color: #443d5a;
+    background-color: #eef8e8;
+    color: #7aa25f;
     cursor: pointer;
     font-size: 0.95rem;
     transition:
@@ -127,15 +116,15 @@ h2 {
 }
 
 .mood-option:hover {
-    background-color: #dfd8ff;
+    background-color: #aed58b;
     transform: scale(1.02);
 }
 
 .mood-option.selected {
-    background-color: #b9aaff;
+    background-color: #9abc7b;
     color: #fff;
     font-weight: 600;
-    box-shadow: 0 0 6px rgba(122, 108, 207, 0.3);
+    box-shadow: 0 0 6px rgba(207, 204, 108, 0.3);
 }
 
 form input,
@@ -145,25 +134,26 @@ form textarea {
     margin-bottom: 1rem;
     padding: 0.7rem;
     border-radius: 8px;
-    border: 1px solid #d6ccff;
-    background-color: #fefcff;
+    border: 1px solid #cfe1b9;
+    background-color: #fffffc;
     font-size: 1rem;
-    color: #443d5a;
+    color: #7aa25f;
     font-family: inherit;
 }
 
 form input:focus,
 form textarea:focus {
     outline: none;
-    border-color: #b9aaff;
-    box-shadow: 0 0 4px rgba(185, 170, 255, 0.3);
+    border-color: #cfe1b9;
+    box-shadow: 0 0 4px rgba(207, 204, 108, 0.3);
 }
 
 button[type="submit"] {
-    background-color: #b9aaff;
+    background-color: #c3daaa;
+    border-color: #bed4a7;
     color: white;
     padding: 0.7rem 1.4rem;
-    border: none;
+    /* border: none; */
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.25s ease;
@@ -171,16 +161,17 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #a495ff;
+    background-color: #bed4a7;
+    border-color: #acc096;
 }
 
 .entry-preview {
     margin-top: 1.5rem;
     padding: 1rem;
-    background-color: #f9f7ff;
+    background-color: #fbfff8;
     border-radius: 12px;
-    border: 1px solid #e1d9ff;
-    box-shadow: 0 2px 5px rgba(122, 108, 207, 0.1);
+    border: 1px solid #7ca25f;
+    box-shadow: 0 2px 5px rgba(207, 204, 108, 0.3);
 }
 
 @media (max-width: 900px) {
@@ -194,7 +185,7 @@ button[type="submit"]:hover {
         width: 100%;
         height: auto;
         border-right: none;
-        border-bottom: 1px solid #e8e0ff;
+        border-bottom: 1px solid #cfe1b9;
     }
 }
 
@@ -205,7 +196,7 @@ button[type="submit"]:hover {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #9985b6;
+    background-color: #b6b485;
 }
 
 .form-container {
@@ -285,7 +276,7 @@ button[type="submit"]:hover {
     border: none;
     padding: 15px;
     border-radius: 5px;
-    background-color: #e1e9f2;
+    background-color: #ecf3e2;
     margin-bottom: 20px;
 }
 
@@ -308,8 +299,8 @@ button[type="submit"]:hover {
     width: 100%;
     height: 77px;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(139, 92, 246, 0.08);
-    border-bottom: 1px solid #f3e8ff;
+    box-shadow: 0 2px 10px rgba(207, 204, 108, 0.3);
+    border-bottom: 1px solid #d8f1bf;
 }
 
 .navbar-title {
@@ -333,7 +324,7 @@ button[type="submit"]:hover {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #8b5cf6;
+    background-color: #9ebace;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -342,7 +333,7 @@ button[type="submit"]:hover {
     font-weight: bold;
     font-size: 14px;
     transition: all 0.2s ease-in-out;
-    box-shadow: 0 2px 8px rgba(80, 80, 80, 0.4);
+    box-shadow: 0 2px 8px rgba(207, 204, 108, 0.3);
     border: 2px solid white;
 }
 
@@ -355,19 +346,19 @@ button[type="submit"]:hover {
     top: 45px;
     right: 0;
     background-color: white;
-    border: 1px solid #f3e8ff;
+    border: 1px solid #d8f1bf;
     border-radius: 8px;
     min-width: 200px;
     z-index: 1001;
-    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+    box-shadow: 0 10px 25px rgba(207, 204, 108, 0.3);
     overflow: hidden;
     animation: slideDown 0.2s ease-out;
 }
 
 .navbar-userinfo-box {
     padding: 20px 16px;
-    border-bottom: 1px solid #f3e8ff;
-    background-color: #faf5ff;
+    border-bottom: 1px solid #d8f1bf;
+    background-color: #f1f9e6;
 }
 
 .navbar-userinfo-name {
@@ -391,12 +382,12 @@ button[type="submit"]:hover {
     gap: 10px;
     color: #4a5568;
     font-size: 14px;
-    border-bottom: 1px solid #f3e8ff;
+    border-bottom: 1px solid #d8f1bf;
 }
 
 .navbar-dropdown-item:hover {
-    background-color: #faf5ff;
-    color: #8b5cf6;
+    background-color: #f1f9e6;
+    color: #8fa577;
 }
 
 .navbar-logout {
@@ -419,9 +410,9 @@ button[type="submit"]:hover {
     display: flex;
     justify-content: space-evenly;
     /* gap: 1rem; */
+    border-bottom: 1px solid #d8f1bf;
     align-items: center;
     margin-top: 0.7rem;
-    margin-bottom: 0.2rem;
 }
 
 .color-buttons {
