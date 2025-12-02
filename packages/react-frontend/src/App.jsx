@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "./Form";
 import DiaryEntry from "./DiaryEntry";
 import DailyView from "./DailyView";
@@ -20,14 +20,37 @@ function App() {
     const showNavbar = location.pathname !== "/";
 
     // const [currentView, setCurrentView] = useState("form");
-    const [users, setUsers] = useState([]); // not sure ab this
+    const [users, setUsers] = useState([]);
     const [entries, setEntries] = useState([]);
+    const [colorTheme, setColorTheme] = useState("purple"); // intial theme is purple
+
+    // called when a button is pressed in the dropdown menu, updates state of colorTheme variable
+    const toggleTheme = (color) => {
+        setColorTheme(color);
+    };
+
+    // occurs when state colorTheme var is changed
+    useEffect(() => {
+        // maps each colorTheme to a css file
+        const themeMap = {
+            purple: "/themes/purple.css",
+            pink: "/themes/pink.css",
+            blue: "/themes/blue.css",
+            green: "/themes/green.css",
+            yellow: "/themes/yellow.css",
+        };
+
+        // grabs the current "theme-css" link from index.html
+        const link = document.getElementById("theme-css");
+        if (link) {
+            link.href = themeMap[colorTheme]; // changes the file path in the "theme-css" link to the selected colorTheme
+        }
+    }, [colorTheme]);
 
     function postUser(person) {
         const promise = fetch(
             "https://4therecord-dycbdgaxc8cvdpb3.westus-01.azurewebsites.net/users",
             {
-                // is this the issue?
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -85,16 +108,29 @@ function App() {
 
     return (
         <>
-            {showNavbar && <Navbar />}
+            {showNavbar && <Navbar pickColor={toggleTheme} />}
             <Routes>
                 <Route
                     path="/"
-                    element={<Form handleSubmitPerson={updateUsers} />}
+                    element={
+                        <Form
+                            handleSubmitPerson={updateUsers}
+                            colorTheme={colorTheme}
+                        />
+                    }
                 />
-                <Route path="/DailyView" element={<DailyView />} />
+                <Route
+                    path="/DailyView"
+                    element={<DailyView colorTheme={colorTheme} />}
+                />
                 <Route
                     path="/DiaryEntry"
-                    element={<DiaryEntry handleSubmitEntry={updateEntries} />}
+                    element={
+                        <DiaryEntry
+                            handleSubmitEntry={updateEntries}
+                            colorTheme={colorTheme}
+                        />
+                    }
                 />
             </Routes>
         </>

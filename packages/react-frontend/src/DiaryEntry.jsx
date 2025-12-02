@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./DiaryEntry.css";
 import TrackerContainer from "./TrackerContainer";
 import { Link } from "react-router-dom";
 
@@ -103,7 +102,7 @@ function DiaryEntry(props) {
     ];
 
     return (
-        <div className="page-container">
+        <div className="diary-page-container">
             {/* Left Side — Diary Entry */}
             <div className="diary-container">
                 <Link to="/DailyView">

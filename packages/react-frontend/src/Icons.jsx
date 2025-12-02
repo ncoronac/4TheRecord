@@ -1,15 +1,14 @@
-//import React, { useState } from 'react';
-import "./Icons.css";
+// import React, { useState } from 'react';
 
-function Icons({ text, num }) {
+function Icons(props) {
     function handleClick(event) {
         event.preventDefault();
-        console.log("Submitted: ", text, num);
+        console.log("Submitted: ", props.text, props.num);
     }
 
     return (
         <button className="icon-button" onClick={handleClick}>
-            {text}
+            {props.text}
         </button>
     );
 }
