@@ -420,7 +420,7 @@ button[type="submit"]:hover {
     justify-content: space-evenly;
     align-items: center;
     margin-top: 0.7rem;
-    margin-bottom: 0.2rem;
+    border-bottom: 1px solid #f3e8ff;
 }
 
 .color-buttons {

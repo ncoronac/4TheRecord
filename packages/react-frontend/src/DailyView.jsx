@@ -105,7 +105,7 @@ function DailyView() {
                                 padding: "6px",
                                 textAlign: "center",
                                 backgroundColor: isToday
-                                    ? "#b9aaff"
+                                    ? "rgba(131, 130, 130, 0.29)"
                                     : "transparent",
                                 border: "1px solid #ddd",
                                 borderRadius: "4px",
