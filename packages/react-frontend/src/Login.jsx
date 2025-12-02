@@ -18,7 +18,7 @@ function Login({ handleSubmitPerson }) {
         event.preventDefault();
         // calls Users(person) which sends POST to backend
         handleSubmitPerson(person);
-        setPerson({ firstname: "", lastname: ""});
+        setPerson({ firstname: "", lastname: "" });
 
         // goes to daily view page afterward
         navigate("/DailyView");
@@ -55,10 +55,9 @@ function Login({ handleSubmitPerson }) {
 
                     <button type="submit">Log in</button>
 
-                    <button type = "submit" onClick={() => navigate("/Form")}>
-                    New User? 
+                    <button type="submit" onClick={() => navigate("/Form")}>
+                        New User?
                     </button>
-                    
                 </form>
             </div>
         </div>

@@ -18,7 +18,8 @@ function AppWrapper() {
 function App() {
     // used to get the current page for conditional rendering
     const location = useLocation();
-    const showNavbar = (location.pathname !== "/") && (location.pathname !== "/Form");
+    const showNavbar =
+        location.pathname !== "/" && location.pathname !== "/Form";
 
     // const [currentView, setCurrentView] = useState("form");
     const [users, setUsers] = useState([]);
@@ -111,7 +112,10 @@ function App() {
         <>
             {showNavbar && <Navbar pickColor={toggleTheme} />}
             <Routes>
-                <Route path = "/" element = {<Login handleSubmitPerson={updateUsers}/>} />
+                <Route
+                    path="/"
+                    element={<Login handleSubmitPerson={updateUsers} />}
+                />
                 <Route
                     path="/Form"
                     element={<Form handleSubmitPerson={updateUsers} />}
