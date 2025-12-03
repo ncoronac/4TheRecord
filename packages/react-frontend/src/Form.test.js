@@ -1,6 +1,19 @@
 // testing the Form component in Form.jsx 
 
 const { test, expect } = require('@jest/globals');
+const fs = require('fs');
+const path = require('path');
+
+test('Form.jsx file exists and has useState', () => {
+  const filePath = path.join(__dirname, 'Form.jsx');
+  const fileExists = fs.existsSync(filePath);
+  expect(fileExists).toBe(true);
+  
+  if (fileExists) {
+    const content = fs.readFileSync(filePath, 'utf8');
+    expect(content.includes('useState')).toBe(true);
+  }
+});
 
 test('Form component uses useState hook', () => {
     expect(true).toBe(true); // It definitely has useState
