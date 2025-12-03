@@ -4,9 +4,9 @@ import jwt from "jsonwebtoken";
 const creds = []; //this needs to be changed later to store in the DB
 
 export function registerUser(req, res) {
-    const { username, pwd } = req.body; // from form
+    const { firstname, lastname, username, pwd, email } = req.body; // from form
 
-    if (!username || !pwd) {
+    if (!username || !pwd || !firstname || !lastname|| !email) {
         res.status(400).send("Bad request: Invalid input data.");
     } else if (creds.find((c) => c.username === username)) {
         res.status(409).send("Username already taken");

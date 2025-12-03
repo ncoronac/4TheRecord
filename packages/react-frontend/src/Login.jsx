@@ -1,28 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from "react";
 
-function Login({ handleSubmitPerson }) {
+function Login(props) {
     const navigate = useNavigate();
 
-    const [person, setPerson] = useState({
-        firstname: "",
-        lastname: "",
+    const [creds, setCreds] = useState({
+        username: "",
+        password: "",
     });
-
-    function handleChange(event) {
-        const { name, value } = event.target; // const name = event.target.name; const value = event.target.value
-        setPerson({ ...person, [name]: value }); // may need to change this to log back into an exising person (instead of create a new person) in the future
-    }
-
-    function submitForm(event) {
-        event.preventDefault();
-        // calls Users(person) which sends POST to backend
-        handleSubmitPerson(person);
-        setPerson({ firstname: "", lastname: "" });
-
-        // goes to daily view page afterward
-        navigate("/DailyView");
-    }
 
     return (
         <div className="form-page">
@@ -38,7 +23,7 @@ function Login({ handleSubmitPerson }) {
                         type="text"
                         name="username"
                         id="username"
-                        value={person.username}
+                        value={creds.username}
                         onChange={handleChange}
                         required
                     />
@@ -48,7 +33,7 @@ function Login({ handleSubmitPerson }) {
                         type="password"
                         name="password"
                         id="password"
-                        value={person.password}
+                        value={creds.password}
                         onChange={handleChange}
                         required
                     />
@@ -62,6 +47,23 @@ function Login({ handleSubmitPerson }) {
             </div>
         </div>
     );
+
+    function handleChange(event) {
+        const { name, value } = event.target;
+        switch (name) {
+            case "username":
+                setCreds({ ...creds, username: value });
+                break;
+            case "password":
+                setCreds({ ...creds, password: value });
+                break;
+        }
+    }
+
+    function submitForm() {
+        props.handleSubmit(creds);
+        setCreds({ username: "", password: "" });
+    }
 }
 
 export default Login;

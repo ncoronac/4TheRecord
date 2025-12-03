@@ -16,6 +16,10 @@ function AppWrapper() {
 }
 
 function App() {
+    const INVALID_TOKEN = "INVALID_TOKEN";
+    const [token, setToken] = useState(INVALID_TOKEN);
+    const [message, setMessage] = useState("");
+
     // used to get the current page for conditional rendering
     const location = useLocation();
     const showNavbar =
@@ -31,8 +35,42 @@ function App() {
         setColorTheme(color);
     };
 
+
     // occurs when state colorTheme var is changed
     useEffect(() => {
+        console.log(message)
+
+        function addAuthHeader(otherHeaders = {}) {
+            if (token === INVALID_TOKEN) {
+                return otherHeaders;
+            } else {
+                return {
+                ...otherHeaders,
+                Authorization: `Bearer ${token}`
+                };
+            }
+        }
+
+        function fetchUsers() {
+            const promise = fetch(`http://localhost:8000/users/`, {
+                headers: addAuthHeader()
+        });
+
+        return promise;
+        }
+
+        fetchUsers().then((res) =>
+            res.status === 200 ? res.json() : undefined
+            )
+            .then((json) => {
+            if (json) {
+                setUsers(json[users]);
+            } else {
+                setUsers(null);
+            }
+            })
+            .catch
+    
         // maps each colorTheme to a css file
         const themeMap = {
             purple: "/themes/purple.css",
@@ -47,9 +85,9 @@ function App() {
         if (link) {
             link.href = themeMap[colorTheme]; // changes the file path in the "theme-css" link to the selected colorTheme
         }
-    }, [colorTheme]);
+    }, [colorTheme, users, token, message]);
 
-    function postUser(person) {
+    /*function postUser(person) {
         const promise = fetch(
             "https://4therecord-dycbdgaxc8cvdpb3.westus-01.azurewebsites.net/users",
             {
@@ -61,9 +99,9 @@ function App() {
             }
         );
         return promise;
-    }
+    } */
 
-    function updateUsers(person) {
+    /*function updateUsers(person) {
         postUser(person)
             .then((res) => {
                 if (res.status == 201) {
@@ -77,7 +115,7 @@ function App() {
             .catch((error) => {
                 console.log(error);
             });
-    }
+    } */
 
     function updateEntries(entry) {
         postEntry(entry)
@@ -107,18 +145,68 @@ function App() {
         );
         return promise;
     }
+    function loginUser(creds) {
+        const promise = fetch(`http://localhost:8000/login/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(creds),
+        })
+            .then((response) => {
+                if (response.status === 200) {
+                    response.json().then((payload) => setToken(payload.token));
+                    setMessage(`Login successful; auth token saved`);
+                } else {
+                    setMessage(
+                        `Login Error ${response.status}: ${response.data}`
+                    );
+                }
+            })
+            .catch((error) => {
+                setMessage(`Login Error: ${error}`);
+            });
+
+        return promise;
+    }
+
+    function signupUser(creds) {
+        const promise = fetch(`http://localhost:8000/signup/`, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify(creds)
+        })
+            .then((response) => {
+            if (response.status === 201) {
+                response
+                .json()
+                .then((payload) => setToken(payload.token));
+                setMessage(
+                `Signup successful for user: ${creds.username}; auth token saved`
+                );
+            } else {
+                setMessage(
+                `Signup Error ${response.status}: ${response.data}`
+                );
+            }
+            })
+            .catch((error) => {
+            setMessage(`Signup Error: ${error}`);
+            });
+
+        return promise;
+        }
 
     return (
         <>
             {showNavbar && <Navbar pickColor={toggleTheme} />}
             <Routes>
-                <Route
-                    path="/"
-                    element={<Login handleSubmitPerson={updateUsers} />}
-                />
+                <Route path="/" element={<Login handleSubmit={loginUser} />} />
                 <Route
                     path="/Form"
-                    element={<Form handleSubmitPerson={updateUsers} />}
+                    element={<Form handleSubmitPerson={signupUser} />}
                 />
                 <Route
                     path="/DailyView"

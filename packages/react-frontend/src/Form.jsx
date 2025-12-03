@@ -4,30 +4,41 @@ import { useState } from "react";
 function Form(props) {
     const navigate = useNavigate();
 
-    const [person, setPerson] = useState({
-        firstname: "",
-        lastname: "",
-        email: "",
-    });
+    const [creds, setCreds] = useState({
+            firstname: "",
+            lastname: "",
+            username: "",
+            pwd: "",
+            email: "",
+        });
 
     function handleChange(event) {
-        const { name, value } = event.target; // const name = event.target.name; const value = event.target.value
-        setPerson({ ...person, [name]: value }); // may need to change this to log back into an exising person (instead of create a new person) in the future
+        const { name, value } = event.target;
+        switch (name) {
+            case "username":
+                setCreds({ ...creds, username: value });
+                break;
+            case "password":
+                setCreds({ ...creds, pwd: value });
+                break;
+            case "firstname":
+                setCreds({...creds, firstname: value });
+                break;
+            case "lastname":
+                setCreds({...creds, lastname: value})
+                break;
+            
+            case "email":
+                setCreds({...creds,email: value})
+
+        }
     }
 
-    function submitForm(event) {
-        event.preventDefault();
-        // calls Users(person) which sends POST to backend
-        props.handleSubmitPerson(person);
-
-        // save user globally
-        localStorage.setItem("currentUser", JSON.stringify(person));
-
-        setPerson({ firstname: "", lastname: "", email: "" });
-
-        // goes to daily view page afterward
-        navigate("/DailyView");
+    function submitForm() {
+        props.handleSubmit(creds);
+        setCreds({ username: "", pwd: "" });
     }
+
 
     return (
         <div className="form-page">
@@ -43,7 +54,7 @@ function Form(props) {
                         type="text"
                         name="firstname"
                         id="firstname"
-                        value={person.firstname}
+                        value={creds.firstname}
                         onChange={handleChange} // triggered when there is any change in the input field
                         required
                     />
@@ -53,7 +64,7 @@ function Form(props) {
                         type="text"
                         name="lastname"
                         id="lastname"
-                        value={person.lastname}
+                        value={creds.lastname}
                         onChange={handleChange} // triggered when there is any change in the input field
                         required
                     />
@@ -63,7 +74,7 @@ function Form(props) {
                         type="text"
                         name="username"
                         id="username"
-                        value={person.username}
+                        value={creds.username}
                         onChange={handleChange} // triggered when there is any change in the input field
                         required
                     />
@@ -73,7 +84,7 @@ function Form(props) {
                         type="password"
                         name="password"
                         id="password"
-                        value={person.password}
+                        value={creds.password}
                         onChange={handleChange} // triggered when there is any change in the input field
                         required
                     />
@@ -83,7 +94,7 @@ function Form(props) {
                         type="email"
                         name="email"
                         id="email"
-                        value={person.email}
+                        value={creds.email}
                         onChange={handleChange} // triggered when there is any change in the input field
                         required
                     />
