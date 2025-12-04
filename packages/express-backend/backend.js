@@ -38,7 +38,10 @@ app.post("/users", (req, res) => {
     userServices
         .addUser(userToAdd)
         .then((user) => res.status(201).send(user))
-        .catch((error) => console.log(error));
+        .catch((error) => {
+            console.log(error)
+            res.status(500).json({ error: error.message });
+        });
 });
 
 app.post("/entries", (req, res) => {
@@ -47,7 +50,10 @@ app.post("/entries", (req, res) => {
     userServices
         .addEntry(entryToAdd)
         .then((entry) => res.status(201).send(entry))
-        .catch((error) => console.log(error));
+        .catch((error) => {
+            console.log(error)
+            res.status(500).json({ error: error.message });
+        });
 });
 
 app.listen(process.env.PORT || port, () => {
