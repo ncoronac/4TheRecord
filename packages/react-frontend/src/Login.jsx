@@ -12,8 +12,8 @@ function Login(props) {
     return (
         <div className="form-page">
             <div className="header-group">
-                <h2>4TheRecord</h2>
-                <h1>Welcome!</h1>
+                <h2 className="header-group-h2">4TheRecord</h2>
+                <h1 className="header-group-h1">Welcome!</h1>
             </div>
 
             <div className="form-container">

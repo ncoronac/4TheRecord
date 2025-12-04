@@ -92,6 +92,14 @@ rgba(139, 92, 246, 0.15)
     height: 100vh;
 }
 
+.diary-page-prompt {
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: #f5ebb876;
+    margin-bottom: 20px;
+}
+
 .mood-tracker {
     width: 50%;
     background-color: white;
