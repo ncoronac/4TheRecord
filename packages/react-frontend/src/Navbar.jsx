@@ -1,10 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar(props) {
     const storedUser = JSON.parse(localStorage.getItem("currentUser"));
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
+    const navigate = useNavigate();
+
     const colorButtons = [
         { color: "purple", hex: "#cec1ffff" },
         { color: "pink", hex: "#f5d4f7ff" },
@@ -33,7 +35,9 @@ function Navbar(props) {
 
     const handleLogout = () => {
         console.log("Logging out...");
-        setIsMenuOpen(false);
+        localStorage.removeItem("currentUser");
+        setIsMenuOpen(false)
+        navigate("/");
     };
 
     const handleChangeProfilePicture = () => {
