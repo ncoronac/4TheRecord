@@ -35,6 +35,7 @@ app.get("/entries", async (req, res) => {
 
 app.post("/users", (req, res) => {
     const userToAdd = req.body;
+    console.log(userToAdd);
     userServices
         .addUser(userToAdd)
         .then((user) => res.status(201).send(user))
