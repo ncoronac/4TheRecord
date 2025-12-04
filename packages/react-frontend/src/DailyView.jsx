@@ -32,24 +32,37 @@ function DailyView() {
     // list of guided prompts
     const guidedPrompts = [
         {
-            id: 1,
+            id: 0,
             text: "Write about all of the green things you saw today ── .✦",
         },
         {
-            id: 2,
+            id: 1,
             text: "What are three good things you noticed about your day? ➔",
         },
-        { id: 3, text: "Tell me about your favorite baking recipe. ── .✦" },
+        { id: 2, text: "Tell me about your favorite baking recipe. ── .✦" },
+        {
+            id: 3,
+            text: "Pick out your outfit for tomorrow, then describe it in your diary. ➔",
+        },
         {
             id: 4,
-            text: "Pick out your outfit for tomorrow. Come back and describe it in your diary. ➔",
+            text: "What's a song that reminds you of a fond memory? ── .✦",
+        },
+        {
+            id: 5,
+            text: "Look around the room you're in. Pick something - an object, a person, it could be anything. Describe it in close detail as though you were going to paint it. ➔",
+        },
+        {
+            id: 6,
+            text: "Talk about your favorite holiday or yearly tradition.  ── .✦",
         },
     ];
 
-    function handleClick(prompt) {
+    /* function handleClick(prompt) {
         // dummy function; just exists to pass eslint checks, will add real functionality later
+        console.log("prompt clicked:", prompt); // for testing it prints, meaning we know this function is being called
         return prompt;
-    }
+    } */
 
     // State: current month & year
     const [currentMonth, setCurrentMonth] = useState(today.getMonth());
@@ -146,7 +159,7 @@ function DailyView() {
 
                 {/* added this for now since calendar is not clickable (just to get rid of the navbar) */}
                 <Link to="/DiaryEntry">
-                    <button>Diary Entry</button>
+                    <button type="submit">Diary Entry</button>
                 </Link>
             </div>
 
@@ -161,16 +174,13 @@ function DailyView() {
 
                 <div className="prompt-list">
                     {guidedPrompts.map((prompt) => (
-                        <button
-                            type="button"
-                            key={prompt.id}
-                            onClick={() => handleClick(prompt.text)}
-                        >
-                            {prompt.text}
-                        </button>
+                        <Link to={`/DiaryEntry?prompt=${prompt.id}`}>
+                            <button type="submit" key={prompt.id}>
+                                {prompt.text}
+                            </button>
+                        </Link>
                     ))}
                 </div>
-                <p>interactivity coming soon...</p>
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import TrackerContainer from "./TrackerContainer";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 function DiaryEntry(props) {
     const [entry, setEntry] = useState({
@@ -10,6 +10,41 @@ function DiaryEntry(props) {
         mood: "",
         images: [], // Array to store uploaded images
     });
+
+    const [searchParams] = useSearchParams();
+
+    const prompt = () => {
+        const params = searchParams.get("prompt");
+        return params;
+    };
+
+    const guidedPrompts = [
+        {
+            id: 0,
+            text: "Write about all of the green things you saw today ── .✦",
+        },
+        {
+            id: 1,
+            text: "What are three good things you noticed about your day? ➔",
+        },
+        { id: 2, text: "Tell me about your favorite baking recipe. ── .✦" },
+        {
+            id: 3,
+            text: "Pick out your outfit for tomorrow, then describe it in your diary. ➔",
+        },
+        {
+            id: 4,
+            text: "What's a song that reminds you of a fond memory? ── .✦",
+        },
+        {
+            id: 5,
+            text: "Look around the room you're in. Pick something - an object, a person, it could be anything. Describe it in close detail as though you were going to paint it. ➔",
+        },
+        {
+            id: 6,
+            text: "Talk about your favorite holiday or yearly tradition.  ── .✦",
+        },
+    ];
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -106,10 +141,18 @@ function DiaryEntry(props) {
             {/* Left Side — Diary Entry */}
             <div className="diary-container">
                 <Link to="/DailyView">
-                    <p>&#8592; Back</p>
+                    <button type="submit">&#8592; Back</button>
                 </Link>
-
                 <h1>My Diary</h1>
+                <div>
+                    {prompt() ? (
+                        <div className="diary-page-prompt">
+                            {guidedPrompts[prompt()].text}
+                        </div>
+                    ) : (
+                        <div></div>
+                    )}
+                </div>
                 <form onSubmit={submitForm}>
                     <label htmlFor="date">Date</label>
                     <input

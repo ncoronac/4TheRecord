@@ -119,16 +119,15 @@ function App() {
                         />
                     }
                 />
-                <Route
-                    path="/DailyView"
-                    element={<DailyView colorTheme={colorTheme} />}
-                />
+                <Route path="/DailyView" element={<DailyView />} />
                 <Route
                     path="/DiaryEntry"
                     element={
                         <DiaryEntry
                             handleSubmitEntry={updateEntries}
                             colorTheme={colorTheme}
+                            // popup={popup}
+                            // setPopup={setPopup}
                         />
                     }
                 />

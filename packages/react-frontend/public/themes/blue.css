@@ -38,7 +38,7 @@
     width: 50%;
     background-color: #eef7ff;
     padding: 2rem 3rem;
-    border-right: 1px solid #cfe1b9;
+    border-right: 1px solid #d6e7f3;
     box-sizing: border-box;
     overflow-y: auto;
     height: 100vh;
@@ -65,16 +65,24 @@
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #f4faf1;
+    background-color: #eef7ff;
     font-family: "Poppins", sans-serif;
     color: #404040;
 }
 
+.diary-page-prompt {
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: #a4c4df55;
+    margin-bottom: 20px;
+}
+
 .diary-container {
     width: 50%;
-    background-color: #eef8e8;
+    background-color: #eef7ff;
     padding: 2rem 3rem;
-    border-right: 1px solid #cfe1b9;
+    border-right: 1px solid #d6e7f3;
     box-sizing: border-box;
     overflow-y: auto;
     height: 100vh;
@@ -91,7 +99,7 @@
 
 h1,
 h2 {
-    color: #d8d77a;
+    color: #7ab6d8;
     margin-bottom: 1rem;
 }
 
@@ -106,8 +114,8 @@ h2 {
     padding: 0.6rem 1rem;
     border: none;
     border-radius: 10px;
-    background-color: #eef8e8;
-    color: #7aa25f;
+    background-color: #eef7ff;
+    color: #5f89a2;
     cursor: pointer;
     font-size: 0.95rem;
     transition:
@@ -116,12 +124,12 @@ h2 {
 }
 
 .mood-option:hover {
-    background-color: #aed58b;
+    background-color: rgb(139, 186, 213);
     transform: scale(1.02);
 }
 
 .mood-option.selected {
-    background-color: #9abc7b;
+    background-color: #7ba2bc;
     color: #fff;
     font-weight: 600;
     box-shadow: 0 0 6px rgba(207, 204, 108, 0.3);
@@ -134,10 +142,10 @@ form textarea {
     margin-bottom: 1rem;
     padding: 0.7rem;
     border-radius: 8px;
-    border: 1px solid #cfe1b9;
-    background-color: #fffffc;
+    border: 1px solid #dfe8f0;
+    background-color: #eef7ff;
     font-size: 1rem;
-    color: #7aa25f;
+    color: #5f84a2;
     font-family: inherit;
 }
 
@@ -149,8 +157,8 @@ form textarea:focus {
 }
 
 button[type="submit"] {
-    background-color: #c3daaa;
-    border-color: #bed4a7;
+    background-color: #b9d7ed;
+    border-color: #aecbe0;
     color: white;
     padding: 0.7rem 1.4rem;
     /* border: none; */
@@ -161,16 +169,16 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #bed4a7;
-    border-color: #acc096;
+    background-color: #aec9dd;
+    border-color: #9ebace;
 }
 
 .entry-preview {
     margin-top: 1.5rem;
     padding: 1rem;
-    background-color: #fbfff8;
+    background-color: #f8fcff;
     border-radius: 12px;
-    border: 1px solid #7ca25f;
+    border: 1px solid #5f82a2;
     box-shadow: 0 2px 5px rgba(207, 204, 108, 0.3);
 }
 
@@ -185,7 +193,7 @@ button[type="submit"]:hover {
         width: 100%;
         height: auto;
         border-right: none;
-        border-bottom: 1px solid #cfe1b9;
+        border-bottom: 1px solid #b9cce1;
     }
 }
 
@@ -196,7 +204,7 @@ button[type="submit"]:hover {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background-color: #b6b485;
+    background-color: #85a1b6;
 }
 
 .form-container {
@@ -276,7 +284,7 @@ button[type="submit"]:hover {
     border: none;
     padding: 15px;
     border-radius: 5px;
-    background-color: #ecf3e2;
+    background-color: #e2ebf3;
     margin-bottom: 20px;
 }
 
@@ -299,8 +307,8 @@ button[type="submit"]:hover {
     width: 100%;
     height: 77px;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(207, 204, 108, 0.3);
-    border-bottom: 1px solid #d8f1bf;
+    box-shadow: 0 2px 10px rgba(145, 186, 227, 0.3);
+    border-bottom: 1px solid #d1e3f0;
 }
 
 .navbar-title {
@@ -333,7 +341,7 @@ button[type="submit"]:hover {
     font-weight: bold;
     font-size: 14px;
     transition: all 0.2s ease-in-out;
-    box-shadow: 0 2px 8px rgba(207, 204, 108, 0.3);
+    box-shadow: 0 2px 8px rgba(145, 186, 227, 0.3);
     border: 2px solid white;
 }
 
@@ -346,19 +354,19 @@ button[type="submit"]:hover {
     top: 45px;
     right: 0;
     background-color: white;
-    border: 1px solid #d8f1bf;
+    border: 1px solid #d1e3f0;
     border-radius: 8px;
     min-width: 200px;
     z-index: 1001;
-    box-shadow: 0 10px 25px rgba(207, 204, 108, 0.3);
+    box-shadow: 0 10px 25px rgba(145, 186, 227, 0.3);
     overflow: hidden;
     animation: slideDown 0.2s ease-out;
 }
 
 .navbar-userinfo-box {
     padding: 20px 16px;
-    border-bottom: 1px solid #d8f1bf;
-    background-color: #f1f9e6;
+    border-bottom: 1px solid #d1e3f0;
+    background-color: #e5f1fa;
 }
 
 .navbar-userinfo-name {
@@ -382,12 +390,12 @@ button[type="submit"]:hover {
     gap: 10px;
     color: #4a5568;
     font-size: 14px;
-    border-bottom: 1px solid #d8f1bf;
+    border-bottom: 1px solid #d1e3f0;
 }
 
 .navbar-dropdown-item:hover {
-    background-color: #f1f9e6;
-    color: #8fa577;
+    background-color: #e6f1f9;
+    color: #7792a5;
 }
 
 .navbar-logout {
@@ -410,7 +418,7 @@ button[type="submit"]:hover {
     display: flex;
     justify-content: space-evenly;
     /* gap: 1rem; */
-    border-bottom: 1px solid #d8f1bf;
+    border-bottom: 1px solid #d1e3f0;
     align-items: center;
     margin-top: 0.7rem;
 }

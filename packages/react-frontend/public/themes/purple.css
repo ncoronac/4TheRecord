@@ -55,17 +55,19 @@ rgba(139, 92, 246, 0.15)
     overflow-y: auto;
     height: 100vh;
 }
+
 .nav-buttons button {
     background-color: #b9aaff;
     color: white;
-    border: none;
     border-radius: 8px;
+    border-color: #a99ae9;
     padding: 0.7rem 1.4rem;
     cursor: pointer;
     transition: background-color 0.25s ease;
 }
 .nav-buttons button:hover {
-    background-color: #8e7aff;
+    background-color: #a495ff;
+    border-color: #7a6ccf;
 }
 
 /* CSS for DiaryEntry */
@@ -79,6 +81,14 @@ rgba(139, 92, 246, 0.15)
     background-color: #faf7ff;
     font-family: "Poppins", sans-serif;
     color: #443d5a;
+}
+
+.diary-page-prompt {
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: #b8a9e846;
+    margin-bottom: 20px;
 }
 
 .diary-container {
@@ -163,7 +173,7 @@ button[type="submit"] {
     background-color: #b9aaff;
     color: white;
     padding: 0.7rem 1.4rem;
-    border: none;
+    border-color: #a495ff;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.25s ease;
@@ -172,6 +182,7 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #a495ff;
+    border-color: #7a6ccf;
 }
 
 .entry-preview {
