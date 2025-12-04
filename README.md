@@ -31,6 +31,8 @@ Standards:
 
 When working on a new task, create a new branch and commit changes to that branch as you progress. When a task is done, push your code and make a merge request to keep everyone else updated on the app progress. Additionally, communicate the progress to the rest of the group.
 
+**[Figma UI Prototype](https://www.figma.com/proto/Uda7TqnMR3CqGsuqMONchF/4TheRecord-Prototype?node-id=1-4382&p=f&t=KXhAiH4j1VJQV9F0-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A4382):** Last updated October 30th, 2025
+
 ## Built With
 
 ![React + Vite](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
