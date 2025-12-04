@@ -37,7 +37,8 @@ function Form(props) {
     function submitForm() {
         console.log(creds);
         props.handleSubmit(creds);
-        setCreds({ username: "", pwd: "" });
+        setCreds({ firstname: "", lastname:"", username: "", pwd: "", email: "" });
+        navigate("/");
     }
 
 
@@ -85,7 +86,7 @@ function Form(props) {
                         type="password"
                         name="password"
                         id="password"
-                        value={creds.password}
+                        value={creds.pwd}
                         onChange={handleChange} // triggered when there is any change in the input field
                         required
                     />
@@ -100,8 +101,8 @@ function Form(props) {
                         required
                     />
 
-                    <button type="submit" onClick= {() => submitForm}>Sign Up</button>
-                    <button type="submit" onClick={() => navigate("/")}>
+                    <button type="submit"> Sign Up</button>
+                    <button type="submit">
                         Already a User?
                     </button>
                 </form>

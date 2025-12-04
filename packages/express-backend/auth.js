@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 const creds = []; //this needs to be changed later to store in the DB
 
 export function registerUser(req, res) {
+    console.log("In registerUser");
     const { firstname, lastname, username, pwd, email } = req.body; // from form
 
     if (!username || !pwd || !firstname || !lastname|| !email) {
@@ -17,10 +18,11 @@ export function registerUser(req, res) {
             .then((hashedPassword) => {
                 generateAccessToken(username).then((token) => {
                     console.log("Token:", token);
-                    res.status(201).send({ token: token });
+                    res.status(201).send({token: token});
                     creds.push({ username, hashedPassword });
                 });
             });
+        
     }
 }
 

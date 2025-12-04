@@ -58,6 +58,7 @@ app.post("/entries", (req, res) => {
 });
 
 app.post("/signup", registerUser);
+
 app.post("/login", loginUser);
 
 app.listen(process.env.PORT || port, () => {
