@@ -1,83 +1,95 @@
 // testing the Form component in Form.jsx
+// call render
+// import Form.jsx
+// test form inputs to get 100% coverage
+// test that inputs actually get to a destination
+
+import { TextEncoder, TextDecoder } from "util";
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
 
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import Form from "./Form.jsx";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { Form } from "./Form";
+import "@testing-library/jest-dom";
 
-import { test, expect, describe } from "@jest/globals";
+// Mock useNavigate from react-router-dom
+const mockNavigate = jest.fn();
+jest.mock("react-router-dom", () => ({
+    ...jest.requireActual("react-router-dom"),
+    useNavigate: () => mockNavigate,
+}));
 
-describe("Form Component", () => {
-    test("Form renders with inputs", () => {
-        render(<Form />);
+// Test user data
+const testUser = {
+    firstname: "John",
+    lastname: "Doe",
+    email: "john@example.com",
+};
 
-        // Test for specific input fields
-        expect(
-            screen.getByLabelText(/first name/i) ||
-                screen.getByPlaceholderText(/first name/i)
-        ).toBeInTheDocument();
-        expect(
-            screen.getByLabelText(/last name/i) ||
-                screen.getByPlaceholderText(/last name/i)
-        ).toBeInTheDocument();
-        expect(
-            screen.getByLabelText(/username/i) ||
-                screen.getByPlaceholderText(/username/i)
-        ).toBeInTheDocument();
-        expect(
-            screen.getByLabelText(/password/i) ||
-                screen.getByPlaceholderText(/password/i)
-        ).toBeInTheDocument();
-        expect(
-            screen.getByLabelText(/email/i) ||
-                screen.getByPlaceholderText(/email/i)
-        ).toBeInTheDocument();
+describe("Form component", () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
     });
 
-    test("Form has at least 3 inputs", () => {
-        render(<Form />);
-        const inputs = screen.getAllByRole("textbox");
-        const passwordInput = screen.getByLabelText(/password/i);
-        const allInputs = [...inputs, passwordInput].filter(Boolean);
+    test("renders the form correctly", () => {
+        render(<Form handleSubmitPerson={() => {}} />);
 
-        expect(allInputs.length).toBeGreaterThanOrEqual(3);
+        expect(screen.getByLabelText("First Name*")).toBeInTheDocument();
+        expect(screen.getByLabelText("Last Name*")).toBeInTheDocument();
+        expect(screen.getByLabelText("Email*")).toBeInTheDocument();
+        expect(screen.getByText("Sign Up")).toBeInTheDocument();
+        expect(screen.getByText("Already a User?")).toBeInTheDocument();
     });
 
-    test("Form has buttons", () => {
-        render(<Form />);
-        const buttons = screen.getAllByRole("button");
-        expect(buttons.length).toBeGreaterThan(0);
+    test("inputs accept values", () => {
+        render(<Form handleSubmitPerson={() => {}} />);
+        fireEvent.change(screen.getByLabelText("First Name*"), { target: { value: testUser.firstname } });
+        fireEvent.change(screen.getByLabelText("Last Name*"), { target: { value: testUser.lastname } });
+        fireEvent.change(screen.getByLabelText("Email*"), { target: { value: testUser.email } });
+
+        expect(screen.getByLabelText("First Name*")).toHaveValue(testUser.firstname);
+        expect(screen.getByLabelText("Last Name*")).toHaveValue(testUser.lastname);
+        expect(screen.getByLabelText("Email*")).toHaveValue(testUser.email);
     });
 
-    test("Form state updates on input", async () => {
-        render(<Form />);
-        const user = userEvent.setup();
+    test("handles form submission and resets fields", () => {
+        const mockHandleSubmit = jest.fn();
+        const localStorageMock = { setItem: jest.fn() };
+        Object.defineProperty(window, "localStorage", { value: localStorageMock });
 
-        const firstNameInput =
-            screen.getByLabelText(/first name/i) ||
-            screen.getByPlaceholderText(/first name/i);
+        render(<Form handleSubmitPerson={mockHandleSubmit} />);
 
-        if (firstNameInput) {
-            await user.type(firstNameInput, "John");
-            expect(firstNameInput.value).toBe("John");
-        }
+        // Fill form
+        fireEvent.change(screen.getByLabelText("First Name*"), { target: { value: testUser.firstname } });
+        fireEvent.change(screen.getByLabelText("Last Name*"), { target: { value: testUser.lastname } });
+        fireEvent.change(screen.getByLabelText("Email*"), { target: { value: testUser.email } });
+
+        // Submit form
+        fireEvent.click(screen.getByRole("button", { name: /sign up/i }));
+
+        // Check handleSubmitPerson called
+        expect(mockHandleSubmit).toHaveBeenCalledWith(testUser);
+
+        // Check localStorage called
+        expect(localStorageMock.setItem).toHaveBeenCalledWith(
+            "currentUser",
+            JSON.stringify(testUser)
+        );
+
+        // Check fields reset
+        expect(screen.getByLabelText("First Name*")).toHaveValue("");
+        expect(screen.getByLabelText("Last Name*")).toHaveValue("");
+        expect(screen.getByLabelText("Email*")).toHaveValue("");
+
+        // Check navigation called
+        expect(mockNavigate).toHaveBeenCalledWith("/DailyView");
     });
 
-    test("Form submission", async () => {
-        render(<Form />);
-        const user = userEvent.setup();
-
-        // Fill out form
-        const firstNameInput =
-            screen.getByLabelText(/first name/i) ||
-            screen.getByPlaceholderText(/first name/i);
-        const submitButton = screen.getByRole("button", { name: /sign up/i });
-
-        if (firstNameInput && submitButton) {
-            await user.type(firstNameInput, "John");
-            await user.click(submitButton);
-
-            // need to add expectations for submission behavior
-        }
+    test("Already a User button triggers navigation", () => {
+        render(<Form handleSubmitPerson={() => {}} />);
+        const button = screen.getByText("Already a User?");
+        fireEvent.click(button);
+        expect(mockNavigate).toHaveBeenCalledWith("/");
     });
 });
