@@ -4,6 +4,7 @@ import Form from "./Form";
 import DiaryEntry from "./DiaryEntry";
 import DailyView from "./DailyView";
 import Navbar from "./Navbar";
+import Login from "./Login";
 
 // wrapper that allows us to conditionally render the navbar
 function AppWrapper() {
@@ -17,7 +18,8 @@ function AppWrapper() {
 function App() {
     // used to get the current page for conditional rendering
     const location = useLocation();
-    const showNavbar = location.pathname !== "/";
+    const showNavbar =
+        location.pathname !== "/" && location.pathname !== "/Form";
 
     // const [currentView, setCurrentView] = useState("form");
     const [users, setUsers] = useState([]);
@@ -112,12 +114,11 @@ function App() {
             <Routes>
                 <Route
                     path="/"
-                    element={
-                        <Form
-                            handleSubmitPerson={updateUsers}
-                            colorTheme={colorTheme}
-                        />
-                    }
+                    element={<Login handleSubmitPerson={updateUsers} />}
+                />
+                <Route
+                    path="/Form"
+                    element={<Form handleSubmitPerson={updateUsers} />}
                 />
                 <Route path="/DailyView" element={<DailyView />} />
                 <Route

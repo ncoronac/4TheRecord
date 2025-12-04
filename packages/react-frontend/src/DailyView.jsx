@@ -82,8 +82,8 @@ function DailyView() {
     }
 
     function previousMonth() {
-        if (currentMonth === 1) {
-            setCurrentMonth(12);
+        if (currentMonth === 0) {
+            setCurrentMonth(11);
             setCurrentYear(currentYear - 1);
         } else {
             setCurrentMonth(currentMonth - 1);
