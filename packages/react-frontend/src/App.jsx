@@ -127,8 +127,6 @@ function App() {
                         <DiaryEntry
                             handleSubmitEntry={updateEntries}
                             colorTheme={colorTheme}
-                            // popup={popup}
-                            // setPopup={setPopup}
                         />
                     }
                 />
