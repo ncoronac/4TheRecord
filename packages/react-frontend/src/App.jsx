@@ -206,7 +206,7 @@ function App() {
                 <Route path="/" element={<Login handleSubmit={loginUser} />} />
                 <Route
                     path="/Form"
-                    element={<Form handleSubmitPerson={signupUser} />}
+                    element={<Form handleSubmit={signupUser} />}
                 />
                 <Route path="/DailyView" element={<DailyView />} />
                 <Route

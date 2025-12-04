@@ -35,6 +35,7 @@ function Form(props) {
     }
 
     function submitForm() {
+        console.log(creds);
         props.handleSubmit(creds);
         setCreds({ username: "", pwd: "" });
     }
@@ -99,7 +100,7 @@ function Form(props) {
                         required
                     />
 
-                    <button type="submit">Sign Up</button>
+                    <button type="submit" onClick= {() => submitForm}>Sign Up</button>
                     <button type="submit" onClick={() => navigate("/")}>
                         Already a User?
                     </button>
