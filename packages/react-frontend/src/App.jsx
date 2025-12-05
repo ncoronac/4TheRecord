@@ -57,9 +57,12 @@ function App() {
         }
 
         function fetchUsers() {
-            const promise = fetch(`http://localhost:8000/users/`, {
-                headers: addAuthHeader(),
-            });
+            const promise = fetch(
+                `https://4therecord-dycbdgaxc8cvdpb3.westus-01.azurewebsites.net/users/`,
+                {
+                    headers: addAuthHeader(),
+                }
+            );
 
             return promise;
         }
@@ -149,13 +152,16 @@ function App() {
         return promise;
     }
     function loginUser(creds) {
-        const promise = fetch(`http://localhost:8000/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(creds),
-        })
+        const promise = fetch(
+            `https://4therecord-dycbdgaxc8cvdpb3.westus-01.azurewebsites.net/login`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(creds),
+            }
+        )
             .then((response) => {
                 if (response.status === 200) {
                     response.json().then((payload) => setToken(payload.token));
@@ -177,13 +183,16 @@ function App() {
     function signupUser(creds) {
         console.log("In signupuser");
         console.log(creds);
-        const promise = fetch(`http://localhost:8000/signup`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(creds),
-        })
+        const promise = fetch(
+            `https://4therecord-dycbdgaxc8cvdpb3.westus-01.azurewebsites.net/signup`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(creds),
+            }
+        )
             .then((response) => {
                 if (response.status === 201) {
                     response.json().then((payload) => setToken(payload.token));
