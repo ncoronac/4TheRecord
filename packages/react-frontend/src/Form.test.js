@@ -1,83 +1,164 @@
 // testing the Form component in Form.jsx
+// call render
+// import Form.jsx
+// test form inputs to get 100% coverage
+// test that inputs actually get to a destination
 
 import React from "react";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import Form from "./Form.jsx";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { Form } from "./Form";
+import "@testing-library/jest-dom";
 
-import { test, expect, describe } from "@jest/globals";
+// Mock useNavigate
+const mockNavigate = jest.fn();
 
-describe("Form Component", () => {
-    test("Form renders with inputs", () => {
-        render(<Form />);
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => mockNavigate,
+}));
 
-        // Test for specific input fields
-        expect(
-            screen.getByLabelText(/first name/i) ||
-                screen.getByPlaceholderText(/first name/i)
-        ).toBeInTheDocument();
-        expect(
-            screen.getByLabelText(/last name/i) ||
-                screen.getByPlaceholderText(/last name/i)
-        ).toBeInTheDocument();
-        expect(
-            screen.getByLabelText(/username/i) ||
-                screen.getByPlaceholderText(/username/i)
-        ).toBeInTheDocument();
-        expect(
-            screen.getByLabelText(/password/i) ||
-                screen.getByPlaceholderText(/password/i)
-        ).toBeInTheDocument();
-        expect(
-            screen.getByLabelText(/email/i) ||
-                screen.getByPlaceholderText(/email/i)
-        ).toBeInTheDocument();
+const testUser = {
+  firstname: "John",
+  lastname: "Doe",
+  username: "johndoe",
+  pwd: "password123",
+  email: "john@example.com",
+};
+
+describe("Form component", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test("renders the form correctly with all fields", () => {
+    const mockHandleSubmit = jest.fn();
+    render(<Form handleSubmit={mockHandleSubmit} />);
+
+    // Check all form fields
+    expect(screen.getByLabelText("First Name*")).toBeInTheDocument();
+    expect(screen.getByLabelText("Last Name*")).toBeInTheDocument();
+    expect(screen.getByLabelText("Username*")).toBeInTheDocument();
+    expect(screen.getByLabelText("Password*")).toBeInTheDocument();
+    expect(screen.getByLabelText("Email*")).toBeInTheDocument();
+    expect(screen.getByText("Sign Up")).toBeInTheDocument();
+    expect(screen.getByText("Already a User?")).toBeInTheDocument();
+  });
+
+  test("inputs accept values", () => {
+    const mockHandleSubmit = jest.fn();
+    render(<Form handleSubmit={mockHandleSubmit} />);
+    
+    // Fill all form fields
+    fireEvent.change(screen.getByLabelText("First Name*"), { 
+      target: { value: testUser.firstname } 
+    });
+    fireEvent.change(screen.getByLabelText("Last Name*"), { 
+      target: { value: testUser.lastname } 
+    });
+    fireEvent.change(screen.getByLabelText("Username*"), { 
+      target: { value: testUser.username } 
+    });
+    fireEvent.change(screen.getByLabelText("Password*"), { 
+      target: { value: testUser.pwd } 
+    });
+    fireEvent.change(screen.getByLabelText("Email*"), { 
+      target: { value: testUser.email } 
     });
 
-    test("Form has at least 3 inputs", () => {
-        render(<Form />);
-        const inputs = screen.getAllByRole("textbox");
-        const passwordInput = screen.getByLabelText(/password/i);
-        const allInputs = [...inputs, passwordInput].filter(Boolean);
+    // Verify all values
+    expect(screen.getByLabelText("First Name*")).toHaveValue(testUser.firstname);
+    expect(screen.getByLabelText("Last Name*")).toHaveValue(testUser.lastname);
+    expect(screen.getByLabelText("Username*")).toHaveValue(testUser.username);
+    expect(screen.getByLabelText("Password*")).toHaveValue(testUser.pwd);
+    expect(screen.getByLabelText("Email*")).toHaveValue(testUser.email);
+  });
 
-        expect(allInputs.length).toBeGreaterThanOrEqual(3);
+  test("handles form submission and resets fields", () => {
+    const mockHandleSubmit = jest.fn();
+    console.log = jest.fn(); // Mock console.log
+    
+    render(<Form handleSubmit={mockHandleSubmit} />);
+
+    // Fill form
+    fireEvent.change(screen.getByLabelText("First Name*"), { 
+      target: { value: testUser.firstname } 
+    });
+    fireEvent.change(screen.getByLabelText("Last Name*"), { 
+      target: { value: testUser.lastname } 
+    });
+    fireEvent.change(screen.getByLabelText("Username*"), { 
+      target: { value: testUser.username } 
+    });
+    fireEvent.change(screen.getByLabelText("Password*"), { 
+      target: { value: testUser.pwd } 
+    });
+    fireEvent.change(screen.getByLabelText("Email*"), { 
+      target: { value: testUser.email } 
     });
 
-    test("Form has buttons", () => {
-        render(<Form />);
-        const buttons = screen.getAllByRole("button");
-        expect(buttons.length).toBeGreaterThan(0);
+    // Submit form - find the first submit button (Sign Up)
+    const submitButtons = screen.getAllByRole("button");
+    fireEvent.click(submitButtons[0]); // Click "Sign Up" button
+
+    // Check handleSubmit called with correct data
+    expect(mockHandleSubmit).toHaveBeenCalledWith(testUser);
+    
+    // Check console.log was called
+    expect(console.log).toHaveBeenCalledWith(testUser);
+
+    // Check fields reset
+    expect(screen.getByLabelText("First Name*")).toHaveValue("");
+    expect(screen.getByLabelText("Last Name*")).toHaveValue("");
+    expect(screen.getByLabelText("Username*")).toHaveValue("");
+    expect(screen.getByLabelText("Password*")).toHaveValue("");
+    expect(screen.getByLabelText("Email*")).toHaveValue("");
+
+    // Check navigation called
+    expect(mockNavigate).toHaveBeenCalledWith("/");
+  });
+
+  test("handleChange updates correct field based on name", () => {
+    const mockHandleSubmit = jest.fn();
+    render(<Form handleSubmit={mockHandleSubmit} />);
+    
+    // Test each field individually
+    const firstNameInput = screen.getByLabelText("First Name*");
+    fireEvent.change(firstNameInput, { target: { name: "firstname", value: "John" } });
+    expect(firstNameInput).toHaveValue("John");
+
+    const usernameInput = screen.getByLabelText("Username*");
+    fireEvent.change(usernameInput, { target: { name: "username", value: "johndoe" } });
+    expect(usernameInput).toHaveValue("johndoe");
+
+    const passwordInput = screen.getByLabelText("Password*");
+    fireEvent.change(passwordInput, { target: { name: "password", value: "pass123" } });
+    expect(passwordInput).toHaveValue("pass123");
+  });
+
+  test("Already a User button triggers navigation", () => {
+    render(<Form handleSubmit={() => {}} />);
+  
+    // fill form minimally because submit requires valid fields
+    fireEvent.change(screen.getByLabelText("First Name*"), {
+      target: { value: "Test" },
     });
-
-    test("Form state updates on input", async () => {
-        render(<Form />);
-        const user = userEvent.setup();
-
-        const firstNameInput =
-            screen.getByLabelText(/first name/i) ||
-            screen.getByPlaceholderText(/first name/i);
-
-        if (firstNameInput) {
-            await user.type(firstNameInput, "John");
-            expect(firstNameInput.value).toBe("John");
-        }
+    fireEvent.change(screen.getByLabelText("Last Name*"), {
+      target: { value: "User" },
     });
-
-    test("Form submission", async () => {
-        render(<Form />);
-        const user = userEvent.setup();
-
-        // Fill out form
-        const firstNameInput =
-            screen.getByLabelText(/first name/i) ||
-            screen.getByPlaceholderText(/first name/i);
-        const submitButton = screen.getByRole("button", { name: /sign up/i });
-
-        if (firstNameInput && submitButton) {
-            await user.type(firstNameInput, "John");
-            await user.click(submitButton);
-
-            // need to add expectations for submission behavior
-        }
+    fireEvent.change(screen.getByLabelText("Username*"), {
+      target: { value: "testuser" },
     });
+    fireEvent.change(screen.getByLabelText("Password*"), {
+      target: { value: "password" },
+    });
+    fireEvent.change(screen.getByLabelText("Email*"), {
+      target: { value: "test@example.com" },
+    });
+  
+    const alreadyUserButton = screen.getByText("Already a User?");
+    fireEvent.click(alreadyUserButton);
+  
+    expect(mockNavigate).toHaveBeenCalledWith("/"); // now it works
+  });
+  
 });
