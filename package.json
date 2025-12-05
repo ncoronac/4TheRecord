@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\"",
-        "format": "prettier --write .",
+        "format": "npx prettier --write .",
         "lint": "npx -w packages/react-frontend eslint . && npx -w packages/express-backend eslint ."
     },
     "author": "",
