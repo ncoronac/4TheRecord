@@ -4,10 +4,6 @@
 // test form inputs to get 100% coverage
 // test that inputs actually get to a destination
 
-import { TextEncoder, TextDecoder } from "util";
-global.TextEncoder = TextEncoder;
-global.TextDecoder = TextDecoder;
-
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { Form } from "./Form";
