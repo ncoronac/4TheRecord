@@ -36,6 +36,11 @@ function App() {
     const [entries, setEntries] = useState([]);
     const [colorTheme, setColorTheme] = useState("purple"); // intial theme is purple
 
+    // Added state to track the currently logged-in user
+    const [currentUser, setCurrentUser] = useState(
+        JSON.parse(localStorage.getItem("currentUser")) || null
+    );
+
     // called when a button is pressed in the dropdown menu, updates state of colorTheme variable
     const toggleTheme = (color) => {
         setColorTheme(color);
@@ -166,15 +171,14 @@ function App() {
                 if (response.status === 200) {
                     response.json().then((payload) => setToken(payload.token));
 
-                    // Save user info for Navbar
-                    localStorage.setItem(
-                        "currentUser",
-                        JSON.stringify({
-                            firstname: creds.firstname,
-                            lastname: creds.lastname,
-                            email: creds.email,
-                        })
-                    );
+                    // Save user info for Navbar 
+                    const user = {
+                        firstname: creds.firstname,
+                        lastname: creds.lastname,
+                        email: creds.email,
+                    };
+                    localStorage.setItem("currentUser", JSON.stringify(user));
+                    setCurrentUser(user); // update state so Navbar shows immediately
 
                     setMessage(`Login successful; auth token saved`);
                     navigate("/DailyView");
@@ -208,15 +212,14 @@ function App() {
                 if (response.status === 201) {
                     response.json().then((payload) => setToken(payload.token));
 
-                    //// Save user info for Navbar
-                    localStorage.setItem(
-                        "currentUser",
-                        JSON.stringify({
-                            firstname: creds.firstname,
-                            lastname: creds.lastname,
-                            email: creds.email,
-                        })
-                    );
+                    // Save user info for Navbar ---
+                    const user = {
+                        firstname: creds.firstname,
+                        lastname: creds.lastname,
+                        email: creds.email,
+                    };
+                    localStorage.setItem("currentUser", JSON.stringify(user));
+                    setCurrentUser(user); // update state so Navbar shows immediately
 
                     setMessage(
                         `Signup successful for user: ${creds.username}; auth token saved`
@@ -236,7 +239,7 @@ function App() {
 
     return (
         <>
-            {showNavbar && <Navbar pickColor={toggleTheme} />}
+            {showNavbar && <Navbar pickColor={toggleTheme} currentUser={currentUser}/>}
             <Routes>
                 <Route path="/" element={<Login handleSubmit={loginUser} />} />
                 <Route
