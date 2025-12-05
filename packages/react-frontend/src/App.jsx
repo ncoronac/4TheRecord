@@ -1,11 +1,10 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, useNavigate} from "react-router-dom";
 import { useState, useEffect } from "react";
 import Form from "./Form";
 import DiaryEntry from "./DiaryEntry";
 import DailyView from "./DailyView";
 import Navbar from "./Navbar";
 import Login from "./Login";
-
 // wrapper that allows us to conditionally render the navbar
 function AppWrapper() {
     return (
@@ -16,6 +15,7 @@ function AppWrapper() {
 }
 
 function App() {
+    const navigate = useNavigate();
     const INVALID_TOKEN = "INVALID_TOKEN";
     const [token, setToken] = useState(INVALID_TOKEN);
     const [message, setMessage] = useState("");
@@ -157,6 +157,7 @@ function App() {
                 if (response.status === 200) {
                     response.json().then((payload) => setToken(payload.token));
                     setMessage(`Login successful; auth token saved`);
+                    navigate("/DailyView");
                 } else {
                     setMessage(
                         `Login Error ${response.status}: ${response.data}`

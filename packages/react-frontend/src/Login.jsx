@@ -48,7 +48,7 @@ function Login(props) {
             </div>
         </div>
     );
-
+    //should work!
     function handleChange(event) {
         const { name, value } = event.target;
         switch (name) {
@@ -66,7 +66,7 @@ function Login(props) {
 
         props.handleSubmit(creds);
         setCreds({ username: "", pwd: "" });
-        navigate("/DailyView")
+        
     }
 }
 
