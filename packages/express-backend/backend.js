@@ -33,6 +33,7 @@ app.get("/entries", async (req, res) => {
     }
 });
 
+//adding a comment
 app.post("/users", authenticateUser, (req, res) => {
     const userToAdd = req.body;
 
