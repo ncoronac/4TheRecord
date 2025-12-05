@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import React, { useState } from "react";
 
-function Form(props) {
+export function Form(props) {
     const navigate = useNavigate();
 
     const [creds, setCreds] = useState({
@@ -117,4 +117,3 @@ function Form(props) {
     );
 }
 
-export default Form;

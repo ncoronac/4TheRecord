@@ -2,7 +2,6 @@ import {
     BrowserRouter,
     Routes,
     Route,
-    useLocation,
     useNavigate,
 } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -26,11 +25,15 @@ function App() {
     const [token, setToken] = useState(INVALID_TOKEN);
     const [message, setMessage] = useState("");
 
-    // used to get the current page for conditional rendering
-    const location = useLocation();
-    const showNavbar =
-        location.pathname !== "/" && location.pathname !== "/Form";
+    // Added state to track the currently logged-in user
+    const [currentUser, setCurrentUser] = useState(
+        JSON.parse(localStorage.getItem("currentUser")) || null
+    );
+    // show navbar if user is logged in
+    const showNavbar = currentUser !== null;
 
+    console.log("Current user:", currentUser, "Show navbar:", showNavbar);
+    
     // const [currentView, setCurrentView] = useState("form");
     const [users, setUsers] = useState([]);
     const [entries, setEntries] = useState([]);
@@ -40,6 +43,17 @@ function App() {
     const toggleTheme = (color) => {
         setColorTheme(color);
     };
+
+    // Sync localStorage changes (optional but useful)
+    useEffect(() => {
+        function handleStorageChange() {
+            setCurrentUser(
+                JSON.parse(localStorage.getItem("currentUser")) || null
+            );
+        }
+        window.addEventListener("storage", handleStorageChange);
+        return () => window.removeEventListener("storage", handleStorageChange);
+    }, []);
 
     // occurs when state colorTheme var is changed
     useEffect(() => {
@@ -165,6 +179,16 @@ function App() {
             .then((response) => {
                 if (response.status === 200) {
                     response.json().then((payload) => setToken(payload.token));
+
+                    // Save user info for Navbar
+                    const user = {
+                        firstname: creds.firstname,
+                        lastname: creds.lastname,
+                        email: creds.email,
+                    };
+                    localStorage.setItem("currentUser", JSON.stringify(user));
+                    setCurrentUser(user); // update state so Navbar shows immediately
+
                     setMessage(`Login successful; auth token saved`);
                     navigate("/DailyView");
                 } else {
@@ -196,6 +220,16 @@ function App() {
             .then((response) => {
                 if (response.status === 201) {
                     response.json().then((payload) => setToken(payload.token));
+
+                    // Save user info for Navbar ---
+                    const user = {
+                        firstname: creds.firstname,
+                        lastname: creds.lastname,
+                        email: creds.email,
+                    };
+                    localStorage.setItem("currentUser", JSON.stringify(user));
+                    setCurrentUser(user); // update state so Navbar shows immediately
+
                     setMessage(
                         `Signup successful for user: ${creds.username}; auth token saved`
                     );
@@ -214,7 +248,13 @@ function App() {
 
     return (
         <>
-            {showNavbar && <Navbar pickColor={toggleTheme} />}
+            {showNavbar && (
+                <Navbar
+                    pickColor={toggleTheme}
+                    currentUser={currentUser}
+                    setCurrentUser={setCurrentUser}
+                />
+            )}
             <Routes>
                 <Route path="/" element={<Login handleSubmit={loginUser} />} />
                 <Route
