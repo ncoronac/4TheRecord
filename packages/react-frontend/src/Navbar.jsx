@@ -2,7 +2,11 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Navbar(props) {
-    const storedUser = JSON.parse(localStorage.getItem("currentUser"));
+    // State to track the currently logged-in user
+    const [storedUser, setStoredUser] = useState(
+        JSON.parse(localStorage.getItem("currentUser"))
+    );
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
     const navigate = useNavigate();
@@ -15,17 +19,16 @@ function Navbar(props) {
         { color: "yellow", hex: "#f7efb2" },
     ];
 
-    // Close menu when clicking outside
+    // Update storedUser when localStorage changes (login/signup)
     useEffect(() => {
-        function handleClickOutside(event) {
-            if (menuRef.current && !menuRef.current.contains(event.target)) {
-                setIsMenuOpen(false);
-            }
+        function handleStorageChange() {
+            setStoredUser(JSON.parse(localStorage.getItem("currentUser")));
         }
 
-        document.addEventListener("mousedown", handleClickOutside);
+        window.addEventListener("storage", handleStorageChange);
+
         return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
+            window.removeEventListener("storage", handleStorageChange);
         };
     }, []);
 
@@ -36,6 +39,7 @@ function Navbar(props) {
     const handleLogout = () => {
         console.log("Logging out...");
         localStorage.removeItem("currentUser");
+        setStoredUser(null); // update state to immediately reflect logout
         setIsMenuOpen(false);
         navigate("/");
     };
