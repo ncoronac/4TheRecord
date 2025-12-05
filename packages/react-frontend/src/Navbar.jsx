@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Navbar(props) {
     // get props from App.jsx
-    const [currentUser, setCurrentUser] = useState(props.currentUser);
+    const currentUser = props.currentUser;
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
@@ -17,10 +17,6 @@ function Navbar(props) {
         { color: "yellow", hex: "#f7efb2" },
     ];
 
-    useEffect(() => {
-        setCurrentUser(props.currentUser);
-    }, [props.currentUser]);
-
     const handleProfileClick = () => {
         setIsMenuOpen(!isMenuOpen);
     };
@@ -28,7 +24,6 @@ function Navbar(props) {
     const handleLogout = () => {
         console.log("Logging out...");
         localStorage.removeItem("currentUser");
-        setCurrentUser(null);          // update Navbar state
         props.setCurrentUser(null);    // update App state
         setIsMenuOpen(false);
         navigate("/");

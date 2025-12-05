@@ -46,6 +46,17 @@ function App() {
         setColorTheme(color);
     };
 
+    // Sync localStorage changes (optional but useful)
+    useEffect(() => {
+        function handleStorageChange() {
+            setCurrentUser(
+                JSON.parse(localStorage.getItem("currentUser")) || null
+            );
+        }
+        window.addEventListener("storage", handleStorageChange);
+        return () => window.removeEventListener("storage", handleStorageChange);
+    }, []);
+
     // occurs when state colorTheme var is changed
     useEffect(() => {
         console.log(message);
@@ -171,7 +182,7 @@ function App() {
                 if (response.status === 200) {
                     response.json().then((payload) => setToken(payload.token));
 
-                    // Save user info for Navbar 
+                    // Save user info for Navbar
                     const user = {
                         firstname: creds.firstname,
                         lastname: creds.lastname,
@@ -239,7 +250,13 @@ function App() {
 
     return (
         <>
-            {showNavbar && <Navbar pickColor={toggleTheme} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
+            {showNavbar && (
+                <Navbar
+                    pickColor={toggleTheme}
+                    currentUser={currentUser}
+                    setCurrentUser={setCurrentUser}
+                />
+            )}
             <Routes>
                 <Route path="/" element={<Login handleSubmit={loginUser} />} />
                 <Route
