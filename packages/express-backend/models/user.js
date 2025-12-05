@@ -42,11 +42,11 @@ const UserSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
-        hashedPassword: {
+        // this used to be hashedPassword
+        password: {
             type: String,
             required: true,
         },
-
         email: {
             type: String,
             required: true,

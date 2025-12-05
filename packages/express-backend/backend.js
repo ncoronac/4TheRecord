@@ -35,12 +35,14 @@ app.get("/entries", async (req, res) => {
 
 app.post("/users", authenticateUser, (req, res) => {
     const userToAdd = req.body;
-    console.log(userToAdd);
+
+    console.log("trying to add this user", userToAdd);
+
     userServices
         .addUser(userToAdd)
         .then((user) => res.status(201).send(user))
         .catch((error) => {
-            console.log(error)
+            console.log(error);
             res.status(500).json({ error: error.message });
         });
 });
@@ -52,7 +54,7 @@ app.post("/entries", (req, res) => {
         .addEntry(entryToAdd)
         .then((entry) => res.status(201).send(entry))
         .catch((error) => {
-            console.log(error)
+            console.log(error);
             res.status(500).json({ error: error.message });
         });
 });

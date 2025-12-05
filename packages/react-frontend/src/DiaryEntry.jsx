@@ -209,7 +209,7 @@ function DiaryEntry(props) {
                                             alt={`Preview ${index + 1}`}
                                         />
                                         <button
-                                            type="button"
+                                            type="submit"
                                             onClick={() => removeImage(index)}
                                         >
                                             ×
