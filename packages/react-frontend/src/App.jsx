@@ -2,7 +2,6 @@ import {
     BrowserRouter,
     Routes,
     Route,
-    useLocation,
     useNavigate,
 } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -26,11 +25,9 @@ function App() {
     const [token, setToken] = useState(INVALID_TOKEN);
     const [message, setMessage] = useState("");
 
-    // used to get the current page for conditional rendering
-    const location = useLocation();
-    const showNavbar =
-        location.pathname !== "/" && location.pathname !== "/Form";
 
+    const showNavbar = currentUser !== null;
+    
     // const [currentView, setCurrentView] = useState("form");
     const [users, setUsers] = useState([]);
     const [entries, setEntries] = useState([]);
