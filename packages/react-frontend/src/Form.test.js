@@ -136,14 +136,29 @@ describe("Form component", () => {
   });
 
   test("Already a User button triggers navigation", () => {
-    const mockHandleSubmit = jest.fn();
-    render(<Form handleSubmit={mockHandleSubmit} />);
-    
-    // Find the "Already a User?" button (second button)
-    const buttons = screen.getAllByRole("button");
-    const alreadyUserButton = buttons[1]; // Second button
-    
+    render(<Form handleSubmit={() => {}} />);
+  
+    // fill form minimally because submit requires valid fields
+    fireEvent.change(screen.getByLabelText("First Name*"), {
+      target: { value: "Test" },
+    });
+    fireEvent.change(screen.getByLabelText("Last Name*"), {
+      target: { value: "User" },
+    });
+    fireEvent.change(screen.getByLabelText("Username*"), {
+      target: { value: "testuser" },
+    });
+    fireEvent.change(screen.getByLabelText("Password*"), {
+      target: { value: "password" },
+    });
+    fireEvent.change(screen.getByLabelText("Email*"), {
+      target: { value: "test@example.com" },
+    });
+  
+    const alreadyUserButton = screen.getByText("Already a User?");
     fireEvent.click(alreadyUserButton);
-    expect(mockNavigate).toHaveBeenCalledWith("/");
+  
+    expect(mockNavigate).toHaveBeenCalledWith("/"); // now it works
   });
+  
 });
