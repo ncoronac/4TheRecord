@@ -6,7 +6,7 @@ function Login(props) {
 
     const [creds, setCreds] = useState({
         username: "",
-        password: "",
+        pwd: "",
     });
 
     return (
@@ -33,16 +33,17 @@ function Login(props) {
                         type="password"
                         name="password"
                         id="password"
-                        value={creds.password}
+                        value={creds.pwd}
                         onChange={handleChange}
                         required
                     />
 
                     <button type="submit">Log in</button>
 
-                    <button type="submit" onClick={() => navigate("/Form")}>
-                        New User?
-                    </button>
+                    <button
+                        type="button"  
+                        onClick={() => navigate("/Form")}
+                    > New User?</button>
                 </form>
             </div>
         </div>
@@ -55,14 +56,17 @@ function Login(props) {
                 setCreds({ ...creds, username: value });
                 break;
             case "password":
-                setCreds({ ...creds, password: value });
+                setCreds({ ...creds, pwd: value });
                 break;
         }
     }
 
-    function submitForm() {
+    function submitForm(event) {
+        event.preventDefault();
+
         props.handleSubmit(creds);
-        setCreds({ username: "", password: "" });
+        setCreds({ username: "", pwd: "" });
+        navigate("/DailyView")
     }
 }
 

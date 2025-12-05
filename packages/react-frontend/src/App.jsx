@@ -146,7 +146,7 @@ function App() {
         return promise;
     }
     function loginUser(creds) {
-        const promise = fetch(`http://localhost:8000/login/`, {
+        const promise = fetch(`http://localhost:8000/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

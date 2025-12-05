@@ -69,7 +69,7 @@ export function loginUser(req, res) {
 
     if (!retrievedUser) {
         // invalid username
-        res.status(401).send("Unauthorized");
+        res.status(401).send("Unauthorized: bad username");
     } else {
         bcrypt
             .compare(pwd, retrievedUser.hashedPassword)
@@ -80,11 +80,11 @@ export function loginUser(req, res) {
                     });
                 } else {
                     // invalid password
-                    res.status(401).send("Unauthorized");
+                    res.status(401).send("Unauthorized: bad pwd" );
                 }
             })
             .catch(() => {
-                res.status(401).send("Unauthorized");
+                res.status(401).send("Unauthorized: bad");
             });
     }
 }

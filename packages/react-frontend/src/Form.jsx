@@ -34,7 +34,9 @@ function Form(props) {
         }
     }
 
-    function submitForm() {
+    function submitForm(event) {
+        event.preventDefault();
+
         console.log(creds);
         props.handleSubmit(creds);
         setCreds({ firstname: "", lastname:"", username: "", pwd: "", email: "" });
