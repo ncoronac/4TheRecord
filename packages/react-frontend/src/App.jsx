@@ -25,18 +25,19 @@ function App() {
     const [token, setToken] = useState(INVALID_TOKEN);
     const [message, setMessage] = useState("");
 
-
+    // Added state to track the currently logged-in user
+    const [currentUser, setCurrentUser] = useState(
+        JSON.parse(localStorage.getItem("currentUser")) || null
+    );
+    // show navbar if user is logged in
     const showNavbar = currentUser !== null;
+
+    console.log("Current user:", currentUser, "Show navbar:", showNavbar);
     
     // const [currentView, setCurrentView] = useState("form");
     const [users, setUsers] = useState([]);
     const [entries, setEntries] = useState([]);
     const [colorTheme, setColorTheme] = useState("purple"); // intial theme is purple
-
-    // Added state to track the currently logged-in user
-    const [currentUser, setCurrentUser] = useState(
-        JSON.parse(localStorage.getItem("currentUser")) || null
-    );
 
     // called when a button is pressed in the dropdown menu, updates state of colorTheme variable
     const toggleTheme = (color) => {
