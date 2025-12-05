@@ -40,10 +40,10 @@ function Login(props) {
 
                     <button type="submit">Log in</button>
 
-                    <button
-                        type="button"  
-                        onClick={() => navigate("/Form")}
-                    > New User?</button>
+                    <button type="button" onClick={() => navigate("/Form")}>
+                        {" "}
+                        New User?
+                    </button>
                 </form>
             </div>
         </div>
@@ -66,7 +66,6 @@ function Login(props) {
 
         props.handleSubmit(creds);
         setCreds({ username: "", pwd: "" });
-        
     }
 }
 

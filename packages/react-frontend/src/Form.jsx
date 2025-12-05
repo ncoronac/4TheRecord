@@ -5,12 +5,12 @@ function Form(props) {
     const navigate = useNavigate();
 
     const [creds, setCreds] = useState({
-            firstname: "",
-            lastname: "",
-            username: "",
-            pwd: "",
-            email: "",
-        });
+        firstname: "",
+        lastname: "",
+        username: "",
+        pwd: "",
+        email: "",
+    });
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -22,15 +22,14 @@ function Form(props) {
                 setCreds({ ...creds, pwd: value });
                 break;
             case "firstname":
-                setCreds({...creds, firstname: value });
+                setCreds({ ...creds, firstname: value });
                 break;
             case "lastname":
-                setCreds({...creds, lastname: value})
+                setCreds({ ...creds, lastname: value });
                 break;
-            
-            case "email":
-                setCreds({...creds,email: value})
 
+            case "email":
+                setCreds({ ...creds, email: value });
         }
     }
 
@@ -39,10 +38,15 @@ function Form(props) {
 
         console.log(creds);
         props.handleSubmit(creds);
-        setCreds({ firstname: "", lastname:"", username: "", pwd: "", email: "" });
+        setCreds({
+            firstname: "",
+            lastname: "",
+            username: "",
+            pwd: "",
+            email: "",
+        });
         navigate("/");
     }
-
 
     return (
         <div className="form-page">
@@ -104,9 +108,7 @@ function Form(props) {
                     />
 
                     <button type="submit"> Sign Up</button>
-                    <button type="submit">
-                        Already a User?
-                    </button>
+                    <button type="submit">Already a User?</button>
                 </form>
             </div>
         </div>

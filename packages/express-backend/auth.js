@@ -7,7 +7,7 @@ export function registerUser(req, res) {
     console.log("In registerUser");
     const { firstname, lastname, username, pwd, email } = req.body; // from form
 
-    if (!username || !pwd || !firstname || !lastname|| !email) {
+    if (!username || !pwd || !firstname || !lastname || !email) {
         res.status(400).send("Bad request: Invalid input data.");
     } else if (creds.find((c) => c.username === username)) {
         res.status(409).send("Username already taken");
@@ -18,11 +18,10 @@ export function registerUser(req, res) {
             .then((hashedPassword) => {
                 generateAccessToken(username).then((token) => {
                     console.log("Token:", token);
-                    res.status(201).send({token: token});
+                    res.status(201).send({ token: token });
                     creds.push({ username, hashedPassword });
                 });
             });
-        
     }
 }
 
@@ -80,7 +79,7 @@ export function loginUser(req, res) {
                     });
                 } else {
                     // invalid password
-                    res.status(401).send("Unauthorized: bad pwd" );
+                    res.status(401).send("Unauthorized: bad pwd");
                 }
             })
             .catch(() => {

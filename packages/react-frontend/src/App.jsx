@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, useLocation, useNavigate} from "react-router-dom";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    useLocation,
+    useNavigate,
+} from "react-router-dom";
 import { useState, useEffect } from "react";
 import Form from "./Form";
 import DiaryEntry from "./DiaryEntry";
@@ -35,42 +41,39 @@ function App() {
         setColorTheme(color);
     };
 
-
     // occurs when state colorTheme var is changed
     useEffect(() => {
-        console.log(message)
+        console.log(message);
 
         function addAuthHeader(otherHeaders = {}) {
             if (token === INVALID_TOKEN) {
                 return otherHeaders;
             } else {
                 return {
-                ...otherHeaders,
-                Authorization: `Bearer ${token}`
+                    ...otherHeaders,
+                    Authorization: `Bearer ${token}`,
                 };
             }
         }
 
         function fetchUsers() {
             const promise = fetch(`http://localhost:8000/users/`, {
-                headers: addAuthHeader()
-        });
+                headers: addAuthHeader(),
+            });
 
-        return promise;
+            return promise;
         }
 
-        fetchUsers().then((res) =>
-            res.status === 200 ? res.json() : undefined
-            )
+        fetchUsers()
+            .then((res) => (res.status === 200 ? res.json() : undefined))
             .then((json) => {
-            if (json) {
-                setUsers(json[users]);
-            } else {
-                setUsers(null);
-            }
-            })
-            .catch
-    
+                if (json) {
+                    setUsers(json[users]);
+                } else {
+                    setUsers(null);
+                }
+            }).catch;
+
         // maps each colorTheme to a css file
         const themeMap = {
             purple: "/themes/purple.css",
@@ -177,30 +180,28 @@ function App() {
         const promise = fetch(`http://localhost:8000/signup`, {
             method: "POST",
             headers: {
-            "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(creds)
+            body: JSON.stringify(creds),
         })
             .then((response) => {
-            if (response.status === 201) {
-                response
-                .json()
-                .then((payload) => setToken(payload.token));
-                setMessage(
-                `Signup successful for user: ${creds.username}; auth token saved`
-                );
-            } else {
-                setMessage(
-                `Signup Error ${response.status}: ${response.data}`
-                );
-            }
+                if (response.status === 201) {
+                    response.json().then((payload) => setToken(payload.token));
+                    setMessage(
+                        `Signup successful for user: ${creds.username}; auth token saved`
+                    );
+                } else {
+                    setMessage(
+                        `Signup Error ${response.status}: ${response.data}`
+                    );
+                }
             })
             .catch((error) => {
-            setMessage(`Signup Error: ${error}`);
+                setMessage(`Signup Error: ${error}`);
             });
 
         return promise;
-        }
+    }
 
     return (
         <>
