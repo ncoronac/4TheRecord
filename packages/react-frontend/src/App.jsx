@@ -239,7 +239,7 @@ function App() {
 
     return (
         <>
-            {showNavbar && <Navbar pickColor={toggleTheme} currentUser={currentUser}/>}
+            {showNavbar && <Navbar pickColor={toggleTheme} currentUser={currentUser} setCurrentUser={setCurrentUser}/>}
             <Routes>
                 <Route path="/" element={<Login handleSubmit={loginUser} />} />
                 <Route

@@ -1,11 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Navbar(props) {
-    // State to track the currently logged-in user
-    const [storedUser, setStoredUser] = useState(
-        JSON.parse(localStorage.getItem("currentUser"))
-    );
+    // get props from App.jsx
+    const [currentUser, setCurrentUser] = useState(props.currentUser);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
@@ -19,18 +17,9 @@ function Navbar(props) {
         { color: "yellow", hex: "#f7efb2" },
     ];
 
-    // Update storedUser when localStorage changes (login/signup)
     useEffect(() => {
-        function handleStorageChange() {
-            setStoredUser(JSON.parse(localStorage.getItem("currentUser")));
-        }
-
-        window.addEventListener("storage", handleStorageChange);
-
-        return () => {
-            window.removeEventListener("storage", handleStorageChange);
-        };
-    }, []);
+        setCurrentUser(props.currentUser);
+    }, [props.currentUser]);
 
     const handleProfileClick = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -39,7 +28,8 @@ function Navbar(props) {
     const handleLogout = () => {
         console.log("Logging out...");
         localStorage.removeItem("currentUser");
-        setStoredUser(null); // update state to immediately reflect logout
+        setCurrentUser(null);          // update Navbar state
+        props.setCurrentUser(null);    // update App state
         setIsMenuOpen(false);
         navigate("/");
     };
@@ -73,7 +63,7 @@ function Navbar(props) {
             {/* User Profile Menu */}
             <div className="navbar-menu" ref={menuRef}>
                 <div className="navbar-circle" onClick={handleProfileClick}>
-                    {storedUser ? storedUser.firstname[0].toUpperCase() : "U"}
+                    {currentUser ? currentUser.firstname[0].toUpperCase() : "U"}
                 </div>
 
                 {/* Dropdown Menu */}
@@ -82,12 +72,12 @@ function Navbar(props) {
                         {/* User Info Header */}
                         <div className="navbar-userinfo-box">
                             <div className="navbar-userinfo-name">
-                                {storedUser
-                                    ? `${storedUser.firstname} ${storedUser.lastname}`
+                                {currentUser
+                                    ? `${currentUser.firstname} ${currentUser.lastname}`
                                     : "Guest"}
                             </div>
                             <div className="navbar-userinfo-email">
-                                {storedUser ? storedUser.email : "No email"}
+                                {currentUser ? currentUser.email : "No email"}
                             </div>
                         </div>
                         {/* Change Profile Picture */}
