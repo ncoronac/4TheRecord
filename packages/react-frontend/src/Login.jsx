@@ -40,7 +40,7 @@ function Login(props) {
 
                     <button type="submit">Log in</button>
 
-                    <button type="button" onClick={() => navigate("/Form")}>
+                    <button className="nav-buttons" type="button" onClick={() => navigate("/Form")}>
                         {" "}
                         New User?
                     </button>
