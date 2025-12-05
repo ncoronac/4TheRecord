@@ -165,6 +165,17 @@ function App() {
             .then((response) => {
                 if (response.status === 200) {
                     response.json().then((payload) => setToken(payload.token));
+
+                    // Save user info for Navbar
+                    localStorage.setItem(
+                        "currentUser",
+                        JSON.stringify({
+                            firstname: creds.firstname,
+                            lastname: creds.lastname,
+                            email: creds.email,
+                        })
+                    );
+
                     setMessage(`Login successful; auth token saved`);
                     navigate("/DailyView");
                 } else {
@@ -196,6 +207,17 @@ function App() {
             .then((response) => {
                 if (response.status === 201) {
                     response.json().then((payload) => setToken(payload.token));
+
+                    //// Save user info for Navbar
+                    localStorage.setItem(
+                        "currentUser",
+                        JSON.stringify({
+                            firstname: creds.firstname,
+                            lastname: creds.lastname,
+                            email: creds.email,
+                        })
+                    );
+
                     setMessage(
                         `Signup successful for user: ${creds.username}; auth token saved`
                     );
