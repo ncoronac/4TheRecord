@@ -69,6 +69,20 @@ rgba(139, 92, 246, 0.15)
     border-color: #cac684;
 }
 
+.new-user-button {
+    background-color: #ddd991;
+    color: white;
+    border-radius: 8px;
+    border-color: #d5d18b;
+    padding: 0.7rem 1.4rem;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+.new-user-button:hover {
+    background-color: #d5d18b;
+    border-color: #cac684;
+}
+
 /* CSS for DiaryEntry */
 .diary-page-container {
     display: flex;

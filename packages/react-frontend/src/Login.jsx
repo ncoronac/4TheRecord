@@ -41,8 +41,7 @@ function Login(props) {
                     <button type="submit">Log in</button>
 
                     <button
-                        className="nav-buttons"
-                        type="button"
+                        className="new-user-button"
                         onClick={() => navigate("/Form")}
                     >
                         {" "}

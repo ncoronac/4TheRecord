@@ -108,7 +108,9 @@ function Form(props) {
                     />
 
                     <button type="submit"> Sign Up</button>
-                    <button type="submit">Already a User?</button>
+                    <button type="submit" onClick={() => navigate("/")}>
+                        Already a User?
+                    </button>
                 </form>
             </div>
         </div>

@@ -255,6 +255,20 @@ button[type="submit"]:hover {
     line-height: 0;
 }
 
+.new-user-button {
+    background-color: #b9aaff;
+    color: white;
+    border-radius: 8px;
+    border-color: #a99ae9;
+    padding: 0.7rem 1.4rem;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+.new-user-button:hover {
+    background-color: #a495ff;
+    border-color: #7a6ccf;
+}
+
 /* CSS for Icons */
 .icon-row {
     display: flex; /* place buttons side by side */

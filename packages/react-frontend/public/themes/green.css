@@ -57,6 +57,20 @@
     border-color: #acc096;
 }
 
+.new-user-button {
+    background-color: #c3daaa;
+    color: white;
+    border-radius: 8px;
+    border-color: #bed4a7;
+    padding: 0.7rem 1.4rem;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+.new-user-button:hover {
+    background-color: #bed4a7;
+    border-color: #acc096;
+}
+
 /* CSS for DiaryEntry */
 .diary-page-container {
     display: flex;
