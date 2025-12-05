@@ -5,12 +5,12 @@ For anyone who wants to take a moment each day to check in with themselves. Thos
 ### Development Environment Set-Up:
 * Ensure you have **npm** installed.
 * Clone our repo and run `npm install` in the root repository. This should install all necessary dependencies, but due to npm bugs you may need to specifically install certain packages as you go (ie, `npm install prettier` if it throws a "prettier not found" error).
-* Before committing your code, make sure to run it through [Prettier](https://prettier.io/) for code formatting and [ESlint](https://eslint.org) for early bug detection. There are commands for each of these in the packge.json files for the frontend, backend, and root directories.
+* Before committing your code, make sure to run it through [Prettier](https://prettier.io/) for code formatting and [ESlint](https://eslint.org) for early bug detection. There are commands for each of these in the package.json files for the frontend, backend, and root directories.
 * Start developing! :) 
 
 #### Prettier Standards:
 ```
-// .prettierrc.json
+... in .prettierrc.json ...
 {
     "semi": true,
     "singleQuote": false,
