@@ -152,6 +152,7 @@ function App() {
         return promise;
     }
     function loginUser(creds) {
+        console.log("fetch failed");
         const promise = fetch(
             `https://4therecord-dycbdgaxc8cvdpb3.westus-01.azurewebsites.net/login`,
             {
