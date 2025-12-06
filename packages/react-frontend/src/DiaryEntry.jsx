@@ -95,6 +95,14 @@ function DiaryEntry(props) {
         setEntry({ date: "", title: "", content: "", mood: "", images: [] });
     }
 
+    function handleTrackerSelect(trackerTitle, value){
+        setTrackerValues((prev) => ({
+            ...prev,
+            [trackerTitle]: value,
+        }));
+    }
+
+    const [trackerValues, setTrackerValues] = useState({});
     const trackers = [
         {
             title: "Mood Tracker",
@@ -230,8 +238,15 @@ function DiaryEntry(props) {
                             <strong>Date:</strong> {entry.date}
                         </p>
                         <p>
-                            <strong>Mood:</strong> {entry.mood}
+                            <strong>Trackers:</strong>
                         </p>
+                        <ul>
+                            {Object.entries(trackerValues).map(([key, value]) => (
+                                <li key={key}>
+                                    {key}: {value}
+                                </li>
+                            ))}
+                        </ul>
                         <p>
                             <strong>Content:</strong> {entry.content}
                         </p>
@@ -247,6 +262,8 @@ function DiaryEntry(props) {
                             key={index}
                             title={tracker.title}
                             icons={tracker.icons}
+                            selectedValue={trackerValues[tracker.title]}
+                            onSelect={handleTrackerSelect}
                         />
                     ))}
                 </div>

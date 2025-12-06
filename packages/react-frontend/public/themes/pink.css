@@ -294,6 +294,13 @@ button[type="submit"]:hover {
     border: 3px solid;
 }
 
+.icon-button.selected {
+    background-color: white;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 0 6px rgba(122, 108, 207, 0.3);
+}
+
 .tracker-container {
     border: none;
     padding: 15px;
