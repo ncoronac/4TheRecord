@@ -1,24 +1,16 @@
 # 4TheRecord
-
 ### Contributors: Ava, Noemi, Ivana, Kyrene
+For anyone who wants to take a moment each day to check in with themselves. Those who seek a simple, consistent journaling method and an easy way to understand their emotional patterns. The 4TheRecord app is a digital diary and mood tracker that helps users record their thoughts and track their emotions. Unlike traditional digital diaries on the market, 4TheRecord offers personalized writing prompts based on recorded emotions, creating a positive, judgement-free space for reflection.
 
-We use [Prettier](https://prettier.io/) for code formatting.
-Before submitting a pull request, please make sure your code is formatted by:
+### Development Environment Set-Up:
+* Ensure you have **npm** installed.
+* Clone our repo and run `npm install` in the root repository. This should install all necessary dependencies, but due to npm bugs you may need to specifically install certain packages as you go (ie, `npm install prettier` if it throws a "prettier not found" error).
+* Before committing your code, make sure to run it through [Prettier](https://prettier.io/) for code formatting and [ESlint](https://eslint.org) for early bug detection. There are commands for each of these in the package.json files for the frontend, backend, and root directories.
+* Start developing! :) 
 
-1. add .prettierrc.json file
-2. commands used:
-
+#### Prettier Standards:
 ```
-    npm install
-    npx prettier --check .
-    npx prettier --write .
-    npm run format
-```
-
-Standards:
-
-```
-// .prettierrc.json
+... in .prettierrc.json ...
 {
     "semi": true,
     "singleQuote": false,
@@ -29,6 +21,7 @@ Standards:
 }
 ```
 
+#### To avoid merge conflicts:
 When working on a new task, create a new branch and commit changes to that branch as you progress. When a task is done, push your code and make a merge request to keep everyone else updated on the app progress. Additionally, communicate the progress to the rest of the group.
 
 **[Figma UI Prototype](https://www.figma.com/proto/Uda7TqnMR3CqGsuqMONchF/4TheRecord-Prototype?node-id=1-4382&p=f&t=KXhAiH4j1VJQV9F0-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A4382):** Last updated October 30th, 2025
