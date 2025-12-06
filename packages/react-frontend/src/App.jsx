@@ -31,11 +31,15 @@ function App() {
     /// Remove localStorage - track login state only in memory
     const [currentUser, setCurrentUser] = useState(null); // Changed from localStorage
 
-    // show navbar if user is logged in
-    const showNavbar =
-        currentUser !== null &&
-        location.pathname !== "/" &&
-        location.pathname !== "/Form";
+    const [showNavbar, setShowNavbar] = useState(false);
+
+    useEffect(() => {
+        setShowNavbar(
+            currentUser !== null &&
+            location.pathname !== "/" &&
+            location.pathname !== "/Form"
+        );
+    }, [currentUser, location.pathname]);
 
     console.log("Current user:", currentUser, "Show navbar:", showNavbar);
 
