@@ -1,13 +1,9 @@
-// import React, { useState } from 'react';
-
 function Icons(props) {
-    function handleClick(event) {
-        event.preventDefault();
-        console.log("Submitted: ", props.text, props.num);
-    }
-
     return (
-        <button className="icon-button" onClick={handleClick}>
+        <button
+            className={`icon-button ${props.isSelected ? "selected" : ""}`}
+            onClick={props.onClick}
+        >
             {props.text}
         </button>
     );
