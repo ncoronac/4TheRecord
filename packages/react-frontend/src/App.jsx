@@ -1,9 +1,4 @@
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    useNavigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Form from "./Form";
 import DiaryEntry from "./DiaryEntry";
@@ -33,7 +28,7 @@ function App() {
     const showNavbar = currentUser !== null;
 
     console.log("Current user:", currentUser, "Show navbar:", showNavbar);
-    
+
     // const [currentView, setCurrentView] = useState("form");
     const [users, setUsers] = useState([]);
     const [entries, setEntries] = useState([]);

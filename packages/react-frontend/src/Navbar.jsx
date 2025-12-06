@@ -1,4 +1,4 @@
-import { useState, useRef} from "react";
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Navbar(props) {
@@ -24,7 +24,7 @@ function Navbar(props) {
     const handleLogout = () => {
         console.log("Logging out...");
         localStorage.removeItem("currentUser");
-        props.setCurrentUser(null);    // update App state
+        props.setCurrentUser(null); // update App state
         setIsMenuOpen(false);
         navigate("/");
     };
@@ -54,13 +54,13 @@ function Navbar(props) {
             <Link to="/DailyView">
                 <div className="navbar-title">4TheRecord</div>
             </Link>
-    
+
             {/* User Profile Menu */}
             <div className="navbar-menu" ref={menuRef}>
                 <div className="navbar-circle" onClick={handleProfileClick}>
                     {currentUser?.firstname?.[0]?.toUpperCase() || "U"}
                 </div>
-    
+
                 {isMenuOpen && (
                     <div className="navbar-dropdownmenu">
                         {/* User Info */}
@@ -71,21 +71,32 @@ function Navbar(props) {
                                     : "Guest"}
                             </div>
                             <div className="navbar-userinfo-email">
-                                {currentUser?.email || currentUser?.username || "No email"}
+                                {currentUser?.email ||
+                                    currentUser?.username ||
+                                    "No email"}
                             </div>
                         </div>
-    
+
                         {/* Dropdown Actions */}
-                        <div className="navbar-dropdown-item" onClick={handleChangeProfilePicture}>
+                        <div
+                            className="navbar-dropdown-item"
+                            onClick={handleChangeProfilePicture}
+                        >
                             <span>👤</span> Change Profile Picture
                         </div>
-                        <div className="navbar-dropdown-item" onClick={handleInsights}>
+                        <div
+                            className="navbar-dropdown-item"
+                            onClick={handleInsights}
+                        >
                             <span>📊</span> Insights
                         </div>
-                        <div className="navbar-dropdown-item" onClick={handleSettings}>
+                        <div
+                            className="navbar-dropdown-item"
+                            onClick={handleSettings}
+                        >
                             <span>⚙️</span> Settings
                         </div>
-    
+
                         {/* Color Picker */}
                         <div className="color-buttons-row">
                             {colorButtons.map((button) => (
@@ -97,7 +108,7 @@ function Navbar(props) {
                                 />
                             ))}
                         </div>
-    
+
                         {/* Logout */}
                         <div className="navbar-logout" onClick={handleLogout}>
                             <span>🚪</span> Logout
@@ -107,6 +118,5 @@ function Navbar(props) {
             </div>
         </nav>
     );
-    
 }
 export default Navbar;

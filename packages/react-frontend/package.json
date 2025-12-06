@@ -46,10 +46,20 @@
             "^.+\\.[tj]sx?$": "babel-jest"
         },
         "testEnvironment": "jsdom",
-        "moduleFileExtensions": ["js", "jsx", "json", "node"],
-        "setupFilesAfterEnv": ["<rootDir>/jest.setup.js"]
+        "moduleFileExtensions": [
+            "js",
+            "jsx",
+            "json",
+            "node"
+        ],
+        "setupFilesAfterEnv": [
+            "<rootDir>/jest.setup.js"
+        ]
     },
     "babel": {
-        "presets": ["@babel/preset-env", "@babel/preset-react"]
+        "presets": [
+            "@babel/preset-env",
+            "@babel/preset-react"
+        ]
     }
 }
