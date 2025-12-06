@@ -1,4 +1,10 @@
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    useNavigate,
+    useLocation,
+} from "react-router-dom";
 import { useState, useEffect } from "react";
 import Form from "./Form";
 import DiaryEntry from "./DiaryEntry";
@@ -16,6 +22,8 @@ function AppWrapper() {
 
 function App() {
     const navigate = useNavigate();
+    const location = useLocation();
+
     const INVALID_TOKEN = "INVALID_TOKEN";
     const [token, setToken] = useState(INVALID_TOKEN);
     const [message, setMessage] = useState("");
@@ -25,7 +33,10 @@ function App() {
         JSON.parse(localStorage.getItem("currentUser")) || null
     );
     // show navbar if user is logged in
-    const showNavbar = currentUser !== null;
+    const showNavbar =
+        currentUser !== null &&
+        location.pathname !== "/" &&
+        location.pathname !== "/Form";
 
     console.log("Current user:", currentUser, "Show navbar:", showNavbar);
 
