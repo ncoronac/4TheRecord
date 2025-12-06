@@ -174,14 +174,6 @@ function App() {
                 if (response.status === 200) {
                     response.json().then((payload) => setToken(payload.token));
 
-                    const user = {
-                        username: creds.username,
-                        // Add other properties if the API returns them
-                        ...payload.user // If the API returns user data
-                    };
-
-                    setCurrentUser(user);
-
                     setMessage(`Login successful; auth token saved`);
                     navigate("/DailyView");
                 } else {
@@ -220,7 +212,7 @@ function App() {
                         lastname: creds.lastname,
                         email: creds.email,
                     };
-                    
+
                     setCurrentUser(user); // update state so Navbar shows immediately
 
                     setMessage(
