@@ -28,10 +28,9 @@ function App() {
     const [token, setToken] = useState(INVALID_TOKEN);
     const [message, setMessage] = useState("");
 
-    // Added state to track the currently logged-in user
-    const [currentUser, setCurrentUser] = useState(
-        JSON.parse(localStorage.getItem("currentUser")) || null
-    );
+    /// Remove localStorage - track login state only in memory
+    const [currentUser, setCurrentUser] = useState(null); // Changed from localStorage
+
     // show navbar if user is logged in
     const showNavbar =
         currentUser !== null &&
@@ -49,17 +48,6 @@ function App() {
     const toggleTheme = (color) => {
         setColorTheme(color);
     };
-
-    // Sync localStorage changes (optional but useful)
-    useEffect(() => {
-        function handleStorageChange() {
-            setCurrentUser(
-                JSON.parse(localStorage.getItem("currentUser")) || null
-            );
-        }
-        window.addEventListener("storage", handleStorageChange);
-        return () => window.removeEventListener("storage", handleStorageChange);
-    }, []);
 
     // occurs when state colorTheme var is changed
     useEffect(() => {
@@ -186,14 +174,13 @@ function App() {
                 if (response.status === 200) {
                     response.json().then((payload) => setToken(payload.token));
 
-                    // Save user info for Navbar
                     const user = {
-                        firstname: creds.firstname,
-                        lastname: creds.lastname,
-                        email: creds.email,
+                        username: creds.username,
+                        // Add other properties if the API returns them
+                        ...payload.user // If the API returns user data
                     };
-                    localStorage.setItem("currentUser", JSON.stringify(user));
-                    setCurrentUser(user); // update state so Navbar shows immediately
+
+                    setCurrentUser(user);
 
                     setMessage(`Login successful; auth token saved`);
                     navigate("/DailyView");
@@ -233,7 +220,7 @@ function App() {
                         lastname: creds.lastname,
                         email: creds.email,
                     };
-                    localStorage.setItem("currentUser", JSON.stringify(user));
+                    
                     setCurrentUser(user); // update state so Navbar shows immediately
 
                     setMessage(

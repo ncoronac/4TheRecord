@@ -23,7 +23,6 @@ function Navbar(props) {
 
     const handleLogout = () => {
         console.log("Logging out...");
-        localStorage.removeItem("currentUser");
         props.setCurrentUser(null); // update App state
         setIsMenuOpen(false);
         navigate("/");
