@@ -25,6 +25,7 @@ For anyone who wants to take a moment each day to check in with themselves. Thos
 When working on a new task, create a new branch and commit changes to that branch as you progress. When a task is done, push your code and make a merge request to keep everyone else updated on the app progress. Additionally, communicate the progress to the rest of the group.
 
 **[Figma UI Prototype](https://www.figma.com/proto/Uda7TqnMR3CqGsuqMONchF/4TheRecord-Prototype?node-id=1-4382&p=f&t=KXhAiH4j1VJQV9F0-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A4382):** Last updated October 30th, 2025
+**[Figma UML Diagram](https://www.figma.com/board/kmCxZXchXJsFtLPBKbAE5W/UML-diagram--Copy-?node-id=12401-144&p=f)**
 
 ## Built With
 
