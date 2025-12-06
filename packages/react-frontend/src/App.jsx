@@ -172,8 +172,10 @@ function App() {
         )
             .then((response) => {
                 if (response.status === 200) {
-                    response.json().then((payload) => setToken(payload.token));
-
+                    response.json().then((payload) => {
+                        setToken(payload.token);
+                        setCurrentUser(payload.user);
+                    });
                     setMessage(`Login successful; auth token saved`);
                     navigate("/DailyView");
                 } else {
